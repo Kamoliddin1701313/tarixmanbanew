@@ -8,55 +8,115 @@ import { BiImages } from "react-icons/bi";
 import { LiaGlobeAmericasSolid } from "react-icons/lia";
 import { LuRotate3D } from "react-icons/lu";
 import { AiOutlineEye } from "react-icons/ai";
-import {
-  TbPlayerTrackNextFilled,
-  TbPlayerTrackPrevFilled,
-} from "react-icons/tb";
+import ReactPaginate from "react-paginate";
+import { TbPlayerTrackNextFilled } from "react-icons/tb";
+import { TbPlayerTrackPrevFilled } from "react-icons/tb";
 import Loading from "../../Loading/Loading";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { ValueContext } from "../../App";
-import ReactPaginate from "react-paginate";
 
 function HomeImageDetail() {
   const [loading, setLoading] = useState(true);
+  const { id } = useParams();
   const [data, setData] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-  const [openBox, setOpenBox] = useState(null);
-  const [openBoxChog, setOpenBoxChog] = useState(false);
-  const [checkedItems, setCheckedItems] = useState([]);
-  const [searchText, setSearchText] = useState("");
-
-  const { id } = useParams();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [openBox, setOpenBox] = useState(null);
+  const [openBoxChog, setOpenBoxChog] = useState(false);
+
+  const [searchText, setSearchText] = useState("");
   const { searchValue } = useContext(ValueContext);
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [checkedItemsChog, setCheckedItemsChog] = useState([]);
   const handleSelect = (id) => {
     setCheckedItems((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
   };
 
-  const getData = async (
-    Page = 1,
-    filters = checkedItems,
-    search = searchText
-  ) => {
+  const handleSelectChog = (id) => {
+    setCheckedItemsChog((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  // const getData = async (Page = 1) => {
+  //   try {
+  //     // const query = checkedItems
+  //     //   .map((id) => `filters=${id}`).join("&");
+  //     //   `category-resource/${id}/?${query}&search=${searchText}&page=${Page}`
+
+  //     const filtersQuery = checkedItems.map((id) => `filters=${id}`).join("&");
+  //     const periodQuery = `period_filter=${idx}`;
+  //     const finalQuery = `${filtersQuery}&${periodQuery}&search=${searchText}&page=${Page}`;
+  //     const respons = await axios.get(`category-resource/${id}/?${finalQuery}`);
+
+  //     setPageCount(Math.ceil(respons?.data?.resources?.count / 20));
+  //     if (respons.status) {
+  //       setData(respons);
+  //       setLoading(false);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // const getData = async (Page = 1) => {
+  //   try {
+  //     const filtersQuery = checkedItems.map((id) => `filters=${id}`).join("&");
+  //     const periodQuery = checkedItemsChog
+  //       .map((id) => `period_filter=${id}`)
+  //       .join("&");
+
+  //     const finalQuery = `${filtersQuery}&${periodQuery}&search=${searchText}&page=${Page}`;
+
+  //     const respons = await axios.get(`category-resource/${id}/?${finalQuery}`);
+
+  //     setPageCount(Math.ceil(respons?.data?.resources?.count / 20));
+  //     if (respons.status) {
+  //       setData(respons);
+  //       setLoading(false);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // COPYASI
+  const getData = async (Page = 1) => {
     try {
-      const query = filters.map((id) => `filters=${id}`).join("&");
+      const filtersQuery = checkedItems.map((id) => `filters=${id}`).join("&");
+      const periodQuery = checkedItemsChog
+        .map((id) => `period_filter=${id}`)
+        .join("&");
+
+      const searchQuery = searchText ? `search=${searchText}` : "";
+
+      const finalQuery = [filtersQuery, periodQuery, searchQuery]
+        .filter(Boolean)
+        .join("&");
+
       const respons = await axios.get(
-        `category-resource/${id}/?${query}&search=${search}&page=${Page}`
+        `category-resource/${id}/?${finalQuery}&page=${Page}`
       );
 
-      setPageCount(Math.ceil(respons?.data?.resources?.count / 20));
+      // Paginatsiyani to'g'ri hisoblash
+      const totalCount = respons?.data?.resources?.count || 0;
+      setPageCount(Math.ceil(totalCount / 20));
+
       if (respons.status) {
         setData(respons);
-        setLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Xatolik yuz berdi:", error);
     } finally {
       setLoading(false);
     }
@@ -68,26 +128,51 @@ function HomeImageDetail() {
     getData(selectedPage);
   };
 
-  const onSearchClick = () => {
-    getData(currentPage, checkedItems, searchText);
-  };
+  // useEffect(() => {
+  //   getData(currentPage);
+  // }, [id, currentPage, checkedItems, checkedItemsChog]);
+  // COPYASI
+  useEffect(() => {
+    // URLdan search parametrini o'qiymiz
+    const searchParam = searchParams.get("search");
+    if (searchParam) {
+      setSearchText(searchParam);
+    }
+    getData(currentPage);
+  }, [id, currentPage, checkedItems, checkedItemsChog, searchParams]);
+
+  // useEffect(() => {
+  //   getData();
+  // }, [checkedItems, checkedItemsChog]);
+
+  const result = data.data?.filter_categories.map((category) => {
+    return {
+      ...category,
+      filters: data.data?.filters.filter(
+        (filter) => Number(filter.filter_category) === Number(category.id)
+      ),
+    };
+  });
 
   const ToggleBtn = (id) => {
     setOpenBox((prevId) => (prevId === id ? null : id));
   };
 
-  useEffect(() => {
-    getData(currentPage);
-  }, [id, currentPage, checkedItems, searchText]);
+  // const onSearchClick = () => {
+  //   // if (searchText.trim() !== "") {
+  //   // }
+  //   getData();
+  //   setSearchText("");
+  // };
 
-  const result = data.data?.filter_categories.map((category) => ({
-    ...category,
-    filters: data.data?.filters.filter(
-      (filter) => Number(filter.filter_category) === Number(category.id)
-    ),
-  }));
+  // COPYASI
+  const onSearchClick = () => {
+    setSearchParams({ search: searchText, page: 1 }); // Har doim 1-sahifaga qaytamiz
+    getData(1);
+  };
 
-  console.log(data.data, "data.data?.period_filters");
+  console.log(data, "DATA XXXX");
+  console.log(result, "RESULTS XXXX");
 
   return (
     <div className={style.container}>
@@ -102,8 +187,19 @@ function HomeImageDetail() {
                 type="text"
                 placeholder="Qidirish..."
                 value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && onSearchClick()}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                  // Agar input bo'sh bo'lsa, qidiruvni bekor qilamiz
+                  if (e.target.value.trim() === "") {
+                    setSearchParams({ page: 1 });
+                    getData(1);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    onSearchClick();
+                  }
+                }}
               />
               <FcSearch onClick={onSearchClick} />
             </div>
@@ -112,10 +208,11 @@ function HomeImageDetail() {
               <div className={style.accordionItem}>
                 <button>
                   <span>Chog'lar</span>
+
                   <span
                     onClick={() => setOpenBoxChog(!openBoxChog)}
                     style={{
-                      transform: openBoxChog ? "rotate(180deg)" : "rotate(0)",
+                      transform: openBoxChog && "rotate(180deg)",
                       transition: "transform 0.3s ease",
                       display: "inline-block",
                     }}
@@ -133,12 +230,14 @@ function HomeImageDetail() {
                     >
                       <div className={style.accordionHeader}>
                         <span>{val?.title}</span>
-
+                        {/* {console.log(val, "val")} */}
                         <label className={style.checkboxWrapper}>
                           <input
                             type="checkbox"
-                            checked={checkedItems.includes(val.id)}
-                            onChange={() => handleSelect(val.id)}
+                            // checked={checkedItems.includes(val.id)}
+                            // onChange={() => handleSelect(val.id)}
+                            checked={checkedItemsChog.includes(val.id)}
+                            onChange={() => handleSelectChog(val.id)}
                           />
                           <span className={style.customCheckbox}></span>
                         </label>
@@ -156,9 +255,7 @@ function HomeImageDetail() {
                       <span
                         style={{
                           transform:
-                            openBox === filterCategory.id
-                              ? "rotate(180deg)"
-                              : "rotate(0)",
+                            openBox == filterCategory.id && "rotate(180deg)",
                           transition: "transform 0.3s ease",
                           display: "inline-block",
                         }}
@@ -177,6 +274,10 @@ function HomeImageDetail() {
                       {filterCategory.filters.map((filterItem, subIdx) => (
                         <div key={subIdx} className={style.accordionHeader}>
                           <span>{filterItem.title}</span>
+                          {/* {console.log(
+                            filterItem,
+                            "filterItemlllllllllllllllllll"
+                          )} */}
                           <label className={style.checkboxWrapper}>
                             <input
                               type="checkbox"
@@ -194,12 +295,25 @@ function HomeImageDetail() {
             </div>
           </div>
 
+          {/* {console.log(data, "Islamov Kamoliddin")} */}
           <div className={style.wrapper}>
             {data?.data?.resources?.results?.map((value, idx) => (
               <div key={idx} className={style.card}>
                 <div>
-                  <img
+                  {/* <img
                     onClick={() => navigate(`${value.id}?page=${currentPage}`)}
+                    src={value.image}
+                    alt={value.title}
+                  /> */}
+
+                  {/* variyanlari */}
+                  <img
+                    onClick={() =>
+                      navigate(
+                        // `/homeImageDetail/${id}/${value.id}?page=${currentPage}`
+                        `/homeImageDetail/${id}/${value.id}`
+                      )
+                    }
                     src={value.image}
                     alt={value.title}
                   />
@@ -214,31 +328,37 @@ function HomeImageDetail() {
 
                   <div className={style.icons}>
                     <span>Eshtuv</span>
+
                     <span style={{ cursor: value?.audios && "not-allowed" }}>
                       <BsMic style={{ marginTop: "3px" }} />
                     </span>
 
                     <span>Surat</span>
+
                     <span style={{ cursor: value?.galleries && "not-allowed" }}>
                       <BiImages style={{ marginTop: "3px" }} />
                     </span>
 
                     <span>Matn</span>
+
                     <span style={{ cursor: value?.audios && "not-allowed" }}>
                       <BsFillChatTextFill style={{ marginTop: "3px" }} />
                     </span>
 
                     <span>Xarita</span>
+
                     <span style={{ cursor: value?.locations && "not-allowed" }}>
                       <LiaGlobeAmericasSolid style={{ marginTop: "3px" }} />
                     </span>
 
                     <span>3D</span>
+
                     <span style={{ cursor: value?.audios && "not-allowed" }}>
                       <LuRotate3D style={{ marginTop: "3px" }} />
                     </span>
 
                     <span>Ko'ruv</span>
+
                     <span style={{ cursor: value?.videos && "not-allowed" }}>
                       <AiOutlineEye
                         style={{ fontSize: "22px", marginTop: "3px" }}
@@ -251,12 +371,15 @@ function HomeImageDetail() {
           </div>
         </div>
       ) : (
-        <h1 style={{ color: "white", textAlign: "center", marginTop: "15%" }}>
+        <div
+          className={style.not_found}
+          style={{ color: "white", textAlign: "center", marginTop: "15%" }}
+        >
           <button onClick={() => navigate(-1)}>
             <FaArrowLeftLong />
           </button>
           {data?.data?.category} bo'limida bunday ma'lumotlar yo'q ekan 😔😔
-        </h1>
+        </div>
       )}
 
       {data?.data?.resources?.results.length > 0 && (
@@ -270,6 +393,7 @@ function HomeImageDetail() {
           onPageChange={handlePageClick}
           containerClassName={style.pagination}
           activeClassName={style.active}
+          forcePage={currentPage - 1}
         />
       )}
     </div>
@@ -277,5 +401,3 @@ function HomeImageDetail() {
 }
 
 export default HomeImageDetail;
-
-// Salom Kamoliddin

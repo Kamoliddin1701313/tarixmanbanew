@@ -32,12 +32,11 @@ const Header = ({ openIcon, setOpenIcon }) => {
         <div
           className={`${style["info-panel"]} ${openIcon && style["openPanel"]}`}
         >
-          {console.log(openIcon, "Kamoliddin Professor")}
           <TimeClock />
 
           <div>{/* <WeatherApp /> */}</div>
 
-          <div className={style.search}>
+          {/* <div className={style.search}>
             <input
               type="text"
               placeholder="Qidirish..."
@@ -46,6 +45,21 @@ const Header = ({ openIcon, setOpenIcon }) => {
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   // onSearch();
+                }
+              }}
+            />
+            <FcSearch onClick={() => navigate("/search")} />
+          </div> */}
+          {/* VARIYANTGA */}
+          <div className={style.search}>
+            <input
+              type="text"
+              placeholder="Qidirish..."
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  navigate("/search"); // Search sahifasiga o'tish
                 }
               }}
             />

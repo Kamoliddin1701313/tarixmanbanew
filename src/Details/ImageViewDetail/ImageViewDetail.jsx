@@ -11,7 +11,6 @@ function ImageViewDetail() {
   const [loading, setLoading] = useState(true);
   const { id, detailId } = useParams();
   const [data, setData] = useState([]);
-  const [datax, setDatax] = useState([]);
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
 
@@ -20,9 +19,9 @@ function ImageViewDetail() {
   const getData = async () => {
     try {
       const respons = await axios.get(`category-resource/${id}?page=${page}`);
+      // const respons = await axios.get(`resource_api-detail/${id}/${detailId}`);
       if (respons.status) {
         setData(respons?.data?.resources?.results);
-        setDatax(respons);
         setLoading(false);
       }
     } catch (error) {
@@ -40,7 +39,7 @@ function ImageViewDetail() {
 
   console.log(data, "data   3333333333");
   console.log(ImageDataById, "ImageDataById   22222222222");
-  console.log(datax, "datax");
+  console.log(detailId, id, "XXXXXXXXXXXX");
 
   //   useEffect(() => {
   //     console.log("Category ID:", id);
@@ -76,6 +75,7 @@ function ImageViewDetail() {
             <h1>{ImageDataById?.title}</h1>
           </div>
           <img src={ImageDataById?.image} alt={ImageDataById?.title} />
+          {console.log(ImageDataById?.image, "NIMA BO'LDI KAMOLIDDIN")}
           {ImageDataById?.contents?.map((value, index) => (
             <p
               key={index}

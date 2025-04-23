@@ -45,6 +45,48 @@ function Search() {
     getData(currentPage);
   }, [searchValue, currentPage]);
 
+  // const navigate = useNavigate();
+  // const { searchValue, setSearchValue } = useContext(ValueContext);
+  // const [data, setData] = useState([]);
+  // const [pageCount, setPageCount] = useState(0);
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const [loading, setLoading] = useState(true);
+  // const currentPage = Number(searchParams.get("page")) || 1;
+
+  // const getData = async (Page = 1) => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await axios.get(`search/?page=${Page}&q=${searchValue}`);
+  //     if (response.statusText) {
+  //       setData(response?.data?.results);
+  //     }
+  //     setPageCount(Math.ceil(response?.data?.count / 20));
+  //   } catch (error) {
+  //     console.error("Search error:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // const handlePageClick = (event) => {
+  //   const selectedPage = event.selected + 1;
+  //   setSearchParams({ page: selectedPage });
+  // };
+
+  // useEffect(() => {
+  //   getData(currentPage);
+  // }, [searchValue, currentPage]);
+
+  // const handleImageClick = (item) => {
+  //   if (!item?.category || !item?.id) {
+  //     console.error("Missing required properties in item:", item);
+  //     return;
+  //   }
+  //   navigate(
+  //     `/homeImageDetail/${item.category}/${item.id}?page=${currentPage}`
+  //   );
+  // };
+
   console.log(data, "xaxa title");
   console.log(searchValue, "searchValue");
 
@@ -63,9 +105,22 @@ function Search() {
                       navigate(`/homeImageDetail/${value.category}`)
                     }
                     // src={value.image}
-                    src={frut}
+                    src={
+                      value.image
+                        ? `https://backend.tarixmanba.uz/${value.image}`
+                        : frut
+                    }
                     alt={value.title}
                   />
+                  {/* <img
+                    onClick={() => handleImageClick(value)}
+                    src={
+                      value.image
+                        ? `https://backend.tarixmanba.uz/${value.image}`
+                        : frut
+                    }
+                    alt={value.title}
+                  /> */}
                 </div>
 
                 <div className={style.mediaInfoSection}>
