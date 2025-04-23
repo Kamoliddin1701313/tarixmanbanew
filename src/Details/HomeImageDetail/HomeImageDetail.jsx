@@ -300,14 +300,14 @@ function HomeImageDetail() {
             {data?.data?.resources?.results?.map((value, idx) => (
               <div key={idx} className={style.card}>
                 <div>
-                  {/* <img
+                  <img
                     onClick={() => navigate(`${value.id}?page=${currentPage}`)}
                     src={value.image}
                     alt={value.title}
-                  /> */}
+                  />
 
                   {/* variyanlari */}
-                  <img
+                  {/* <img
                     onClick={() =>
                       navigate(
                         // `/homeImageDetail/${id}/${value.id}?page=${currentPage}`
@@ -316,7 +316,7 @@ function HomeImageDetail() {
                     }
                     src={value.image}
                     alt={value.title}
-                  />
+                  /> */}
                 </div>
 
                 <div className={style.mediaInfoSection}>
