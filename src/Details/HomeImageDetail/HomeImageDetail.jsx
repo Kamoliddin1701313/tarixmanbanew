@@ -305,6 +305,7 @@ function HomeImageDetail() {
                     src={value.image}
                     alt={value.title}
                   />
+                  {/* salom hammaga */}
 
                   {/* variyanlari */}
                   {/* <img
