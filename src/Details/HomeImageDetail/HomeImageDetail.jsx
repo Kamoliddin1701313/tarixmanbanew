@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import style from "./homeImageDetail.module.scss";
 import axios from "axios";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { FcSearch } from "react-icons/fc";
 import { BsMic, BsFillChatTextFill } from "react-icons/bs";
 import { BiImages } from "react-icons/bi";
@@ -24,9 +29,11 @@ function HomeImageDetail() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [openBox, setOpenBox] = useState(null);
   const [openBoxChog, setOpenBoxChog] = useState(false);
+  const { pathname } = useLocation();
+  console.log(pathname, "pathname");
 
   const [searchText, setSearchText] = useState("");
-  const { searchValue } = useContext(ValueContext);
+  const { searchValue, setSearchValue } = useContext(ValueContext);
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
@@ -44,53 +51,6 @@ function HomeImageDetail() {
     );
   };
 
-  // const getData = async (Page = 1) => {
-  //   try {
-  //     // const query = checkedItems
-  //     //   .map((id) => `filters=${id}`).join("&");
-  //     //   `category-resource/${id}/?${query}&search=${searchText}&page=${Page}`
-
-  //     const filtersQuery = checkedItems.map((id) => `filters=${id}`).join("&");
-  //     const periodQuery = `period_filter=${idx}`;
-  //     const finalQuery = `${filtersQuery}&${periodQuery}&search=${searchText}&page=${Page}`;
-  //     const respons = await axios.get(`category-resource/${id}/?${finalQuery}`);
-
-  //     setPageCount(Math.ceil(respons?.data?.resources?.count / 20));
-  //     if (respons.status) {
-  //       setData(respons);
-  //       setLoading(false);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const getData = async (Page = 1) => {
-  //   try {
-  //     const filtersQuery = checkedItems.map((id) => `filters=${id}`).join("&");
-  //     const periodQuery = checkedItemsChog
-  //       .map((id) => `period_filter=${id}`)
-  //       .join("&");
-
-  //     const finalQuery = `${filtersQuery}&${periodQuery}&search=${searchText}&page=${Page}`;
-
-  //     const respons = await axios.get(`category-resource/${id}/?${finalQuery}`);
-
-  //     setPageCount(Math.ceil(respons?.data?.resources?.count / 20));
-  //     if (respons.status) {
-  //       setData(respons);
-  //       setLoading(false);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // COPYASI
   const getData = async (Page = 1) => {
     try {
       const filtersQuery = checkedItems.map((id) => `filters=${id}`).join("&");
@@ -107,8 +67,6 @@ function HomeImageDetail() {
       const respons = await axios.get(
         `category-resource/${id}/?${finalQuery}&page=${Page}`
       );
-
-      // Paginatsiyani to'g'ri hisoblash
       const totalCount = respons?.data?.resources?.count || 0;
       setPageCount(Math.ceil(totalCount / 20));
 
@@ -128,22 +86,13 @@ function HomeImageDetail() {
     getData(selectedPage);
   };
 
-  // useEffect(() => {
-  //   getData(currentPage);
-  // }, [id, currentPage, checkedItems, checkedItemsChog]);
-  // COPYASI
   useEffect(() => {
-    // URLdan search parametrini o'qiymiz
     const searchParam = searchParams.get("search");
     if (searchParam) {
       setSearchText(searchParam);
     }
     getData(currentPage);
   }, [id, currentPage, checkedItems, checkedItemsChog, searchParams]);
-
-  // useEffect(() => {
-  //   getData();
-  // }, [checkedItems, checkedItemsChog]);
 
   const result = data.data?.filter_categories.map((category) => {
     return {
@@ -158,21 +107,28 @@ function HomeImageDetail() {
     setOpenBox((prevId) => (prevId === id ? null : id));
   };
 
-  // const onSearchClick = () => {
-  //   // if (searchText.trim() !== "") {
-  //   // }
-  //   getData();
-  //   setSearchText("");
-  // };
-
-  // COPYASI
   const onSearchClick = () => {
     setSearchParams({ search: searchText, page: 1 }); // Har doim 1-sahifaga qaytamiz
     getData(1);
   };
 
+  // ssssssssssssssssssssss
+  const navigateToDetail = (itemId) => {
+    const params = new URLSearchParams();
+
+    // Joriy filter parametrlarini saqlaymiz
+    checkedItems.forEach((id) => params.append("filters", id));
+    checkedItemsChog.forEach((id) => params.append("period_filter", id));
+    if (searchText) params.append("search", searchText);
+    params.append("page", currentPage);
+
+    navigate(`/homeImageDetail/${id}/${itemId}?${params.toString()}`);
+  };
+  // ssssssssssssssssssssss
+
   console.log(data, "DATA XXXX");
   console.log(result, "RESULTS XXXX");
+  console.log(data?.data?.resources?.results, "data?.data?.resources?.results");
 
   return (
     <div className={style.container}>
@@ -189,7 +145,6 @@ function HomeImageDetail() {
                 value={searchText}
                 onChange={(e) => {
                   setSearchText(e.target.value);
-                  // Agar input bo'sh bo'lsa, qidiruvni bekor qilamiz
                   if (e.target.value.trim() === "") {
                     setSearchParams({ page: 1 });
                     getData(1);
@@ -274,10 +229,7 @@ function HomeImageDetail() {
                       {filterCategory.filters.map((filterItem, subIdx) => (
                         <div key={subIdx} className={style.accordionHeader}>
                           <span>{filterItem.title}</span>
-                          {/* {console.log(
-                            filterItem,
-                            "filterItemlllllllllllllllllll"
-                          )} */}
+
                           <label className={style.checkboxWrapper}>
                             <input
                               type="checkbox"
@@ -295,26 +247,20 @@ function HomeImageDetail() {
             </div>
           </div>
 
-          {/* {console.log(data, "Islamov Kamoliddin")} */}
           <div className={style.wrapper}>
             {data?.data?.resources?.results?.map((value, idx) => (
               <div key={idx} className={style.card}>
                 <div>
+                  {/* sssssssssssss */}
                   <img
-                    onClick={() => navigate(`${value.id}?page=${currentPage}`)}
+                    onClick={() => navigateToDetail(value.id)}
                     src={value.image}
                     alt={value.title}
                   />
-                  {/* salom hammaga */}
+                  {/* sssssssssss */}
 
-                  {/* variyanlari */}
                   {/* <img
-                    onClick={() =>
-                      navigate(
-                        // `/homeImageDetail/${id}/${value.id}?page=${currentPage}`
-                        `/homeImageDetail/${id}/${value.id}`
-                      )
-                    }
+                    onClick={() => navigate(`${value.id}?page=${currentPage}`)}
                     src={value.image}
                     alt={value.title}
                   /> */}
@@ -322,6 +268,7 @@ function HomeImageDetail() {
 
                 <div className={style.mediaInfoSection}>
                   <h1>{value.title}</h1>
+                  <h1> ID :{value.id}</h1>
                   <div className={style.title}>
                     <span>{value?.attributes?.[0]?.title} :</span>
                     <span>{value?.attributes?.[0]?.description}</span>
@@ -376,10 +323,11 @@ function HomeImageDetail() {
           className={style.not_found}
           style={{ color: "white", textAlign: "center", marginTop: "15%" }}
         >
-          <button onClick={() => navigate(-1)}>
+          <button onClick={() => navigate("/")}>
             <FaArrowLeftLong />
           </button>
-          {data?.data?.category} bo'limida bunday ma'lumotlar yo'q ekan 😔😔
+          {data?.data?.category} {searchValue} bo'limida bunday ma'lumotlar yo'q
+          ekan 😔😔
         </div>
       )}
 
@@ -402,3 +350,65 @@ function HomeImageDetail() {
 }
 
 export default HomeImageDetail;
+
+// SALOM KAMOLIDDIN
+// import axios from "axios";
+// import React from "react";
+// import { useEffect } from "react";
+// import { useState } from "react";
+// import { useParams } from "react-router-dom";
+
+// function HomeImageDetail() {
+//   const [data, setData] = useState([]);
+//   const { id } = useParams();
+
+//   const getData = async () => {
+//     const respons = await axios.get(`category-resource/${id}`);
+//     setData(respons?.data);
+//   };
+
+//   const filter_categories = data?.filter_categories ?? [];
+//   const filters = data?.filters ?? [];
+
+//   const combined = filter_categories.map((category) => {
+//     const relatedFilters = filters.filter(
+//       (filter) => filter.filter_category === category.id
+//     );
+
+//     return {
+//       ...category,
+//       filters: relatedFilters,
+//     };
+//   });
+
+//   console.log(combined, "combined");
+
+//   useEffect(() => {
+//     getData();
+//   }, []);
+
+//   console.log(data, "Xa KAMOLIDDIN");
+
+//   return (
+//     <div>
+//       {data?.period_filters?.map((value, index) => (
+//         <div key={index}>{value?.title}</div>
+//       ))}
+
+//       {combined?.map((value, index) => (
+//         <div key={index}>
+//           <hr />
+
+//           <div>{value.title}</div>
+//           {value?.filters?.map((val, idx) => (
+//             <div key={idx}>
+//               {val?.title} <input type="checkbox" />
+//             </div>
+//           ))}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
+
+// export default HomeImageDetail;

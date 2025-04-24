@@ -131,7 +131,6 @@ function ArchaeologicalItem() {
               <div key={idx} className={style.card__container}>
                 <div className={style.btns}>
                   <h1>{value.title}</h1>
-                  {/* {console.log(value, "hhhhhhhh")} */}
                   <button
                     onClick={() => navigate(`homeImageDetail/${value.id}`)}
                   >
