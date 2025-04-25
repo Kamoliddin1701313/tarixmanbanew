@@ -30,7 +30,6 @@ function HomeImageDetail() {
   const [openBox, setOpenBox] = useState(null);
   const [openBoxChog, setOpenBoxChog] = useState(false);
   const { pathname } = useLocation();
-  console.log(pathname, "pathname");
 
   const [searchText, setSearchText] = useState("");
   const { searchValue, setSearchValue } = useContext(ValueContext);
@@ -124,7 +123,6 @@ function HomeImageDetail() {
 
     navigate(`/homeImageDetail/${id}/${itemId}?${params.toString()}`);
   };
-  // ssssssssssssssssssssss
 
   console.log(data, "DATA XXXX");
   console.log(result, "RESULTS XXXX");
@@ -184,8 +182,9 @@ function HomeImageDetail() {
                       }`}
                     >
                       <div className={style.accordionHeader}>
-                        <span>{val?.title}</span>
-                        {/* {console.log(val, "val")} */}
+                        <span onClick={() => handleSelectChog(val.id)}>
+                          {val?.title}
+                        </span>
                         <label className={style.checkboxWrapper}>
                           <input
                             type="checkbox"
@@ -228,7 +227,9 @@ function HomeImageDetail() {
                     >
                       {filterCategory.filters.map((filterItem, subIdx) => (
                         <div key={subIdx} className={style.accordionHeader}>
-                          <span>{filterItem.title}</span>
+                          <span onClick={() => handleSelect(filterItem.id)}>
+                            {filterItem.title}
+                          </span>
 
                           <label className={style.checkboxWrapper}>
                             <input

@@ -54,11 +54,10 @@ function Layouts() {
 
   const [btnIcon, setBtnIcon] = useState(true);
 
-  // const onSearch = () => {
-  //   console.log(search, "search");
-  //   // getData();
-  //   setSearch("");
-  // };
+  const setBgImgFunction = (img) => {
+    setBgImg(img);
+    setBtnIcon(true);
+  };
 
   return (
     <div className={style["layouts-container"]}>
@@ -89,7 +88,7 @@ function Layouts() {
             <div className={style.activeImg}>
               {images.map((img) => (
                 <img
-                  onClick={() => setBgImg(img.img)}
+                  onClick={() => setBgImgFunction(img.img)}
                   key={img.id}
                   src={img.img}
                 />
