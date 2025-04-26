@@ -1,0 +1,32 @@
+.openModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(8, 8, 8, 0.192);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+
+  svg {
+    color: red;
+    cursor: pointer;
+    font-size: 32px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
+  .views {
+    width: 90%;
+    height: 650px;
+    display: grid;
+    place-items: center;
+    img {
+      margin: 0 auto;
+      object-fit: contain;
+      display: block;
+      height: 550px !important;
+    }
+  }
+}

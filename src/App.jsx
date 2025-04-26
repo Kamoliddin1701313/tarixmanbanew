@@ -18,6 +18,7 @@ import ArchaeologicalItemDetail from "./Details/ArchaeologicalItemDetail/Archaeo
 import ImageViewDetail from "./Details/ImageViewDetail/ImageViewDetail";
 import { createContext, useState } from "react";
 import Search from "./Components/Search/Search";
+import Modal from "./Details/HomeImageDetail/Modal/Modal";
 
 axios.defaults.baseURL = "https://backend.tarixmanba.uz/api/";
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/library/:id" element={<LibraryDetail />} />
             <Route path="/homeImageDetail/:id" element={<HomeImageDetail />} />
+            <Route path="/modal/:id" element={<Modal />} />
             <Route
               path="/homeImageDetail/:id/:detailId"
               element={<ImageViewDetail />}

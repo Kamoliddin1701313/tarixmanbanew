@@ -19,6 +19,7 @@ import { TbPlayerTrackPrevFilled } from "react-icons/tb";
 import Loading from "../../Loading/Loading";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { ValueContext } from "../../App";
+import Modal from "./Modal/Modal";
 
 function HomeImageDetail() {
   const [loading, setLoading] = useState(true);
@@ -29,26 +30,54 @@ function HomeImageDetail() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [openBox, setOpenBox] = useState(null);
   const [openBoxChog, setOpenBoxChog] = useState(false);
+
   const { pathname } = useLocation();
 
-  const [searchText, setSearchText] = useState("");
   const { searchValue, setSearchValue } = useContext(ValueContext);
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
-  const [checkedItems, setCheckedItems] = useState([]);
-  const [checkedItemsChog, setCheckedItemsChog] = useState([]);
-  const handleSelect = (id) => {
-    setCheckedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+  const handlePageClick = (event) => {
+    const selectedPage = event.selected + 1;
+    setSearchParams({ page: selectedPage });
+    getData(selectedPage);
   };
 
-  const handleSelectChog = (id) => {
-    setCheckedItemsChog((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+  const result = data.data?.filter_categories.map((category) => {
+    return {
+      ...category,
+      filters: data.data?.filters.filter(
+        (filter) => Number(filter.filter_category) === Number(category.id)
+      ),
+    };
+  });
+
+  const ToggleBtn = (id) => {
+    setOpenBox((prevId) => (prevId === id ? null : id));
   };
+
+  const onSearchClick = () => {
+    setSearchParams({ search: searchText, page: 1 }); // Har doim 1-sahifaga qaytamiz
+    getData(1);
+  };
+
+  const getStoredState = () => {
+    try {
+      const storedState = sessionStorage.getItem(`filterState_${id}`);
+      return storedState ? JSON.parse(storedState) : null;
+    } catch (error) {
+      console.error("sessionStorage'dan o'qishda xatolik:", error);
+      return null;
+    }
+  };
+  const initialState = getStoredState();
+  const [checkedItemsChog, setCheckedItemsChog] = useState(
+    initialState?.checkedItemsChog || []
+  );
+
+  const [checkedItems, setCheckedItems] = useState(
+    initialState?.checkedItems || []
+  );
 
   const getData = async (Page = 1) => {
     try {
@@ -79,10 +108,20 @@ function HomeImageDetail() {
     }
   };
 
-  const handlePageClick = (event) => {
-    const selectedPage = event.selected + 1;
-    setSearchParams({ page: selectedPage });
-    getData(selectedPage);
+  const [searchText, setSearchText] = useState(initialState?.searchText || "");
+
+  const saveStateToSessionStorage = () => {
+    try {
+      const stateToSave = {
+        searchText,
+        checkedItems,
+        checkedItemsChog,
+        currentPage,
+      };
+      sessionStorage.setItem(`filterState_${id}`, JSON.stringify(stateToSave));
+    } catch (error) {
+      console.error("SessionStorage'ga yozishda xatolik:", error);
+    }
   };
 
   useEffect(() => {
@@ -93,40 +132,66 @@ function HomeImageDetail() {
     getData(currentPage);
   }, [id, currentPage, checkedItems, checkedItemsChog, searchParams]);
 
-  const result = data.data?.filter_categories.map((category) => {
-    return {
-      ...category,
-      filters: data.data?.filters.filter(
-        (filter) => Number(filter.filter_category) === Number(category.id)
-      ),
-    };
-  });
-
-  const ToggleBtn = (id) => {
-    setOpenBox((prevId) => (prevId === id ? null : id));
+  const handleSelect = (id) => {
+    setCheckedItems((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
-  const onSearchClick = () => {
-    setSearchParams({ search: searchText, page: 1 }); // Har doim 1-sahifaga qaytamiz
-    getData(1);
-  };
-
-  // ssssssssssssssssssssss
   const navigateToDetail = (itemId) => {
+    saveStateToSessionStorage(); // Navigate qilishdan oldin saqlaymiz
     const params = new URLSearchParams();
-
-    // Joriy filter parametrlarini saqlaymiz
     checkedItems.forEach((id) => params.append("filters", id));
     checkedItemsChog.forEach((id) => params.append("period_filter", id));
     if (searchText) params.append("search", searchText);
     params.append("page", currentPage);
-
     navigate(`/homeImageDetail/${id}/${itemId}?${params.toString()}`);
   };
 
-  console.log(data, "DATA XXXX");
-  console.log(result, "RESULTS XXXX");
-  console.log(data?.data?.resources?.results, "data?.data?.resources?.results");
+  const handleSelectChog = (id) => {
+    setCheckedItemsChog((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  useEffect(() => {
+    saveStateToSessionStorage();
+  }, [searchText, checkedItems, checkedItemsChog, currentPage, id]);
+
+  useEffect(() => {
+    const storedState = getStoredState();
+    const searchParam = searchParams.get("search");
+
+    if (storedState) {
+      // Agar sessionStorage da saqlangan holat bo'lsa
+      const params = new URLSearchParams();
+      storedState.checkedItems.forEach((id) => params.append("filters", id));
+      storedState.checkedItemsChog.forEach((id) =>
+        params.append("period_filter", id)
+      );
+      if (storedState.searchText)
+        params.append("search", storedState.searchText);
+      params.append("page", storedState.currentPage);
+
+      setSearchParams(params);
+    } else if (searchParam) {
+      setSearchText(searchParam);
+    }
+
+    getData(currentPage);
+  }, [id]);
+
+  const [views, setViews] = useState(false);
+
+  const ViewsFunction = (id, type) => {
+    setViews({
+      open: true,
+      id: id,
+      type: type,
+    });
+  };
+
+  console.log(data, "men Islamov Kamoliddin");
 
   return (
     <div className={style.container}>
@@ -188,8 +253,6 @@ function HomeImageDetail() {
                         <label className={style.checkboxWrapper}>
                           <input
                             type="checkbox"
-                            // checked={checkedItems.includes(val.id)}
-                            // onChange={() => handleSelect(val.id)}
                             checked={checkedItemsChog.includes(val.id)}
                             onChange={() => handleSelectChog(val.id)}
                           />
@@ -252,19 +315,11 @@ function HomeImageDetail() {
             {data?.data?.resources?.results?.map((value, idx) => (
               <div key={idx} className={style.card}>
                 <div>
-                  {/* sssssssssssss */}
                   <img
                     onClick={() => navigateToDetail(value.id)}
                     src={value.image}
                     alt={value.title}
                   />
-                  {/* sssssssssss */}
-
-                  {/* <img
-                    onClick={() => navigate(`${value.id}?page=${currentPage}`)}
-                    src={value.image}
-                    alt={value.title}
-                  /> */}
                 </div>
 
                 <div className={style.mediaInfoSection}>
@@ -278,40 +333,188 @@ function HomeImageDetail() {
                   <div className={style.icons}>
                     <span>Eshtuv</span>
 
-                    <span style={{ cursor: value?.audios && "not-allowed" }}>
-                      <BsMic style={{ marginTop: "3px" }} />
+                    <span
+                      style={{
+                        cursor:
+                          value?.audio?.length === Number(0)
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                    >
+                      <BsMic
+                        style={{ marginTop: "3px" }}
+                        onClick={
+                          value?.audio?.length !== 0
+                            ? () => ViewsFunction(value.id, "audio")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "audio",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
                     </span>
 
                     <span>Surat</span>
 
-                    <span style={{ cursor: value?.galleries && "not-allowed" }}>
-                      <BiImages style={{ marginTop: "3px" }} />
+                    <span
+                      style={{
+                        cursor:
+                          value?.galleries?.length === Number(0)
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                    >
+                      <BiImages
+                        style={{ marginTop: "3px" }}
+                        onClick={
+                          value?.galleries?.length !== 0
+                            ? () => ViewsFunction(value.id, "galleries")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "galleries",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
                     </span>
 
                     <span>Matn</span>
 
-                    <span style={{ cursor: value?.audios && "not-allowed" }}>
-                      <BsFillChatTextFill style={{ marginTop: "3px" }} />
+                    <span
+                      style={{
+                        cursor:
+                          value?.contents?.length === Number(0)
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                    >
+                      <BsFillChatTextFill
+                        style={{ marginTop: "3px" }}
+                        onClick={
+                          value?.contents?.length !== 0
+                            ? () => ViewsFunction(value.id, "contents")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "contents",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
                     </span>
 
                     <span>Xarita</span>
 
-                    <span style={{ cursor: value?.locations && "not-allowed" }}>
-                      <LiaGlobeAmericasSolid style={{ marginTop: "3px" }} />
+                    <span
+                      style={{
+                        cursor:
+                          value?.locations?.length === Number(0)
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                    >
+                      <LiaGlobeAmericasSolid
+                        style={{ marginTop: "3px" }}
+                        onClick={
+                          value?.locations?.length !== 0
+                            ? () => ViewsFunction(value.id, "locations")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "locations",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
                     </span>
 
                     <span>3D</span>
 
-                    <span style={{ cursor: value?.audios && "not-allowed" }}>
-                      <LuRotate3D style={{ marginTop: "3px" }} />
+                    <span
+                      style={{
+                        cursor:
+                          value?.locations?.length === Number(0)
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                    >
+                      <LuRotate3D
+                        style={{ marginTop: "3px" }}
+                        onClick={
+                          value?.locations?.length !== 0
+                            ? () => ViewsFunction(value.id, "locations")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "3d",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
                     </span>
 
                     <span>Ko'ruv</span>
 
-                    <span style={{ cursor: value?.videos && "not-allowed" }}>
+                    <span
+                      style={{
+                        cursor:
+                          value?.videos?.length === Number(0)
+                            ? "not-allowed"
+                            : "pointer",
+                      }}
+                    >
                       <AiOutlineEye
                         style={{ fontSize: "22px", marginTop: "3px" }}
+                        onClick={
+                          value?.videos?.length !== 0
+                            ? () => ViewsFunction(value.id, "videos")
+                            : undefined
+                        }
                       />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "videos",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
                     </span>
                   </div>
                 </div>
@@ -351,65 +554,3 @@ function HomeImageDetail() {
 }
 
 export default HomeImageDetail;
-
-// SALOM KAMOLIDDIN
-// import axios from "axios";
-// import React from "react";
-// import { useEffect } from "react";
-// import { useState } from "react";
-// import { useParams } from "react-router-dom";
-
-// function HomeImageDetail() {
-//   const [data, setData] = useState([]);
-//   const { id } = useParams();
-
-//   const getData = async () => {
-//     const respons = await axios.get(`category-resource/${id}`);
-//     setData(respons?.data);
-//   };
-
-//   const filter_categories = data?.filter_categories ?? [];
-//   const filters = data?.filters ?? [];
-
-//   const combined = filter_categories.map((category) => {
-//     const relatedFilters = filters.filter(
-//       (filter) => filter.filter_category === category.id
-//     );
-
-//     return {
-//       ...category,
-//       filters: relatedFilters,
-//     };
-//   });
-
-//   console.log(combined, "combined");
-
-//   useEffect(() => {
-//     getData();
-//   }, []);
-
-//   console.log(data, "Xa KAMOLIDDIN");
-
-//   return (
-//     <div>
-//       {data?.period_filters?.map((value, index) => (
-//         <div key={index}>{value?.title}</div>
-//       ))}
-
-//       {combined?.map((value, index) => (
-//         <div key={index}>
-//           <hr />
-
-//           <div>{value.title}</div>
-//           {value?.filters?.map((val, idx) => (
-//             <div key={idx}>
-//               {val?.title} <input type="checkbox" />
-//             </div>
-//           ))}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-// export default HomeImageDetail;
