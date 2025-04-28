@@ -70,6 +70,7 @@ function HomeImageDetail() {
       return null;
     }
   };
+
   const initialState = getStoredState();
   const [checkedItemsChog, setCheckedItemsChog] = useState(
     initialState?.checkedItemsChog || []
@@ -189,6 +190,15 @@ function HomeImageDetail() {
       id: id,
       type: type,
     });
+  };
+
+  const clearSessionAndNavigateHome = () => {
+    try {
+      sessionStorage.removeItem(`filterState_${id}`); // sessionStorage'dan ochirib tashlaymiz
+      navigate("/");
+    } catch (error) {
+      console.error("SessionStorage'ni o'chirishda xatolik:", error);
+    }
   };
 
   console.log(data, "men Islamov Kamoliddin");
@@ -320,32 +330,31 @@ function HomeImageDetail() {
                     src={value.image}
                     alt={value.title}
                   />
+                  {console.log(value, "sssss")}
                 </div>
 
                 <div className={style.mediaInfoSection}>
                   <h1>{value.title}</h1>
-                  <h1> ID :{value.id}</h1>
                   <div className={style.title}>
-                    <span>{value?.attributes?.[0]?.title} :</span>
+                    <span>{value?.attributes?.[0]?.title}:</span>
                     <span>{value?.attributes?.[0]?.description}</span>
                   </div>
 
                   <div className={style.icons}>
                     <span>Eshtuv</span>
 
-                    <span
-                      style={{
-                        cursor:
-                          value?.audio?.length === Number(0)
-                            ? "not-allowed"
-                            : "pointer",
-                      }}
-                    >
+                    <span>
                       <BsMic
-                        style={{ marginTop: "3px" }}
+                        style={{
+                          cursor:
+                            value?.audios?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
                         onClick={
-                          value?.audio?.length !== 0
-                            ? () => ViewsFunction(value.id, "audio")
+                          value?.audios?.length !== 0
+                            ? () => ViewsFunction(value.id, "audios")
                             : undefined
                         }
                       />
@@ -355,7 +364,7 @@ function HomeImageDetail() {
                             value,
                             views,
                             setViews,
-                            type: "audio",
+                            type: "audios",
                             valueId: value.id,
                           }}
                         />
@@ -364,16 +373,15 @@ function HomeImageDetail() {
 
                     <span>Surat</span>
 
-                    <span
-                      style={{
-                        cursor:
-                          value?.galleries?.length === Number(0)
-                            ? "not-allowed"
-                            : "pointer",
-                      }}
-                    >
+                    <span>
                       <BiImages
-                        style={{ marginTop: "3px" }}
+                        style={{
+                          cursor:
+                            value?.galleries?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
                         onClick={
                           value?.galleries?.length !== 0
                             ? () => ViewsFunction(value.id, "galleries")
@@ -395,16 +403,15 @@ function HomeImageDetail() {
 
                     <span>Matn</span>
 
-                    <span
-                      style={{
-                        cursor:
-                          value?.contents?.length === Number(0)
-                            ? "not-allowed"
-                            : "pointer",
-                      }}
-                    >
+                    <span>
                       <BsFillChatTextFill
-                        style={{ marginTop: "3px" }}
+                        style={{
+                          cursor:
+                            value?.contents?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
                         onClick={
                           value?.contents?.length !== 0
                             ? () => ViewsFunction(value.id, "contents")
@@ -426,16 +433,15 @@ function HomeImageDetail() {
 
                     <span>Xarita</span>
 
-                    <span
-                      style={{
-                        cursor:
-                          value?.locations?.length === Number(0)
-                            ? "not-allowed"
-                            : "pointer",
-                      }}
-                    >
+                    <span>
                       <LiaGlobeAmericasSolid
-                        style={{ marginTop: "3px" }}
+                        style={{
+                          cursor:
+                            value?.locations?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
                         onClick={
                           value?.locations?.length !== 0
                             ? () => ViewsFunction(value.id, "locations")
@@ -457,16 +463,15 @@ function HomeImageDetail() {
 
                     <span>3D</span>
 
-                    <span
-                      style={{
-                        cursor:
-                          value?.locations?.length === Number(0)
-                            ? "not-allowed"
-                            : "pointer",
-                      }}
-                    >
+                    <span>
                       <LuRotate3D
-                        style={{ marginTop: "3px" }}
+                        style={{
+                          cursor:
+                            value?.locations?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
                         onClick={
                           value?.locations?.length !== 0
                             ? () => ViewsFunction(value.id, "locations")
@@ -488,16 +493,16 @@ function HomeImageDetail() {
 
                     <span>Ko'ruv</span>
 
-                    <span
-                      style={{
-                        cursor:
-                          value?.videos?.length === Number(0)
-                            ? "not-allowed"
-                            : "pointer",
-                      }}
-                    >
+                    <span>
                       <AiOutlineEye
-                        style={{ fontSize: "22px", marginTop: "3px" }}
+                        style={{
+                          cursor:
+                            value?.videos?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          fontSize: "22px",
+                          marginTop: "3px",
+                        }}
                         onClick={
                           value?.videos?.length !== 0
                             ? () => ViewsFunction(value.id, "videos")
@@ -527,7 +532,7 @@ function HomeImageDetail() {
           className={style.not_found}
           style={{ color: "white", textAlign: "center", marginTop: "15%" }}
         >
-          <button onClick={() => navigate("/")}>
+          <button onClick={clearSessionAndNavigateHome}>
             <FaArrowLeftLong />
           </button>
           {data?.data?.category} {searchValue} bo'limida bunday ma'lumotlar yo'q

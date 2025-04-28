@@ -16,6 +16,7 @@ function Layouts() {
   // const dataValue = useMemo(() => {
   //   return { search, setSearch };
   // }, [search, setSearch]);
+  const [openLink, setOpenLink] = useState(false);
 
   const images = [
     { id: 1, img: bgImg1 },
@@ -61,9 +62,10 @@ function Layouts() {
 
   return (
     <div className={style["layouts-container"]}>
-      <Navbar />
+      <Navbar openProps={{ openLink, setOpenLink }} />
 
       <div
+        onClick={() => setOpenLink(false)}
         className={style["main-container"]}
         style={{ marginTop: isScrolled && "120px" }}
       >

@@ -1,46 +1,46 @@
 import React from "react";
 import style from "./modal.module.scss";
 import { RiCloseLargeLine } from "react-icons/ri";
+import Marquee from "react-fast-marquee";
 
 function Modal(props) {
   const { value, views, setViews, valueId } = props.data;
   const { type } = views;
 
-  console.log(value?.galleries?.[0]?.image, "Salom");
+  console.log(value, "Salom");
 
   const renderContent = () => {
     switch (type) {
-      case "audio":
+      case "audios":
         return (
-          <audio controls style={{ width: "20%" }}>
-            <source src={`${value?.audios?.[0]?.audio}`} type="audio/mp4" />
-          </audio>
+          <div className={style.audios}>
+            <Marquee>
+              <h3>{`${value?.audios?.[0]?.title}`}</h3>
+            </Marquee>
+
+            <audio controls style={{ width: "100%" }}>
+              <source src={`${value?.audios?.[0]?.audio}`} type="audio/mp4" />
+            </audio>
+          </div>
         );
 
       case "galleries":
-        return (
-          <img
-            src={`${value?.galleries?.[0]?.image}`}
-            alt="Gallery"
-            style={{
-              maxWidth: "80%",
-              maxHeight: "400px",
-              objectFit: "contain",
-            }}
-          />
-        );
+        return <img src={`${value?.galleries?.[0]?.image}`} alt="Gallery" />;
 
       case "contents":
         return (
-          <div>
-            <p>{value.contents?.[0]?.text}</p>
+          <div className={style.contents}>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: value?.contents?.[0]?.description,
+              }}
+            ></p>
           </div>
         );
 
       case "locations":
         return (
           <div>
-            <h3>Lokatsiya:</h3>
             <iframe
               src={`https://backend.tarixmanba.uz/${value.locations?.[0]?.location}`}
               width="100%"
@@ -75,7 +75,6 @@ function Modal(props) {
         return (
           <video controls style={{ width: "100%", maxHeight: "400px" }}>
             <source src={value.videos?.[0]?.video} type="video/mp4" />
-            Sizning brauzeringiz videoni o'qiy olmaydi.
           </video>
         );
 

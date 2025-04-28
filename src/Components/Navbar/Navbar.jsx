@@ -9,10 +9,11 @@ import axios from "axios";
 
 import style from "./navbar.module.scss";
 
-function Navbar() {
+function Navbar({ openProps }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [data, setData] = useState([]);
-  const [openLink, setOpenLink] = useState(false);
+  const { openLink, setOpenLink } = openProps;
+  // const [openLink, setOpenLink] = useState(false);
   const [openIcon, setOpenIcon] = useState(false);
   const getData = async () => {
     try {
@@ -91,13 +92,19 @@ function Navbar() {
             </li>
 
             <li>
-              <Link to="/library">Kutubxona</Link>
+              <Link onClick={() => setOpenLink(false)} to="/library">
+                Kutubxona
+              </Link>
             </li>
             <li>
-              <Link to="/news">Yangiliklar</Link>
+              <Link onClick={() => setOpenLink(false)} to="/news">
+                Yangiliklar
+              </Link>
             </li>
             <li>
-              <Link to="/about">Biz haqimizda</Link>
+              <Link onClick={() => setOpenLink(false)} to="/about">
+                Biz haqimizda
+              </Link>
             </li>
 
             {/* <li>
