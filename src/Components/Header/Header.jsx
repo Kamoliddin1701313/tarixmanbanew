@@ -6,7 +6,8 @@ import TimeClock from "../TimeClock/TimeClock";
 import { ValueContext } from "../../App";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { GrClose } from "react-icons/gr";
-// import WeatherApp from "../WeatherApp/WeatherApp";
+import HijriYear from "../HijriYear/HijriYear";
+import WeatherApp from "../WeatherApp/WeatherApp";
 
 const Header = ({ openIcon, setOpenIcon }) => {
   const navigate = useNavigate();
@@ -32,9 +33,11 @@ const Header = ({ openIcon, setOpenIcon }) => {
         <div
           className={`${style["info-panel"]} ${openIcon && style["openPanel"]}`}
         >
-          <TimeClock />
-
-          <div>{/* <WeatherApp /> */}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <TimeClock />
+            <HijriYear />
+            {/* <WeatherApp /> */}
+          </div>
 
           {/* <div className={style.search}>
             <input

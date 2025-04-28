@@ -34,10 +34,11 @@
     justify-content: space-between;
     gap: 25px;
     // margin-top: 0px;
+    width: 80%;
     transition: all 0.4s ease-in-out;
     .search {
       position: relative;
-      width: 100%;
+      width: 30%;
 
       input {
         background-color: transparent;

@@ -1,0 +1,34 @@
+.container {
+  .gregorian-year {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+
+    .year {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      color: rgba(255, 255, 255, 0.623);
+      span {
+        display: inline-block;
+        text-transform: lowercase;
+        font-size: 16px;
+        font-family: "Poppins", sans-serif;
+        // font-weight: 400 !important;
+      }
+    }
+
+    .year:nth-last-child(2),
+    .year:nth-last-child(1) {
+      color: white;
+    }
+
+    .lineY {
+      width: 2px;
+      height: 15px;
+      background-color: white;
+    }
+  }
+}
