@@ -36,6 +36,14 @@
     // margin-top: 0px;
     width: 80%;
     transition: all 0.4s ease-in-out;
+
+    .datetime-weather {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+
     .search {
       position: relative;
       width: 30%;
@@ -102,6 +110,7 @@
     top: 0;
     .header {
       position: relative;
+      background-color: #0a1821;
 
       .info-panel {
         position: absolute;
@@ -110,10 +119,21 @@
         background-color: #0a1821;
         width: 50%;
         min-height: 200px;
+        z-index: -1;
         top: -200px;
         padding: 15px;
         transition: all 0.4s ease-in-out;
         right: 0%;
+
+        .datetime-weather {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .search {
+          width: 100%;
+        }
       }
 
       .openPanel {
@@ -130,11 +150,15 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .header {
-  }
-}
+  .search {
+    height: 32px;
+    input {
+      height: 32px !important;
+      font-size: 14px !important;
+    }
 
-@media only screen and (max-width: 500px) {
-  .header {
+    svg {
+      font-size: 20px !important;
+    }
   }
 }

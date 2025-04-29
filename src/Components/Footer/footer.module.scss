@@ -80,3 +80,61 @@
     }
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .footer-container {
+    padding: 30px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer-container {
+    .footer {
+      .phone,
+      .sayt {
+        display: flex;
+        gap: 10px;
+        a {
+          font-size: 13px !important;
+          text-align: left;
+        }
+      }
+
+      .phone svg,
+      .sayt svg {
+        font-size: 12px !important;
+      }
+
+      .footerPage {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        a {
+          font-size: 14px;
+        }
+      }
+
+      .contacts {
+        p {
+          width: 35px;
+          height: 35px;
+        }
+        p svg {
+          font-size: 14px !important;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+
+    .contacts {
+      margin: 20px auto;
+    }
+  }
+}

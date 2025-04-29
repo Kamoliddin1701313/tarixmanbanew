@@ -37,3 +37,15 @@
     }
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    margin-top: 50px;
+  }
+}

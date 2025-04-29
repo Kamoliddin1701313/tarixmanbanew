@@ -33,7 +33,7 @@ const Header = ({ openIcon, setOpenIcon }) => {
         <div
           className={`${style["info-panel"]} ${openIcon && style["openPanel"]}`}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div className={style["datetime-weather"]}>
             <TimeClock />
             <HijriYear />
             {/* <WeatherApp /> */}

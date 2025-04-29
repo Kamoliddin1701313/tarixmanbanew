@@ -21,7 +21,7 @@ function HomeImage() {
   return (
     <div className={style.container}>
       <div className={style["images-container"]}>
-        {data.map((value, idx) => (
+        {data?.map((value, idx) => (
           <div key={idx} className={style.img}>
             <img src={value?.image} alt={value.title} />
             <Link to={`homeImageDetail/${value.id}`}>

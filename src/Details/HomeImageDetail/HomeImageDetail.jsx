@@ -119,7 +119,9 @@ function HomeImageDetail() {
         checkedItemsChog,
         currentPage,
       };
+
       sessionStorage.setItem(`filterState_${id}`, JSON.stringify(stateToSave));
+      localStorage.setItem("id", `${id}`);
     } catch (error) {
       console.error("SessionStorage'ga yozishda xatolik:", error);
     }
@@ -200,6 +202,10 @@ function HomeImageDetail() {
       console.error("SessionStorage'ni o'chirishda xatolik:", error);
     }
   };
+
+  useEffect(() => {
+    setCheckedItemsChog([])
+  }, [localStorage.getItem("id")]);
 
   console.log(data, "men Islamov Kamoliddin");
 
@@ -324,13 +330,12 @@ function HomeImageDetail() {
           <div className={style.wrapper}>
             {data?.data?.resources?.results?.map((value, idx) => (
               <div key={idx} className={style.card}>
-                <div>
+                <div className={style.img}>
                   <img
                     onClick={() => navigateToDetail(value.id)}
                     src={value.image}
                     alt={value.title}
                   />
-                  {console.log(value, "sssss")}
                 </div>
 
                 <div className={style.mediaInfoSection}>

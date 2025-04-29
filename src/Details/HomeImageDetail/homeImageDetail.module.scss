@@ -108,7 +108,7 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
-              height: 52px;
+              min-height: 52px;
 
               span {
                 font-size: 16px;
@@ -288,5 +288,172 @@
         font-size: 24px;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    padding: 0 30px;
+
+    .innerContainer {
+      gap: 15px;
+
+      .description {
+        h1 {
+          font-size: 24px;
+        }
+
+        .search {
+          input {
+            font-size: 16px;
+            &::placeholder {
+              font-size: 16px;
+            }
+          }
+
+          svg {
+            font-size: 24px;
+          }
+        }
+
+        .acardion {
+          .accordionItem {
+            button {
+              font-size: 14px;
+
+              span:last-child {
+                font-size: 15px;
+              }
+            }
+            .accordionContent {
+              .accordionHeader {
+                margin: 5px 0;
+                > span {
+                  font-size: 14px;
+                }
+
+                .checkboxWrapper {
+                  input[type="checkbox"] {
+                    width: 20px;
+                    height: 20px;
+                  }
+
+                  .customCheckbox {
+                    left: 6px;
+                    top: -4px;
+                  }
+
+                  input[type="checkbox"]:checked + .customCheckbox::before {
+                    font-size: 10px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .wrapper {
+      .card {
+        display: grid !important;
+        grid-template-columns: 1fr 2fr !important;
+        width: 100%;
+        img {
+          width: 100% !important;
+        }
+        .mediaInfoSection {
+          width: 100%;
+          h1 {
+            font-size: 24px !important;
+          }
+
+          .icons {
+            span {
+              font-size: 15px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .innerContainer {
+    display: flex !important;
+    gap: 50px !important;
+    flex-direction: column !important;
+
+    .description {
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    .wrapper {
+      width: 100%;
+      .card {
+        display: flex !important;
+        .img {
+          width: 35%;
+          img {
+            width: 100%;
+          }
+        }
+
+        .mediaInfoSection {
+          width: 65%;
+          .icons {
+            span {
+              font-size: 16px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    width: 100% !important;
+
+    .card {
+      display: flex !important;
+      flex-direction: column !important;
+      .img {
+        width: 100% !important;
+        img {
+          width: 100% !important;
+        }
+      }
+
+      .mediaInfoSection {
+        text-align: center;
+        width: 100% !important;
+        .title {
+          text-align: center;
+          width: 100% !important;
+          display: flex;
+          margin: 10px 0;
+          justify-content: center;
+        }
+
+        .icons {
+          display: flex !important;
+          gap: 4px !important;
+          justify-content: center;
+          span:nth-of-type(odd) {
+            font-size: 15px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .description {
+    width: 100% !important;
   }
 }

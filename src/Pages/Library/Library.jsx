@@ -27,6 +27,22 @@ function Library() {
     getData();
   }, []);
 
+  // const [isScrolled, setIsScrolled] = useState(false);
+  // useEffect(() => {
+  //   getData();
+  //   const handleScroll = () => {
+  //     if (window.scrollY >= 70) {
+  //       setIsScrolled(true);
+  //     } else {
+  //       setIsScrolled(false);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
   console.log(data);
 
   return (

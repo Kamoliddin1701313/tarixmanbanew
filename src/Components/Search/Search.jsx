@@ -173,6 +173,7 @@ function Search() {
               </div>
             ))}
           </div>
+          
           <ReactPaginate
             previousLabel={<TbPlayerTrackPrevFilled />}
             nextLabel={<TbPlayerTrackNextFilled />}

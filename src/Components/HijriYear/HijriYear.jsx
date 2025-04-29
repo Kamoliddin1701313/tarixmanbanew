@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./hijriYear.module.scss";
-// import moment from "moment";
 import moment from "moment-hijri";
 
 function HijriYear() {
@@ -30,6 +29,7 @@ function HijriYear() {
           <span>{moment().format("YYYY")}</span>
           <span>- yil</span>
         </div>
+
         <div className={style.year}>
           <span>{moment().format("DD")}</span>
           <span>- {moment().format("MMMM")}</span>
@@ -42,6 +42,7 @@ function HijriYear() {
           <span>{moment().format("iYYYY")}</span>
           <span>- yil</span>
         </div>
+
         <div className={style.year}>
           <span>{moment().format("iDD")}</span>
           <span>- {hijriMonth}</span>

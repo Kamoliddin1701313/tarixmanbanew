@@ -61,3 +61,52 @@
     }
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    padding: 0 30px;
+
+    .location {
+      width: 80%;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    .cards {
+      width: 80%;
+      margin: 0 auto;
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .container {
+    .location {
+      width: 95%;
+      h1 {
+        font-size: 22px;
+      }
+    }
+
+    .cards {
+      width: 95%;
+    }
+  }
+}

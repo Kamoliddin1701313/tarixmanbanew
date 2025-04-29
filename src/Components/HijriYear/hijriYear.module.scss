@@ -32,3 +32,29 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+
+    .gregorian-year {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 5px;
+
+      .lineY {
+        display: none;
+      }
+
+      .year span {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .header {
+  }
+}
