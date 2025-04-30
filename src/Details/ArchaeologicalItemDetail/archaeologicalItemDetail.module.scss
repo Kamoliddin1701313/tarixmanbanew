@@ -3,6 +3,7 @@
   --blackColor: rgba(0, 0, 0, 0.929);
 }
 .container {
+  width: 100%;
   .wrapper {
     background-color: #0a1821;
     padding: 15px;
@@ -62,6 +63,30 @@
     span {
       color: white !important;
       line-height: 32px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    .wrapper {
+      .prevButtons {
+        padding: 0 30px;
+      }
+    }
+
+    .content {
+      padding: 0 30px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    .wrapper {
+      position: fixed;
+      width: 100%;
+      top: 70px;
     }
   }
 }
