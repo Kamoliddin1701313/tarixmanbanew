@@ -7,7 +7,7 @@ function Modal(props) {
   const { value, views, setViews, valueId } = props.data;
   const { type } = views;
 
-  console.log(value, "Salom");
+  console.log(value, "Salom Modal Component");
 
   const renderContent = () => {
     switch (type) {

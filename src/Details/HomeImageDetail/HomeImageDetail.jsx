@@ -166,7 +166,6 @@ function HomeImageDetail() {
     const searchParam = searchParams.get("search");
 
     if (storedState) {
-      // Agar sessionStorage da saqlangan holat bo'lsa
       const params = new URLSearchParams();
       storedState.checkedItems.forEach((id) => params.append("filters", id));
       storedState.checkedItemsChog.forEach((id) =>
@@ -204,7 +203,7 @@ function HomeImageDetail() {
   };
 
   useEffect(() => {
-    setCheckedItemsChog([])
+    setCheckedItemsChog([]);
   }, [localStorage.getItem("id")]);
 
   console.log(data, "men Islamov Kamoliddin");

@@ -16,7 +16,7 @@ const Header = ({ openIcon, setOpenIcon }) => {
   // const [search, setSearch] = useState("");
 
   // const onSearch = () => {
-  //   console.log(searchValue, "search");
+  console.log(searchValue, "search");
   //   getData();
   //   setSearchValue("");
   // };
@@ -66,7 +66,11 @@ const Header = ({ openIcon, setOpenIcon }) => {
                 }
               }}
             />
-            <FcSearch onClick={() => navigate("/search")} />
+            <FcSearch
+              onClick={() => {
+                navigate("/search");
+              }}
+            />
           </div>
         </div>
 

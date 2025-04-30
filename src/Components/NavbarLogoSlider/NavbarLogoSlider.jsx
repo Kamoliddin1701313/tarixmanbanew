@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./navbarLogoSlider.module.scss";
 import lent1 from "./img/lenta1.png";
 import lent2 from "./img/lenta2.png";
@@ -19,6 +19,21 @@ function NavbarLogoSlider() {
     { id: 7, img: lent7 },
   ];
 
+  // const [isScrolled, setIsScrolled] = useState(false);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY >= 69) {
+  //       setIsScrolled(true);
+  //     } else {
+  //       setIsScrolled(false);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
   return (
     <div className={style.marquee}>
       {[...Array(8)]

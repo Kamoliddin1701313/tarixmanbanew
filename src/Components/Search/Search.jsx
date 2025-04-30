@@ -16,6 +16,7 @@ import {
 } from "react-icons/tb";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Loading from "../../Loading/Loading";
+import Modal from "../../Details/HomeImageDetail/Modal/Modal";
 
 function Search() {
   const navigate = useNavigate();
@@ -44,6 +45,16 @@ function Search() {
   useEffect(() => {
     getData(currentPage);
   }, [searchValue, currentPage]);
+
+  const [views, setViews] = useState(false);
+
+  const ViewsFunction = (id, type) => {
+    setViews({
+      open: true,
+      id: id,
+      type: type,
+    });
+  };
 
   // const navigate = useNavigate();
   // const { searchValue, setSearchValue } = useContext(ValueContext);
@@ -104,7 +115,6 @@ function Search() {
                     onClick={() =>
                       navigate(`/homeImageDetail/${value.category}`)
                     }
-                    // src={value.image}
                     src={
                       value.image
                         ? `https://backend.tarixmanba.uz/${value.image}`
@@ -130,7 +140,7 @@ function Search() {
                     <span>{value?.attributes?.[0]?.description}</span>
                   </div>
 
-                  <div className={style.icons}>
+                  {/* <div className={style.icons}>
                     <span>Eshtuv</span>
 
                     <span style={{ cursor: value?.audios && "not-allowed" }}>
@@ -168,12 +178,197 @@ function Search() {
                         style={{ fontSize: "25px", marginTop: "8px" }}
                       />
                     </span>
+                  </div> */}
+
+                  {/* copya olingan */}
+
+                  <div className={style.icons}>
+                    <span>Eshtuv</span>
+
+                    <span>
+                      <BsMic
+                        style={{
+                          cursor:
+                            value?.audios?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
+                        onClick={
+                          value?.audios?.length !== 0
+                            ? () => ViewsFunction(value.id, "audios")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "audios",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
+                    </span>
+
+                    <span>Surat</span>
+
+                    <span>
+                      <BiImages
+                        style={{
+                          cursor:
+                            value?.galleries?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
+                        onClick={
+                          value?.galleries?.length !== 0
+                            ? () => ViewsFunction(value.id, "galleries")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "galleries",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
+                    </span>
+
+                    <span>Matn</span>
+
+                    <span>
+                      <BsFillChatTextFill
+                        style={{
+                          cursor:
+                            value?.contents?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
+                        onClick={
+                          value?.contents?.length !== 0
+                            ? () => ViewsFunction(value.id, "contents")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "contents",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
+                    </span>
+
+                    <span>Xarita</span>
+
+                    <span>
+                      <LiaGlobeAmericasSolid
+                        style={{
+                          cursor:
+                            value?.locations?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
+                        onClick={
+                          value?.locations?.length !== 0
+                            ? () => ViewsFunction(value.id, "locations")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "locations",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
+                    </span>
+
+                    <span>3D</span>
+
+                    <span>
+                      <LuRotate3D
+                        style={{
+                          cursor:
+                            value?.locations?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          marginTop: "3px",
+                        }}
+                        onClick={
+                          value?.locations?.length !== 0
+                            ? () => ViewsFunction(value.id, "locations")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "3d",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
+                    </span>
+
+                    <span>Ko'ruv</span>
+
+                    <span>
+                      <AiOutlineEye
+                        style={{
+                          cursor:
+                            value?.videos?.length === Number(0)
+                              ? "not-allowed"
+                              : "pointer",
+                          fontSize: "22px",
+                          marginTop: "3px",
+                        }}
+                        onClick={
+                          value?.videos?.length !== 0
+                            ? () => ViewsFunction(value.id, "videos")
+                            : undefined
+                        }
+                      />
+                      {views?.open && views?.id === Number(value.id) && (
+                        <Modal
+                          data={{
+                            value,
+                            views,
+                            setViews,
+                            type: "videos",
+                            valueId: value.id,
+                          }}
+                        />
+                      )}
+                    </span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          
+
           <ReactPaginate
             previousLabel={<TbPlayerTrackPrevFilled />}
             nextLabel={<TbPlayerTrackNextFilled />}

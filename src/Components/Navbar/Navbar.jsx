@@ -41,6 +41,12 @@ function Navbar({ openProps }) {
     };
   }, []);
 
+  if (openLink === true) {
+    sessionStorage.clear();
+  }
+
+  console.log(openLink, "openLinkopenLinkopenLinkopenLinkopenLinkopenLink");
+
   return (
     <div>
       <Header openIcon={openIcon} setOpenIcon={setOpenIcon} />
