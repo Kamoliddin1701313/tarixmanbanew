@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function HomeImage() {
   const [data, setData] = useState([]);
+  const [animation, setAnimation] = useState(null);
   const getData = async () => {
     try {
       const respons = await axios.get("category-resource/");
@@ -18,15 +19,27 @@ function HomeImage() {
     getData();
   }, []);
 
+  const animationBtn = (id) => {
+    setAnimation(id);
+  };
+
   return (
     <div className={style.container}>
       <div className={style["images-container"]}>
         {data?.map((value, idx) => (
-          <div key={idx} className={style.img}>
+          <div
+            key={idx}
+            className={`${style.img} ${
+              animation === value.id ? style.imgWidth : ""
+            }`}
+            onClick={() => animationBtn(value.id)}
+          >
             <img src={value?.image} alt={value.title} />
-            <Link to={`homeImageDetail/${value.id}`}>
-              <span>{value.title}</span>
-            </Link>
+            <div className={style.detailLink}>
+              <span>
+                <Link to={`homeImageDetail/${value.id}`}>{value.title}</Link>
+              </span>
+            </div>
           </div>
         ))}
       </div>

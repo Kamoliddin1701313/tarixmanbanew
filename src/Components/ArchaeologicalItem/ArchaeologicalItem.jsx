@@ -94,7 +94,7 @@ function ArchaeologicalItem() {
 
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -103,7 +103,7 @@ function ArchaeologicalItem() {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -111,7 +111,7 @@ function ArchaeologicalItem() {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 520,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

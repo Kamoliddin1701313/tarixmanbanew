@@ -12,16 +12,7 @@ import WeatherApp from "../WeatherApp/WeatherApp";
 const Header = ({ openIcon, setOpenIcon }) => {
   const navigate = useNavigate();
   const { searchValue, setSearchValue } = useContext(ValueContext);
-  // const [openIcon, setOpenIcon] = useState(false);
-  // const [search, setSearch] = useState("");
-
-  // const onSearch = () => {
   console.log(searchValue, "search");
-  //   getData();
-  //   setSearchValue("");
-  // };
-
-  // console.log(searchValue, "contextValue ");
 
   return (
     <div className={style.container}>
@@ -39,21 +30,6 @@ const Header = ({ openIcon, setOpenIcon }) => {
             {/* <WeatherApp /> */}
           </div>
 
-          {/* <div className={style.search}>
-            <input
-              type="text"
-              placeholder="Qidirish..."
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  // onSearch();
-                }
-              }}
-            />
-            <FcSearch onClick={() => navigate("/search")} />
-          </div> */}
-          {/* VARIYANTGA */}
           <div className={style.search}>
             <input
               type="text"

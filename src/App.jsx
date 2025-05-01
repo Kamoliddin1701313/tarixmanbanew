@@ -26,9 +26,12 @@ export const ValueContext = createContext();
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
+  const [openIcon, setOpenIcon] = useState(false);
 
   return (
-    <ValueContext.Provider value={{ searchValue, setSearchValue }}>
+    <ValueContext.Provider
+      value={{ searchValue, setSearchValue, openIcon, setOpenIcon }}
+    >
       <div>
         <ScrollToTop />
         <Routes>

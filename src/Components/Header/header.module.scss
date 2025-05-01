@@ -4,7 +4,6 @@
 }
 .container {
   background-color: #0a1821;
-  overflow: hidden;
 }
 .header {
   max-width: 1400px;
@@ -41,7 +40,9 @@
     .datetime-weather {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 10px;
+      margin-right: auto;
       width: 100%;
     }
 

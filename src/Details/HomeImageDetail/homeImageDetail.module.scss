@@ -14,7 +14,7 @@
     .description {
       background-color: rgba(0, 0, 0, 0.719);
       padding: 0 20px 30px;
-      min-height: 500px;
+      min-height: 400px;
       border-radius: 18px;
       color: white;
 
@@ -357,19 +357,24 @@
 
     .wrapper {
       .card {
-        display: grid !important;
-        grid-template-columns: 1fr 2fr !important;
+        display: flex !important;
+        justify-content: space-between;
         width: 100%;
-        img {
-          width: 100% !important;
+        .img {
+          width: 40%;
+          img {
+            width: 100% !important;
+            object-fit: cover;
+          }
         }
         .mediaInfoSection {
-          width: 100%;
+          width: 60%;
           h1 {
             font-size: 24px !important;
           }
 
           .icons {
+            flex-wrap: wrap;
             span {
               font-size: 15px !important;
             }
@@ -416,6 +421,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .description {
+    width: 80% !important;
+  }
+
   .wrapper {
     width: 100% !important;
 
@@ -424,8 +433,10 @@
       flex-direction: column !important;
       .img {
         width: 100% !important;
+        height: 350px;
         img {
           width: 100% !important;
+          height: 100% !important;
         }
       }
 
@@ -444,9 +455,8 @@
           display: flex !important;
           gap: 4px !important;
           justify-content: center;
-          span:nth-of-type(odd) {
-            font-size: 15px !important;
-          }
+          flex-wrap: wrap;
+          gap: 15px !important;
         }
       }
     }
@@ -454,7 +464,22 @@
 }
 
 @media only screen and (max-width: 520px) {
-  .description {
-    width: 100% !important;
+  .container {
+    padding: 15px;
+
+    .description {
+      width: 100% !important;
+    }
+
+    .pagination {
+      gap: 10px;
+      li {
+        a {
+          width: 45px;
+          height: 45px;
+          font-size: 13px;
+        }
+      }
+    }
   }
 }

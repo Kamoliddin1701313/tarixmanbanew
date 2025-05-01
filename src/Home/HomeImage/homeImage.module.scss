@@ -79,13 +79,15 @@
     display: flex;
     margin-top: 50px;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 20px;
     width: 100%;
     justify-content: center;
+
     .img {
-      width: 150px;
+      max-width: 150px;
       height: 360px;
-      position: relative;
+      border-radius: 15px;
+      transition: all 0.3s ease-in-out;
 
       img {
         border-radius: 15px;
@@ -96,48 +98,58 @@
         transition: all 0.4s ease;
       }
 
-      span {
+      .detailLink {
         position: absolute;
         bottom: 20px;
+        padding: 8px 4px;
         background-color: rgba(0, 0, 0, 0.668);
-        padding: 15px;
         border-radius: 8px;
         z-index: 2;
         left: 50%;
-        width: 160%;
-        font-size: 18px;
+        width: 80%;
         font-family: var(--fontSegoe);
         transform: translate(-50%);
-        text-align: center;
         transition: all 0.2s ease;
-        color: white;
-        opacity: 0;
-        display: -webkit-box;
-        height: 55px;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        overflow: hidden;
-      }
 
-      &:hover {
-        img {
-          transform: scaleX(2);
-          transition: all 0.4s ease;
-          position: relative;
-          z-index: 2;
-        }
-
-        span {
-          transition: all 0.5s ease;
-          opacity: 1;
-          width: 180%;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          overflow: hidden;
-          height: 80px;
+        span a {
+          display: block;
+          color: white;
+          padding: 8px;
+          text-align: center;
+          font-size: 12px !important;
+          text-decoration: none;
         }
       }
+
+      // commitga olindi
+      // &:hover {
+      //   img {
+      //     transform: scaleX(2);
+      //     transition: all 0.4s ease;
+      //     position: relative;
+      //     z-index: 2;
+      //   }
+
+      //   span {
+      //     transition: all 0.5s ease;
+      //     opacity: 1;
+      //     width: 180%;
+      //     display: -webkit-box;
+      //     -webkit-box-orient: vertical;
+      //     -webkit-line-clamp: 2;
+      //     overflow: hidden;
+      //     height: 80px;
+      //   }
+      // }
+      // commitga olindi
+    }
+
+    .imgWidth {
+      width: 300px;
+      transform: scaleX(1.8);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.901);
+      transition: all 0.3s ease-in-out;
+      border-radius: 15px;
     }
   }
 }
@@ -176,5 +188,20 @@
     display: flex;
     width: 95% !important;
     gap: 12px !important;
+    .img {
+      height: 290px;
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .container {
+    width: 98%;
+
+    .images-container {
+      .img {
+        height: 270px;
+      }
+    }
   }
 }

@@ -2,6 +2,9 @@
   .gregorian-year {
     display: flex;
     align-items: center;
+    border: 2px solid rgba(255, 255, 255, 0.382);
+    padding: 6px 18px;
+    border-radius: 8px;
     gap: 10px;
     width: 100%;
     justify-content: center;
@@ -9,6 +12,7 @@
     .year {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 3px;
       color: rgba(255, 255, 255, 0.623);
       span {
@@ -16,7 +20,6 @@
         text-transform: lowercase;
         font-size: 16px;
         font-family: "Poppins", sans-serif;
-        // font-weight: 400 !important;
       }
     }
 
@@ -47,14 +50,28 @@
         display: none;
       }
 
-      .year span {
-        font-size: 14px;
+      .year {
+        justify-content: flex-start;
+        span {
+          font-size: 14px;
+        }
       }
     }
   }
 }
 
-@media only screen and (max-width: 500px) {
-  .header {
+@media only screen and (max-width: 520px) {
+  .container {
+    width: 120%;
+    .gregorian-year {
+      border: none;
+      padding: 0;
+
+      .gregorian-year {
+        .year {
+          margin-bottom: 10px;
+        }
+      }
+    }
   }
 }
