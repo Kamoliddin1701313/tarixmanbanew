@@ -81,6 +81,9 @@ function HomeImageDetail() {
     initialState?.checkedItems || []
   );
 
+  console.log(checkedItemsChog, "checkedItemsChog");
+  console.log(checkedItems, "checkedItems");
+
   // const {
   //   checkedItemsChog,
   //   setCheckedItemsChog,
@@ -153,12 +156,6 @@ function HomeImageDetail() {
     getData(currentPage);
   }, [id, currentPage, checkedItems, checkedItemsChog, searchParams]);
 
-  const handleSelect = (id) => {
-    setCheckedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
   const navigateToDetail = (itemId) => {
     saveStateToSessionStorage(); // Navigate qilishdan oldin saqlaymiz
     const params = new URLSearchParams();
@@ -167,6 +164,12 @@ function HomeImageDetail() {
     if (searchText) params.append("search", searchText);
     params.append("page", currentPage);
     navigate(`/homeImageDetail/${id}/${itemId}?${params.toString()}`);
+  };
+
+  const handleSelect = (id) => {
+    setCheckedItems((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
   const handleSelectChog = (id) => {
@@ -222,9 +225,6 @@ function HomeImageDetail() {
       console.error("SessionStorage'ni o'chirishda xatolik:", error);
     }
   };
-
-  console.log(checkedItemsChog, "checkedItemsChog");
-  console.log(checkedItems, "checkedItems");
 
   return (
     <div className={style.container}>

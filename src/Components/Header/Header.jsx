@@ -26,7 +26,7 @@ const Header = ({ openIcon, setOpenIcon }) => {
           <div className={style["datetime-weather"]}>
             <TimeClock />
             <HijriYear />
-            {/* <WeatherApp /> */}
+            <WeatherApp />
           </div>
 
           <div className={style.search}>
