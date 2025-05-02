@@ -71,14 +71,12 @@ function HomeImageDetail() {
     }
   };
 
-
   // chog'uchun checkedItemsChog
+
   const initialState = getStoredState();
   const [checkedItemsChog, setCheckedItemsChog] = useState(
     initialState?.checkedItemsChog || []
   );
-
-  console.log(checkedItemsChog, "yyyyyy");
 
   const [checkedItems, setCheckedItems] = useState(
     initialState?.checkedItems || []
@@ -168,6 +166,8 @@ function HomeImageDetail() {
     const storedState = getStoredState();
     const searchParam = searchParams.get("search");
 
+    // malumotni o'chirish
+
     if (storedState) {
       const params = new URLSearchParams();
       storedState.checkedItems.forEach((id) => params.append("filters", id));
@@ -184,6 +184,9 @@ function HomeImageDetail() {
     }
 
     getData(currentPage);
+
+    setCheckedItemsChog([]); //malumot qo'shdim
+    setCheckedItems([]);
   }, [id]);
 
   const [views, setViews] = useState(false);
@@ -205,11 +208,8 @@ function HomeImageDetail() {
     }
   };
 
-  // useEffect(() => {
-  //   setCheckedItemsChog([]);
-  // }, [sessionStorage.getItem(`filterState_${id}`)]);
-
-  // console.log(data, "men Islamov Kamoliddin");
+  console.log(checkedItemsChog, "checkedItemsChog");
+  console.log(checkedItems, "checkedItems");
 
   return (
     <div className={style.container}>

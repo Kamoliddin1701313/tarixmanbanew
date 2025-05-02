@@ -21,8 +21,6 @@ function HijriYear() {
   const monthIndex = moment().iMonth(); // Hijriy oy indeksi olish
   const hijriMonth = hijriMonths[monthIndex]; // O'zgaruvchiga Lotin oy nomini olish
 
-  console.log(moment().format("DD"), "moment().format(DD)");
-
   return (
     <div className={style.container}>
       <div className={style["gregorian-year"]}>
