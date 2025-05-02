@@ -47,6 +47,7 @@ function Navbar({ openProps }) {
 
   console.log(openLink, "openLink");
   console.log(openIcon, "openIcon");
+  console.log(data, "data data data data");
 
   return (
     <div>

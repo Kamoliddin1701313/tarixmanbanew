@@ -71,10 +71,14 @@ function HomeImageDetail() {
     }
   };
 
+
+  // chog'uchun checkedItemsChog
   const initialState = getStoredState();
   const [checkedItemsChog, setCheckedItemsChog] = useState(
     initialState?.checkedItemsChog || []
   );
+
+  console.log(checkedItemsChog, "yyyyyy");
 
   const [checkedItems, setCheckedItems] = useState(
     initialState?.checkedItems || []
@@ -121,7 +125,6 @@ function HomeImageDetail() {
       };
 
       sessionStorage.setItem(`filterState_${id}`, JSON.stringify(stateToSave));
-      localStorage.setItem("id", `${id}`);
     } catch (error) {
       console.error("SessionStorage'ga yozishda xatolik:", error);
     }
@@ -202,11 +205,11 @@ function HomeImageDetail() {
     }
   };
 
-  useEffect(() => {
-    setCheckedItemsChog([]);
-  }, [localStorage.getItem("id")]);
+  // useEffect(() => {
+  //   setCheckedItemsChog([]);
+  // }, [sessionStorage.getItem(`filterState_${id}`)]);
 
-  console.log(data, "men Islamov Kamoliddin");
+  // console.log(data, "men Islamov Kamoliddin");
 
   return (
     <div className={style.container}>
