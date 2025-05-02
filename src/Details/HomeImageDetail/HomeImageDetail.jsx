@@ -71,9 +71,8 @@ function HomeImageDetail() {
     }
   };
 
-  // chog'uchun checkedItemsChog
-
   const initialState = getStoredState();
+
   const [checkedItemsChog, setCheckedItemsChog] = useState(
     initialState?.checkedItemsChog || []
   );
@@ -81,6 +80,24 @@ function HomeImageDetail() {
   const [checkedItems, setCheckedItems] = useState(
     initialState?.checkedItems || []
   );
+
+  // const {
+  //   checkedItemsChog,
+  //   setCheckedItemsChog,
+  //   checkedItems,
+  //   setCheckedItems,
+  // } = useContext(ValueContext);
+
+  // const initialState = getStoredState();
+  // useEffect(() => {
+  //   if (initialState?.checkedItems) {
+  //     setCheckedItems(initialState.checkedItems);
+  //   }
+
+  //   if (initialState?.checkedItemsChog) {
+  //     setCheckedItemsChog(initialState.checkedItemsChog);
+  //   }
+  // }, []);
 
   const getData = async (Page = 1) => {
     try {
@@ -165,8 +182,6 @@ function HomeImageDetail() {
   useEffect(() => {
     const storedState = getStoredState();
     const searchParam = searchParams.get("search");
-
-    // malumotni o'chirish
 
     if (storedState) {
       const params = new URLSearchParams();

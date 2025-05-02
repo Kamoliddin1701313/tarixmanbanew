@@ -28,9 +28,21 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [openIcon, setOpenIcon] = useState(false);
 
+  // const [checkedItemsChog, setCheckedItemsChog] = useState([]);
+  // const [checkedItems, setCheckedItems] = useState([]);
+
   return (
     <ValueContext.Provider
-      value={{ searchValue, setSearchValue, openIcon, setOpenIcon }}
+      value={{
+        searchValue,
+        setSearchValue,
+        openIcon,
+        setOpenIcon,
+        // checkedItemsChog,
+        // setCheckedItemsChog,
+        // checkedItems,
+        // setCheckedItems,
+      }}
     >
       <div>
         <ScrollToTop />
