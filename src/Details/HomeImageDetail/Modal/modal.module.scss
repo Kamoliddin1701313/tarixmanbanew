@@ -17,6 +17,7 @@
     top: 30px;
     right: 30px;
   }
+
   .views {
     width: 90%;
     height: 600px;
@@ -42,8 +43,7 @@
       margin: 0 auto;
       object-fit: contain;
       display: block;
-      max-width: 80%;
-      // max-height: 400px;
+      width: 80%;
       object-fit: contain;
       height: 600px !important;
       border-radius: 20px !important;
@@ -54,16 +54,70 @@
 
     .contents {
       background-color: rgb(0, 0, 0);
-      padding: 10px 30px;
+      padding: 20px 20px 15px 15px;
+      max-width: 80%;
       border-radius: 20px;
-      max-height: 650px;
-      overflow-y: auto;
-      p {
-        line-height: 32px;
-        font-size: 28px;
+      height: 560px;
+      display: grid;
+      place-items: center;
+      .text {
+        padding: 15px;
+        height: 520px;
+        overflow-y: auto;
+        p {
+          line-height: 32px;
+          font-size: 28px;
 
-        color: white;
+          color: white;
+        }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .contents {
+    max-width: 90% !important;
+    height: 500px !important;
+    .text {
+      height: 460px !important;
+    }
+  }
+
+  .audios {
+    width: 45% !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .openModal {
+    width: 100% !important;
+    .views {
+      .audios {
+        width: 65% !important;
+      }
+
+      img {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .contents {
+    max-width: 95% !important;
+    height: 480px !important;
+    .text {
+      height: 440px !important;
+    }
+  }
+
+  .audios {
+    width: 85% !important;
+
+    h3 {
+      font-size: 16px !important;
     }
   }
 }

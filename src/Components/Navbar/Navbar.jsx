@@ -48,10 +48,6 @@ function Navbar({ openProps }) {
   // console.log(openIcon, "openIcon");
   // console.log(data, "data data data data");
 
-  
-
-
-
   return (
     <div>
       <Header openIcon={openIcon} setOpenIcon={setOpenIcon} />
@@ -76,29 +72,33 @@ function Navbar({ openProps }) {
                     className={openLink ? style.openicon : style.closeicon}
                   />
                 </button>
-
-                <div className={openLink ? style.openBox : style.closeBox}>
-                  <div className={style.links}>
-                    {data
-                      .sort((a, b) => a.order - b.order)
-                      .map((links) => (
-                        <Link
-                          key={links.id}
-                          to={`homeImageDetail/${links.id}`}
-                          
-
-                          onClick={() =>{ 
-                            setOpenLink(false)} }
-                        >
-                          {/* salom */}
-                          <div className={style.link}>
-                            <img src={links.icon} alt={links.title} />
-                            <span style={{ marginLeft: "10px" }}>
-                              {links.title}
-                            </span>
-                          </div>
-                        </Link>
-                      ))}
+                {/*         style={{ display: openIcon && "none" }} */}
+                <div>
+                  <div
+                    className={openLink ? style.openBox : style.closeBox}
+                    // style={{ display: openIcon === false ? "block" : "block" }}
+                  >
+                    <div className={style.links}>
+                      {data
+                        .sort((a, b) => a.order - b.order)
+                        .map((links) => (
+                          <Link
+                            key={links.id}
+                            to={`homeImageDetail/${links.id}`}
+                            onClick={() => {
+                              setOpenLink(false);
+                            }}
+                          >
+                            {/* salom */}
+                            <div className={style.link}>
+                              <img src={links.icon} alt={links.title} />
+                              <span style={{ marginLeft: "10px" }}>
+                                {links.title}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                    </div>
                   </div>
                 </div>
               </div>

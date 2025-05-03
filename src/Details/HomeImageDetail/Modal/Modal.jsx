@@ -25,16 +25,22 @@ function Modal(props) {
         );
 
       case "galleries":
-        return <img src={`${value?.galleries?.[0]?.image}`} alt="Gallery" />;
+        return (
+          <div className={style.galleries}>
+            <img src={`${value?.galleries?.[0]?.image}`} alt="Gallery" />
+          </div>
+        );
 
       case "contents":
         return (
           <div className={style.contents}>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: value?.contents?.[0]?.description,
-              }}
-            ></p>
+            <div className={style.text}>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: value?.contents?.[0]?.description,
+                }}
+              ></p>
+            </div>
           </div>
         );
 
