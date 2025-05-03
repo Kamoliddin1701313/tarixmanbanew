@@ -32,7 +32,6 @@ function WeatherApp() {
     initialSlide: 0,
     pauseOnHover: true,
   };
-  console.log(data, "tttttttttttttttttttttt");
 
   return (
     <div className={style["weather-container"]}>

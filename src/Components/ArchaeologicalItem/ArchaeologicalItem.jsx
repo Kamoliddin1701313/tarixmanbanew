@@ -123,8 +123,6 @@ function ArchaeologicalItem() {
     ],
   };
 
-  console.log(data, "mmmmmmmmmmmm");
-
   return (
     <div className={style.container}>
       <div className={style["carusel-container"]}>

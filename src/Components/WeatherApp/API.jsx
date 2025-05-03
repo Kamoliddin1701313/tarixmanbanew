@@ -56,8 +56,6 @@ const useList = () => {
       } catch (err) {
         console.error("Error fetching weather:", err);
         setError(err);
-      } finally {
-        setLoading(false);
       }
     };
 

@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 
 import axios from "axios";
-
 import style from "./navbar.module.scss";
 
 function Navbar({ openProps }) {
@@ -45,9 +44,13 @@ function Navbar({ openProps }) {
     sessionStorage.clear();
   }
 
-  console.log(openLink, "openLink");
+  // console.log(openLink, "openLink");
   // console.log(openIcon, "openIcon");
   // console.log(data, "data data data data");
+
+  
+
+
 
   return (
     <div>
@@ -82,8 +85,12 @@ function Navbar({ openProps }) {
                         <Link
                           key={links.id}
                           to={`homeImageDetail/${links.id}`}
-                          onClick={() => setOpenLink(false)}
+                          
+
+                          onClick={() =>{ 
+                            setOpenLink(false)} }
                         >
+                          {/* salom */}
                           <div className={style.link}>
                             <img src={links.icon} alt={links.title} />
                             <span style={{ marginLeft: "10px" }}>
