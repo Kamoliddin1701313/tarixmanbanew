@@ -58,6 +58,7 @@ function HomeImageDetail() {
 
   const onSearchClick = () => {
     setSearchParams({ search: searchText, page: 1 }); // Har doim 1-sahifaga qaytamiz
+    saveStateToSessionStorage();
     getData(1);
   };
 
@@ -204,7 +205,7 @@ function HomeImageDetail() {
     getData(currentPage);
 
     setCheckedItemsChog([]); //malumot qo'shdim
-    setCheckedItems([]);
+    setCheckedItems([]); //malumot qo'shdim
   }, [id]);
 
   const [views, setViews] = useState(false);
