@@ -9,9 +9,14 @@ import { GrClose } from "react-icons/gr";
 import HijriYear from "../HijriYear/HijriYear";
 import WeatherApp from "../WeatherApp/WeatherApp";
 
-const Header = ({ openIcon, setOpenIcon }) => {
+const Header = ({ openIcon, setOpenIcon, setOpenLink }) => {
   const navigate = useNavigate();
   const { searchValue, setSearchValue } = useContext(ValueContext);
+
+  const openBtn = () => {
+    setOpenIcon(!openIcon);
+    setOpenLink(false);
+  };
 
   return (
     <div className={style.container}>
@@ -49,7 +54,7 @@ const Header = ({ openIcon, setOpenIcon }) => {
           </div>
         </div>
 
-        <button onClick={() => setOpenIcon(!openIcon)}>
+        <button onClick={() => openBtn()}>
           {openIcon ? <GrClose /> : <FaBarsStaggered />}
         </button>
       </div>

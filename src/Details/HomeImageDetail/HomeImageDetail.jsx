@@ -81,8 +81,8 @@ function HomeImageDetail() {
     initialState?.checkedItems || []
   );
 
-  console.log(checkedItemsChog, "checkedItemsChog");
-  console.log(checkedItems, "checkedItems");
+  // console.log(checkedItemsChog, "checkedItemsChog");
+  // console.log(checkedItems, "checkedItems");
 
   // const {
   //   checkedItemsChog,
