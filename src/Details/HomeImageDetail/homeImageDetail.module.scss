@@ -207,6 +207,11 @@
               font-size: 18px;
               font-family: var(--famiyilCursive);
               letter-spacing: 1px;
+              height: 55px;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
             }
           }
 
@@ -361,15 +366,20 @@
         display: flex !important;
         justify-content: space-between;
         width: 100%;
+
         .img {
           width: 40%;
+          height: 280px;
           img {
             width: 100% !important;
+            height: 100%;
             object-fit: cover;
           }
         }
+
         .mediaInfoSection {
           width: 60%;
+          height: 280px;
           h1 {
             font-size: 24px !important;
           }
