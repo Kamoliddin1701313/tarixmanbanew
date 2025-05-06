@@ -36,18 +36,29 @@ function Login() {
         theme="light"
       />
       <form onSubmit={HandeSubmit} className={style.login}>
-        <div>
+        <h1>Hisobingizga kiring!</h1>
+        <div className={style.inputCard}>
+          <label className={style.label} htmlFor="phone">
+            Telefon raqam:
+          </label>
+
           <input
+            id="phone"
             value={phone}
             type="text"
             placeholder="Admin bo'lib kiring? Tel:"
             onChange={({ target: { value } }) => setPhone(value)}
             required
           />
-          <span>{!loginParol && "Telefon raqam mos kelmadi!"}</span>
+          <span style={{ marginTop: "6px", color: "#ff0000db" }}>
+            {!loginParol && "Telefon raqam mos kelmadi!"}
+          </span>
         </div>
 
-        <div>
+        <div className={style.inputCard}>
+          <label className={style.label} htmlFor="phone">
+            Parol:
+          </label>
           <input
             value={parol}
             type="text"
@@ -55,10 +66,14 @@ function Login() {
             onChange={({ target: { value } }) => setParol(value)}
             required
           />
-          <span>{!loginParol && "Parol mos kelmadi!"}</span>
+          <span style={{ marginTop: "6px", color: "#ff0000db" }}>
+            {!loginParol && "Parol mos kelmadi!"}
+          </span>
         </div>
 
-        <button type="submit">Yuborish</button>
+        <button className={style.loginBtn} type="submit">
+          Yuborish
+        </button>
       </form>
     </div>
   );
