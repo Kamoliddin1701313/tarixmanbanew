@@ -1,4 +1,4 @@
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Router, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,9 +16,10 @@ import HomeImageDetail from "./Details/HomeImageDetail/HomeImageDetail";
 import ArchaeologicalItemDetail from "./Details/ArchaeologicalItemDetail/ArchaeologicalItemDetail";
 // import ImageDetailView from "./Details/ImageDetailView/ImageDetailView";
 import ImageViewDetail from "./Details/ImageViewDetail/ImageViewDetail";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import Search from "./Components/Search/Search";
 import Modal from "./Details/HomeImageDetail/Modal/Modal";
+import Login from "./Login/Login";
 
 axios.defaults.baseURL = "https://backend.tarixmanba.uz/api/";
 
@@ -27,7 +28,15 @@ export const ValueContext = createContext();
 function App() {
   const [searchValue, setSearchValue] = useState("");
   const [openIcon, setOpenIcon] = useState(false);
-
+  const navigate = useNavigate();
+  const token = localStorage.getItem("parol");
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    } else if (token) {
+      navigate("/");
+    }
+  }, []);
   // const [checkedItemsChog, setCheckedItemsChog] = useState([]);
   // const [checkedItems, setCheckedItems] = useState([]);
 
@@ -46,7 +55,9 @@ function App() {
     >
       <div>
         <ScrollToTop />
+
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route element={<Layouts />}>
             <Route path="/" index element={<Home />} />
             <Route path="/library" element={<Library />} />
@@ -54,6 +65,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/search" element={<Search />} />
             <Route path="*" element={<NotFound />} />
+
             {/* DETAILS */}
             <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/library/:id" element={<LibraryDetail />} />

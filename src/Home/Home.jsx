@@ -4,6 +4,7 @@ import HomeImage from "./HomeImage/HomeImage";
 import ArchaeologicalItem from "../Components/ArchaeologicalItem/ArchaeologicalItem";
 import { ValueContext } from "../App";
 import Search from "../Components/Search/Search";
+// import Login from "../Login/Login";
 
 function Home() {
   const { searchValue } = useContext(ValueContext);
@@ -14,6 +15,7 @@ function Home() {
         <Search />
       ) : (
         <div>
+          {/* <Login /> */}
           <HomeImage />
           <ArchaeologicalItem />
         </div>

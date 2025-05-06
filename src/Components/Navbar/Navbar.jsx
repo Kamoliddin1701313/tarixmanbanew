@@ -40,8 +40,17 @@ function Navbar({ openProps }) {
     };
   }, []);
 
+  // if (openLink === true) {
+  //   sessionStorage.clear();
+  // }
+
   if (openLink === true) {
-    sessionStorage.clear();
+    Object.keys(sessionStorage).forEach((key) => {
+      console.log(key, "key");
+      if (key.includes("filterState_")) {
+        sessionStorage.removeItem(key);
+      }
+    });
   }
 
   return (

@@ -73,6 +73,7 @@ function HomeImageDetail() {
   };
 
   const initialState = getStoredState();
+  console.log(initialState, "eeeeeeeeeeee");
 
   const [checkedItemsChog, setCheckedItemsChog] = useState(
     initialState?.checkedItemsChog || []
