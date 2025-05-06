@@ -7,12 +7,17 @@ import Marquee from "react-fast-marquee";
 
 import axios from "axios";
 import style from "./navbar.module.scss";
+import { ValueContext } from "../../App";
 
 function Navbar({ openProps }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [data, setData] = useState([]);
   const { openLink, setOpenLink } = openProps;
   const [openIcon, setOpenIcon] = useState(false);
+
+  // eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+  const { setCheckedItemsChog, setCheckedItems } = useContext(ValueContext);
+  // eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 
   const getData = async () => {
     try {
@@ -44,14 +49,22 @@ function Navbar({ openProps }) {
   //   sessionStorage.clear();
   // }
 
-  if (openLink === true) {
-    Object.keys(sessionStorage).forEach((key) => {
-      console.log(key, "key");
-      if (key.includes("filterState_")) {
-        sessionStorage.removeItem(key);
-      }
-    });
-  }
+  useEffect(() => {
+    console.log("salomat", openLink);
+
+    if (openLink) {
+      Object.keys(sessionStorage).forEach((key) => {
+        console.log(key, "key");
+        if (key.includes("filterState_")) {
+          sessionStorage.clear();
+          // setCheckedItems([]);
+          // setCheckedItemsChog([]);
+        }
+      });
+    }
+  }, [openLink]);
+
+  
 
   return (
     <div>

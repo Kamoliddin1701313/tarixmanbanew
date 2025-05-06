@@ -73,7 +73,6 @@ function HomeImageDetail() {
   };
 
   const initialState = getStoredState();
-  console.log(initialState, "eeeeeeeeeeee");
 
   const [checkedItemsChog, setCheckedItemsChog] = useState(
     initialState?.checkedItemsChog || []
@@ -82,9 +81,6 @@ function HomeImageDetail() {
   const [checkedItems, setCheckedItems] = useState(
     initialState?.checkedItems || []
   );
-
-  // console.log(checkedItemsChog, "checkedItemsChog");
-  // console.log(checkedItems, "checkedItems");
 
   // const {
   //   checkedItemsChog,
@@ -205,8 +201,8 @@ function HomeImageDetail() {
 
     getData(currentPage);
 
-    setCheckedItemsChog([]); //malumot qo'shdim
-    setCheckedItems([]); //malumot qo'shdim
+    // setCheckedItemsChog([]); //malumot qo'shdim
+    // setCheckedItems([]); //malumot qo'shdim
   }, [id]);
 
   const [views, setViews] = useState(false);

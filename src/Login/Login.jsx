@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import style from "./login.module.scss";
 
 function Login() {
   const [phone, setPhone] = useState("");
@@ -12,19 +13,29 @@ function Login() {
   const HandeSubmit = (event) => {
     event.preventDefault();
 
-    if (phone == "911111111" && parol == "12345678") {
+    if (phone == "1" && parol == "1") {
       localStorage.setItem("parol", "parol");
       toast.success("Muvaffaqiyatli kirdingiz!");
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } else {
       setLoginParol(false);
     }
   };
 
   return (
-    <div>
-      <ToastContainer />
-      <form onSubmit={HandeSubmit}>
+    <div className={style["login-container"]}>
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
+      />
+      <form onSubmit={HandeSubmit} className={style.login}>
         <div>
           <input
             value={phone}
@@ -33,7 +44,7 @@ function Login() {
             onChange={({ target: { value } }) => setPhone(value)}
             required
           />
-          <span>{loginParol && "Telefon raqam mos kelmadi!"}</span>
+          <span>{!loginParol && "Telefon raqam mos kelmadi!"}</span>
         </div>
 
         <div>
@@ -44,7 +55,7 @@ function Login() {
             onChange={({ target: { value } }) => setParol(value)}
             required
           />
-          <span>{loginParol && "Parol mos kelmadi!"}</span>
+          <span>{!loginParol && "Parol mos kelmadi!"}</span>
         </div>
 
         <button type="submit">Yuborish</button>

@@ -37,8 +37,8 @@ function App() {
       navigate("/");
     }
   }, []);
-  // const [checkedItemsChog, setCheckedItemsChog] = useState([]);
-  // const [checkedItems, setCheckedItems] = useState([]);
+  const [checkedItemsChog, setCheckedItemsChog] = useState([]);
+  const [checkedItems, setCheckedItems] = useState([]);
 
   return (
     <ValueContext.Provider
@@ -47,10 +47,10 @@ function App() {
         setSearchValue,
         openIcon,
         setOpenIcon,
-        // checkedItemsChog,
-        // setCheckedItemsChog,
-        // checkedItems,
-        // setCheckedItems,
+        checkedItemsChog,
+        setCheckedItemsChog,
+        checkedItems,
+        setCheckedItems,
       }}
     >
       <div>
