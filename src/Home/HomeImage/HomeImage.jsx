@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "./homeImage.module.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function HomeImage() {
   const [data, setData] = useState([]);
   const [animation, setAnimation] = useState(null);
+  const containerRef = useRef(null); // container uchun ref
 
   const getData = async () => {
     try {
@@ -24,8 +25,21 @@ function HomeImage() {
     setAnimation(id);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(`.${style.img}`)) {
+        setAnimation(null);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={style.container}>
+    <div className={style.container} ref={containerRef}>
       <div className={style["images-container"]}>
         {data?.slice(0, 7).map((value, idx) => (
           <div
