@@ -48,8 +48,8 @@ function App() {
         openIcon,
         setOpenIcon,
         checkedItemsChog,
-        setCheckedItemsChog,
         checkedItems,
+        setCheckedItemsChog,
         setCheckedItems,
       }}
     >

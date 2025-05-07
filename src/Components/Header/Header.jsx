@@ -22,7 +22,9 @@ const Header = ({ openIcon, setOpenIcon, setOpenLink }) => {
     <div className={style.container}>
       <div className={style.header}>
         <div>
-          <Link to="/">AQLLI KUTUBXONA</Link>
+          <Link onClick={() => setSearchValue("")} to="/">
+            AQLLI KUTUBXONA
+          </Link>
         </div>
 
         <div

@@ -72,33 +72,33 @@ function HomeImageDetail() {
     }
   };
 
-  const initialState = getStoredState();
-
-  const [checkedItemsChog, setCheckedItemsChog] = useState(
-    initialState?.checkedItemsChog || []
-  );
-
-  const [checkedItems, setCheckedItems] = useState(
-    initialState?.checkedItems || []
-  );
-
-  // const {
-  //   checkedItemsChog,
-  //   setCheckedItemsChog,
-  //   checkedItems,
-  //   setCheckedItems,
-  // } = useContext(ValueContext);
-
   // const initialState = getStoredState();
-  // useEffect(() => {
-  //   if (initialState?.checkedItems) {
-  //     setCheckedItems(initialState.checkedItems);
-  //   }
 
-  //   if (initialState?.checkedItemsChog) {
-  //     setCheckedItemsChog(initialState.checkedItemsChog);
-  //   }
-  // }, []);
+  // const [checkedItemsChog, setCheckedItemsChog] = useState(
+  //   initialState?.checkedItemsChog || []
+  // );
+
+  // const [checkedItems, setCheckedItems] = useState(
+  //   initialState?.checkedItems || []
+  // );
+
+  const {
+    checkedItemsChog,
+    setCheckedItemsChog,
+    checkedItems,
+    setCheckedItems,
+  } = useContext(ValueContext);
+
+  const initialState = getStoredState();
+  useEffect(() => {
+    if (initialState?.checkedItems) {
+      setCheckedItems(initialState.checkedItems);
+    }
+
+    if (initialState?.checkedItemsChog) {
+      setCheckedItemsChog(initialState.checkedItemsChog);
+    }
+  }, []);
 
   const getData = async (Page = 1) => {
     try {

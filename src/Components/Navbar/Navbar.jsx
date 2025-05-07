@@ -2,7 +2,7 @@ import NavbarLogoSlider from "../NavbarLogoSlider/NavbarLogoSlider";
 import Header from "../Header/Header";
 import { Link } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa6";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 
 import axios from "axios";
@@ -16,7 +16,14 @@ function Navbar({ openProps }) {
   const [openIcon, setOpenIcon] = useState(false);
 
   // eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-  const { setCheckedItemsChog, setCheckedItems } = useContext(ValueContext);
+  const {
+    checkedItemsChog,
+    checkedItems,
+    searchValue,
+    setCheckedItemsChog,
+    setCheckedItems,
+  } = useContext(ValueContext);
+
   // eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 
   const getData = async () => {
@@ -50,21 +57,19 @@ function Navbar({ openProps }) {
   // }
 
   useEffect(() => {
-    console.log("salomat", openLink);
-
     if (openLink) {
       Object.keys(sessionStorage).forEach((key) => {
         console.log(key, "key");
         if (key.includes("filterState_")) {
           sessionStorage.clear();
-          // setCheckedItems([]);
-          // setCheckedItemsChog([]);
+          setCheckedItems([]);
+          setCheckedItemsChog([]);
         }
       });
+      checkedItemsChog == [];
+      checkedItems == [];
     }
   }, [openLink]);
-
-  
 
   return (
     <div>
