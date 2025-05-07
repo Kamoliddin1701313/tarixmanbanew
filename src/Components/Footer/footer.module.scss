@@ -1,7 +1,7 @@
 .footer-container {
   width: 100%;
   background-color: #0a1821;
-  padding: 35px 0;
+  padding: 20px 0;
   bottom: 0;
 }
 
@@ -42,7 +42,7 @@
   .footerPage {
     display: flex;
     flex-direction: column;
-    grid-row-gap: 20px;
+    grid-row-gap: 12px;
     a {
       text-decoration: none;
       color: white;
@@ -72,6 +72,7 @@
       cursor: pointer;
       a {
         color: white;
+        margin-top: 5px;
       }
       &:hover {
         background: green;
@@ -119,10 +120,13 @@
         p {
           width: 35px;
           height: 35px;
-        }
-        p svg {
-          font-size: 14px !important;
-          margin-top: 5px;
+          a {
+            margin-top: 0;
+            svg {
+              font-size: 16px !important;
+              margin-top: 5px;
+            }
+          }
         }
       }
     }
@@ -133,9 +137,17 @@
   .footer {
     display: flex;
     flex-direction: column;
+    .phone,
+    .sayt {
+      display: flex;
+      justify-content: center;
+    }
 
     .contacts {
       margin: 20px auto;
+      p {
+        border-width: 1px;
+      }
     }
   }
 }

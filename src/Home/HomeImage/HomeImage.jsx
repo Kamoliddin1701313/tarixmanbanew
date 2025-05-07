@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function HomeImage() {
   const [data, setData] = useState([]);
   const [animation, setAnimation] = useState(null);
+
   const getData = async () => {
     try {
       const respons = await axios.get("category-resource/");
@@ -26,7 +27,7 @@ function HomeImage() {
   return (
     <div className={style.container}>
       <div className={style["images-container"]}>
-        {data?.map((value, idx) => (
+        {data?.slice(0, 7).map((value, idx) => (
           <div
             key={idx}
             className={`${style.img} ${
@@ -35,11 +36,34 @@ function HomeImage() {
             onClick={() => animationBtn(value.id)}
           >
             <img src={value?.image} alt={value.title} />
-            <div className={style.detailLink}>
-              <span>
-                <Link to={`homeImageDetail/${value.id}`}>{value.title}</Link>
-              </span>
-            </div>
+            <Link
+              to={`homeImageDetail/${value.id}`}
+              className={style.detailLink}
+              style={{ display: animation === value.id ? "block" : "none" }}
+            >
+              <span>{value.title}</span>
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      <div className={style["images-container1"]}>
+        {data?.slice(7, 13).map((value, idx) => (
+          <div
+            key={idx}
+            className={`${style.img} ${
+              animation === value.id ? style.imgWidth : ""
+            }`}
+            onClick={() => animationBtn(value.id)}
+          >
+            <img src={value?.image} alt={value.title} />
+            <Link
+              to={`homeImageDetail/${value.id}`}
+              className={style.detailLink}
+              style={{ display: animation === value.id ? "block" : "none" }}
+            >
+              <span>{value.title}</span>
+            </Link>
           </div>
         ))}
       </div>
