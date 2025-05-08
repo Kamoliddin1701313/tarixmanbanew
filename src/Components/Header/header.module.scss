@@ -164,8 +164,19 @@
   }
 }
 
-// @media only screen and (max-width: 520px) {
-//   .info-panel {
-//     height: 237px;
-//   }
-// }
+@media only screen and (max-width: 520px) {
+  .container {
+    .header {
+      .info-panel {
+        height: 222px;
+        padding: 0 10px 10px 0;
+        .search {
+          input::placeholder,
+          input {
+            font-size: 13px !important;
+          }
+        }
+      }
+    }
+  }
+}

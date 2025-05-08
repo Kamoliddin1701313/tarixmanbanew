@@ -36,8 +36,15 @@
   }
 }
 
-// @media only screen and (max-width: 520px) {
-//   .weather-card {
-//     height: 50px;
-//   }
-// }
+@media only screen and (max-width: 520px) {
+  .weather-card {
+    height: 40px;
+    img {
+      width: 35px;
+      height: 30px;
+    }
+    p {
+      font-size: 13px;
+    }
+  }
+}

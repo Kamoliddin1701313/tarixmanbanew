@@ -67,14 +67,15 @@
 
 @media only screen and (max-width: 520px) {
   .container {
-    width: 120%;
+    // width: 120%;
     .gregorian-year {
       border: none;
       padding: 0;
 
-      .gregorian-year {
-        .year {
-          margin-bottom: 10px;
+      .year {
+        margin-bottom: 10px;
+        span {
+          font-size: 13px;
         }
       }
     }

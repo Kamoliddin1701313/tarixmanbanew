@@ -492,5 +492,26 @@
         }
       }
     }
+
+    .wrapper {
+      .card {
+        .img img {
+          object-fit: cover;
+        }
+
+        .mediaInfoSection {
+          height: 180px;
+
+          .title span:first-child {
+            font-size: 16px !important;
+            width: 32% !important;
+          }
+
+          .title span:last-child {
+            text-align: left;
+          }
+        }
+      }
+    }
   }
 }

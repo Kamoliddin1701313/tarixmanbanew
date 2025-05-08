@@ -212,7 +212,13 @@
     .images-container,
     .images-container1 {
       .img {
-        height: 240px;
+        height: 180px;
+        .detailLink {
+          padding: 5px 0;
+        }
+        .detailLink span {
+          font-size: 12px;
+        }
       }
     }
   }

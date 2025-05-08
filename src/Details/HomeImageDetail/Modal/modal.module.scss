@@ -105,11 +105,18 @@
 }
 
 @media only screen and (max-width: 520px) {
+  .openModal {
+    svg {
+      font-size: 22px;
+    }
+  }
   .contents {
-    max-width: 95% !important;
+    max-width: 96% !important;
+    padding: 7px !important;
     height: 480px !important;
     .text {
       height: 440px !important;
+      padding: 7px !important;
     }
   }
 

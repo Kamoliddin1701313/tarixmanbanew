@@ -75,6 +75,63 @@
       letter-spacing: 1.2px;
       font-weight: 400 !important;
       font-family: "Poppins", sans-serif;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .loginBtn:hover {
+      background-color: #1c323f;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .login-container {
+    .login {
+      width: 65%;
+      margin-top: 35%;
+      h1 {
+        font-size: 24px;
+      }
+
+      .inputCard {
+        .label {
+          font-size: 16px;
+        }
+
+        input,
+        input::placeholder {
+          font-size: 16px;
+        }
+      }
+
+      .loginBtn {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login-container {
+    .login {
+      width: 75%;
+      height: 420px;
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .login-container {
+    .login {
+      width: 85%;
+      margin-top: 45%;
+      height: 380px;
+      padding: 12px;
+      .inputCard input,
+      .loginBtn {
+        height: 46px;
+      }
     }
   }
 }
