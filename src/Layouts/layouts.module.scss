@@ -1,97 +1,100 @@
-.main-container {
-  width: 100%;
-  min-height: 90vh;
-  position: relative;
-  overflow-x: hidden;
-  padding: 0 0 30px;
-
-  .outlet-container {
-    // max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .main-img {
-    filter: brightness(50%);
-    height: 100%;
+.layouts-container {
+  overflow: hidden;
+  .main-container {
     width: 100%;
-    position: fixed;
-    z-index: -1;
-    object-position: center;
-    object-fit: cover;
-    top: 70px;
-  }
+    min-height: 90vh;
+    position: relative;
+    overflow: hidden;
+    // padding: 0 0 30px;
 
-  .fixdBox {
-    position: fixed;
-    right: 0px;
-    top: 55%;
-    bottom: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
-    height: 200px;
+    .outlet-container {
+      // max-width: 1400px;
+      margin: 0 auto;
+    }
 
-    .images {
-      padding: 12px 12px 20px 20px;
-      background-color: white;
-      border-radius: 20px 0 0 20px;
+    .main-img {
+      filter: brightness(50%);
       height: 100%;
+      width: 100%;
+      position: fixed;
+      z-index: -1;
+      object-position: center;
+      object-fit: cover;
+      top: 70px;
+    }
+
+    .fixdBox {
+      position: fixed;
+      right: 0px;
+      top: 55%;
+      bottom: 50%;
+      transform: translateY(-50%);
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      height: 200px;
 
-      h3 {
-        text-align: center;
-        margin-bottom: 15px;
-        color: rgba(0, 0, 0, 0.823);
-        font-family: cursive;
-        font-weight: 600;
+      .images {
+        padding: 12px 12px 20px 20px;
+        background-color: white;
+        border-radius: 20px 0 0 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+          text-align: center;
+          margin-bottom: 15px;
+          color: rgba(0, 0, 0, 0.823);
+          font-family: cursive;
+          font-weight: 600;
+        }
       }
-    }
 
-    .settingIcon {
-      border-radius: 12px 0 0 12px;
-      background-color: blue;
-      padding: 10px;
-      cursor: pointer;
-      width: 45px;
-      display: grid;
-      place-items: center;
-      height: 45px;
-      color: white;
-      svg {
-        animation-name: rotetaIcon;
-        animation-duration: 2.5s;
-        font-size: 22px;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-      }
-    }
-
-    .activeImg {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-
-      img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-        border-radius: 8px;
+      .settingIcon {
+        border-radius: 12px 0 0 12px;
+        background-color: blue;
+        padding: 10px;
         cursor: pointer;
+        width: 45px;
+        display: grid;
+        place-items: center;
+        height: 45px;
+        color: white;
+        svg {
+          animation-name: rotetaIcon;
+          animation-duration: 2.5s;
+          font-size: 22px;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+      }
+
+      .activeImg {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: 8px;
+          cursor: pointer;
+        }
       }
     }
-  }
 
-  .closeBox {
-    transition: all 0.4s linear;
-    margin-right: -217px;
-  }
+    .closeBox {
+      transition: all 0.4s linear;
+      margin-right: -217px;
+    }
 
-  .openBox {
-    transition: all 0.4s linear;
-    margin-right: 0;
+    .openBox {
+      transition: all 0.4s linear;
+      margin-right: 0;
+    }
   }
 }
 

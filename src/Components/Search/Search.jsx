@@ -98,9 +98,6 @@ function Search() {
   //   );
   // };
 
-  console.log(data, "xaxa title");
-  console.log(searchValue, "searchValue");
-
   return (
     <div className={style.container}>
       {loading ? (
@@ -122,15 +119,6 @@ function Search() {
                     }
                     alt={value.title}
                   />
-                  {/* <img
-                    onClick={() => handleImageClick(value)}
-                    src={
-                      value.image
-                        ? `https://backend.tarixmanba.uz/${value.image}`
-                        : frut
-                    }
-                    alt={value.title}
-                  /> */}
                 </div>
 
                 <div className={style.mediaInfoSection}>
