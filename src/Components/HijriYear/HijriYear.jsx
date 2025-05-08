@@ -40,7 +40,7 @@ function HijriYear() {
           <span>- {moment().format("MMMM")}</span>
         </div>
 
-        <div className={style.lineY}>|</div>
+        <div className={style.lineY}></div>
 
         {/* Hijriy data */}
         <div className={style.year}>
