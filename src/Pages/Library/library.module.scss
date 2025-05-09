@@ -1,6 +1,6 @@
 :root {
   --famiyilCursive: cursive;
-  --blueColor: rgba(0, 0, 255, 0.87);
+  --blueColor: rgba(0, 255, 21, 0.87);
   --blackColor: rgba(0, 0, 0, 0.929);
 }
 .container {
@@ -51,7 +51,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 25px;
-    margin: 45px auto 0;
+    margin: 45px auto;
     max-width: 1400px;
 
     .card {
@@ -59,19 +59,25 @@
       box-shadow: 0 0 10px rgb(88, 88, 88);
       border-radius: 12px;
       overflow: hidden;
+      background-color: red;
 
-      img {
+      .img {
         height: 300px;
-        width: 100%;
-        border: none;
+        img {
+          height: 100%;
+          width: 100%;
+          border: none;
+          object-fit: cover;
+        }
       }
 
       .box {
-        padding: 15px;
+        padding: 25px 15px;
         display: flex;
+        background-color: #14293d;
         align-items: center;
         justify-content: space-between;
-        font-family: var(--famiyilCursive);
+        font-family: "Poppins", sans-serif;
         h2 {
           display: -webkit-box;
           -webkit-box-orient: vertical;
@@ -84,7 +90,6 @@
           border: none;
           background-color: transparent;
           font-size: 18px;
-          font-family: var(--famiyilCursive);
           color: var(--blueColor);
           cursor: pointer;
         }

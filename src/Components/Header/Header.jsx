@@ -12,6 +12,7 @@ import WeatherApp from "../WeatherApp/WeatherApp";
 const Header = ({ openIcon, setOpenIcon, setOpenLink }) => {
   const navigate = useNavigate();
   const { searchValue, setSearchValue } = useContext(ValueContext);
+  console.log(searchValue, "searchValue ttttttttttt");
 
   const openBtn = () => {
     setOpenIcon(!openIcon);

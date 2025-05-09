@@ -4,6 +4,7 @@
 }
 
 .container {
+  margin-bottom: 30px;
   .innerContainer {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -19,7 +20,7 @@
       color: white;
 
       h1 {
-        font-family: var(--famiyilCursive);
+        font-family: "Poppins", sans-serif;
         text-align: center;
         font-weight: 500;
         color: white;
@@ -205,7 +206,7 @@
             span {
               font-weight: 400;
               font-size: 18px;
-              font-family: var(--famiyilCursive);
+              font-family: "Poppins", sans-serif;
               letter-spacing: 1px;
               height: 55px;
               display: -webkit-box;

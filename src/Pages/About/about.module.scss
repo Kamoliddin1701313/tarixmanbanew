@@ -9,34 +9,63 @@
   .location {
     margin: 30px auto 50px;
     width: 60%;
-    background-color: rgba(3, 3, 3, 0.919);
+    background-color: #232a31d3;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
     font-family: var(--famiyilCursive);
     text-align: center;
     color: white;
+    img {
+      width: 160px;
+      margin: 35px 0 0 35px;
+    }
+
     h1 {
-      margin: 25px 0 0px;
+      margin: 0 35px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    h1:nth-of-type(1) {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 42px;
     }
 
     p {
       line-height: 36px;
       text-align: left;
       margin-left: 30px;
+      margin: 0 35px;
       a {
         color: rgb(13, 57, 218);
       }
     }
   }
 
+  .lineX {
+    background-color: rgba(255, 255, 255, 0.916);
+    width: 100%;
+    height: 2px;
+  }
+
+  .users {
+    font-family: "Poppins", sans-serif;
+    margin-top: 12px;
+    font-size: 34px;
+    color: rgba(255, 255, 255, 0.916);
+    font-weight: 500;
+  }
+
   .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
-    margin: 20px 0;
+    margin: 20px 0 45px;
     .card {
-      border: 2px solid transparent;
+      border: none;
       box-shadow: 0 0 8px black;
       border-radius: 12px;
       overflow: hidden;
@@ -44,6 +73,7 @@
         width: 100%;
         height: 300px;
         display: block;
+        object-fit: cover;
       }
     }
 
@@ -51,12 +81,11 @@
       padding: 15px;
       height: 100%;
       background-color: aliceblue;
-      h2,
-      h3 {
-        text-align: center;
+      h3,
+      h4 {
         color: rgba(0, 0, 0, 0.941);
-        font-family: var(--famiyilCursive);
-        line-height: 34px;
+        font-family: "Poppins", sans-serif;
+        line-height: 30px;
       }
     }
   }

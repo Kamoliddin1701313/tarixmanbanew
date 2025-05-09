@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import style from "./search.module.scss";
 import axios from "axios";
 import { ValueContext } from "../../App";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { BsFillChatTextFill, BsMic } from "react-icons/bs";
 import { BiImages } from "react-icons/bi";
 import { LiaGlobeAmericasSolid } from "react-icons/lia";
@@ -26,6 +26,7 @@ function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
   const currentPage = Number(searchParams.get("page")) || 1;
+  const { pathname } = useLocation();
 
   const getData = async (Page = 1) => {
     const respons = await axios.get(`search/?page=${Page}&q=${searchValue}`);
@@ -34,7 +35,7 @@ function Search() {
       setLoading(false);
     }
 
-    setPageCount(Math.ceil(respons?.data?.count / 20));
+    setPageCount(Math.ceil(respons?.data?.count / 15));
   };
 
   const handlePageClick = (event) => {
@@ -55,48 +56,6 @@ function Search() {
       type: type,
     });
   };
-
-  // const navigate = useNavigate();
-  // const { searchValue, setSearchValue } = useContext(ValueContext);
-  // const [data, setData] = useState([]);
-  // const [pageCount, setPageCount] = useState(0);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const [loading, setLoading] = useState(true);
-  // const currentPage = Number(searchParams.get("page")) || 1;
-
-  // const getData = async (Page = 1) => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await axios.get(`search/?page=${Page}&q=${searchValue}`);
-  //     if (response.statusText) {
-  //       setData(response?.data?.results);
-  //     }
-  //     setPageCount(Math.ceil(response?.data?.count / 20));
-  //   } catch (error) {
-  //     console.error("Search error:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const handlePageClick = (event) => {
-  //   const selectedPage = event.selected + 1;
-  //   setSearchParams({ page: selectedPage });
-  // };
-
-  // useEffect(() => {
-  //   getData(currentPage);
-  // }, [searchValue, currentPage]);
-
-  // const handleImageClick = (item) => {
-  //   if (!item?.category || !item?.id) {
-  //     console.error("Missing required properties in item:", item);
-  //     return;
-  //   }
-  //   navigate(
-  //     `/homeImageDetail/${item.category}/${item.id}?page=${currentPage}`
-  //   );
-  // };
 
   return (
     <div className={style.container}>
@@ -128,50 +87,15 @@ function Search() {
                     <span>{value?.attributes?.[0]?.description}</span>
                   </div>
 
-                  {/* <div className={style.icons}>
-                    <span>Eshtuv</span>
-
-                    <span style={{ cursor: value?.audios && "not-allowed" }}>
-                      <BsMic style={{ marginTop: "3px" }} />
-                    </span>
-
-                    <span>Surat</span>
-
-                    <span style={{ cursor: value?.galleries && "not-allowed" }}>
-                      <BiImages style={{ marginTop: "3px" }} />
-                    </span>
-
-                    <span>Matn</span>
-
-                    <span style={{ cursor: value?.audios && "not-allowed" }}>
-                      <BsFillChatTextFill style={{ marginTop: "3px" }} />
-                    </span>
-
-                    <span>Xarita</span>
-
-                    <span style={{ cursor: value?.locations && "not-allowed" }}>
-                      <LiaGlobeAmericasSolid style={{ marginTop: "5px" }} />
-                    </span>
-
-                    <span>3D</span>
-
-                    <span style={{ cursor: value?.audios && "not-allowed" }}>
-                      <LuRotate3D style={{ marginTop: "3px" }} />
-                    </span>
-
-                    <span>Ko'ruv</span>
-
-                    <span style={{ cursor: value?.videos && "not-allowed" }}>
-                      <AiOutlineEye
-                        style={{ fontSize: "25px", marginTop: "8px" }}
-                      />
-                    </span>
-                  </div> */}
-
-                  {/* copya olingan */}
-
                   <div className={style.icons}>
-                    <span>Eshtuv</span>
+                    <span
+                      style={{
+                        color:
+                          value?.audios?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Eshtuv
+                    </span>
 
                     <span>
                       <BsMic
@@ -180,6 +104,8 @@ function Search() {
                             value?.audios?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.audios?.length > 0 ? "white" : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -201,7 +127,14 @@ function Search() {
                       )}
                     </span>
 
-                    <span>Surat</span>
+                    <span
+                      style={{
+                        color:
+                          value?.galleries?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Surat
+                    </span>
 
                     <span>
                       <BiImages
@@ -210,6 +143,10 @@ function Search() {
                             value?.galleries?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.galleries?.length > 0
+                              ? "white"
+                              : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -231,7 +168,14 @@ function Search() {
                       )}
                     </span>
 
-                    <span>Matn</span>
+                    <span
+                      style={{
+                        color:
+                          value?.contents?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Matn
+                    </span>
 
                     <span>
                       <BsFillChatTextFill
@@ -240,6 +184,8 @@ function Search() {
                             value?.contents?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.contents?.length > 0 ? "white" : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -261,7 +207,14 @@ function Search() {
                       )}
                     </span>
 
-                    <span>Xarita</span>
+                    <span
+                      style={{
+                        color:
+                          value?.locations?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Xarita
+                    </span>
 
                     <span>
                       <LiaGlobeAmericasSolid
@@ -270,6 +223,10 @@ function Search() {
                             value?.locations?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.locations?.length > 0
+                              ? "white"
+                              : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -291,7 +248,14 @@ function Search() {
                       )}
                     </span>
 
-                    <span>3D</span>
+                    <span
+                      style={{
+                        color:
+                          value?.locations?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      3D
+                    </span>
 
                     <span>
                       <LuRotate3D
@@ -300,6 +264,10 @@ function Search() {
                             value?.locations?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.locations?.length > 0
+                              ? "white"
+                              : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -321,7 +289,14 @@ function Search() {
                       )}
                     </span>
 
-                    <span>Ko'ruv</span>
+                    <span
+                      style={{
+                        color:
+                          value?.videos?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Ko'ruv
+                    </span>
 
                     <span>
                       <AiOutlineEye
@@ -330,6 +305,8 @@ function Search() {
                             value?.videos?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.videos?.length > 0 ? "white" : "#ffffff89",
                           fontSize: "22px",
                           marginTop: "3px",
                         }}
@@ -375,9 +352,15 @@ function Search() {
           className={style.searchBtn}
           style={{ color: "white", textAlign: "center", marginTop: "15%" }}
         >
-          <button onClick={() => navigate(-1)}>
-            <FaArrowLeftLong />
-          </button>
+          {pathname === "/search" ? (
+            <button onClick={() => navigate("/")}>
+              <FaArrowLeftLong />
+            </button>
+          ) : (
+            <button onClick={() => setSearchValue("")}>
+              <FaArrowLeftLong />
+            </button>
+          )}
           {searchValue} so'zli bo'lim yo'q ekan😔😔 iltimos boshqasini qidirib
           ko'rin!
         </div>
@@ -387,16 +370,3 @@ function Search() {
 }
 
 export default Search;
-
-{
-  /* <div
-className={style.searchBtn}
-style={{ color: "white", textAlign: "center", marginTop: "15%" }}
->
-<button onClick={() => navigate(-1)}>
-  <FaArrowLeftLong />
-</button>
-{searchValue} so'zli bo'lim yo'q ekan😔😔 iltimos boshqasini qidirib
-ko'rin!
-</div> */
-}

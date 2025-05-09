@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./about.module.scss";
 import axios from "axios";
 import Loading from "../../Loading/Loading";
+import logo from "./logo.png";
 
 function About() {
   const [data, setData] = useState([]);
@@ -31,6 +32,7 @@ function About() {
       ) : data.length ? (
         <div>
           <div className={style.location}>
+            <img src={logo} alt="logo" />
             <h1>Biz haqimizda</h1>
             <h1>O‘zbekiston Respublikasi Fanlar akademiyasi Tarix instituti</h1>
             <p>
@@ -55,6 +57,10 @@ function About() {
             ></iframe>
           </div>
 
+          <div className={style.lineX}></div>
+
+          <h1 className={style.users}>Ishtirokchilar</h1>
+
           <div className={style.cards}>
             {data
               ?.sort((a, b) => a.order - b.order)
@@ -65,8 +71,8 @@ function About() {
                     alt={value.full_name}
                   />
                   <div className={style.description}>
-                    <h2>{value.full_name}</h2>
-                    <h3>{value.degree}</h3>
+                    <h3>{value.full_name}</h3>
+                    <h4>{value.degree}</h4>
                   </div>
                 </div>
               ))}

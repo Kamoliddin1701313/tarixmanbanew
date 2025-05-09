@@ -48,10 +48,12 @@ function Library() {
         <div className={style.cards}>
           {data?.map((value, idx) => (
             <div key={idx} className={style.card}>
-              <img
-                src={value.image ? value.image : library}
-                alt={value.title}
-              />
+              <div className={style.img}>
+                <img
+                  src={value.image ? value.image : library}
+                  alt={value.title}
+                />
+              </div>
               <div className={style.box}>
                 <h2>{value.title}</h2>
                 <button onClick={() => navigate(`/library/${value.id}`)}>

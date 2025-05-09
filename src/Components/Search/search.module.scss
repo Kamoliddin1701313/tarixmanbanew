@@ -4,7 +4,7 @@
 
 .container {
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 35px auto;
   h1 {
     margin-left: auto;
   }
@@ -48,7 +48,6 @@
           font-weight: 500;
           text-align: left;
           margin-right: auto;
-          background-color: red;
         }
 
         .title {
@@ -59,7 +58,7 @@
           span {
             font-size: 22px;
             font-weight: 400;
-            font-family: var(--famiyilCursive);
+            font-family: "Poppins", sans-serif;
           }
         }
 

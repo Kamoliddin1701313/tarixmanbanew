@@ -6,7 +6,6 @@ import style from "./loading.module.scss";
 function Loading() {
   return (
     <div className={style["loading-wrapper"]}>
-      {/* <div className={style.spinner}></div> */}
       <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
         <CircularProgress
           sx={{ color: "red" }}

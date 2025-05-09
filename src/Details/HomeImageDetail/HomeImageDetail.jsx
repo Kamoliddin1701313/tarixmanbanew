@@ -361,7 +361,14 @@ function HomeImageDetail() {
                   </div>
 
                   <div className={style.icons}>
-                    <span>Eshtuv</span>
+                    <span
+                      style={{
+                        color:
+                          value?.audios?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Eshtuv
+                    </span>
 
                     <span>
                       <BsMic
@@ -370,6 +377,8 @@ function HomeImageDetail() {
                             value?.audios?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.audios?.length > 0 ? "white" : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -391,7 +400,14 @@ function HomeImageDetail() {
                       )}
                     </span>
 
-                    <span>Surat</span>
+                    <span
+                      style={{
+                        color:
+                          value?.galleries?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Surat
+                    </span>
 
                     <span>
                       <BiImages
@@ -400,6 +416,10 @@ function HomeImageDetail() {
                             value?.galleries?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.galleries?.length > 0
+                              ? "white"
+                              : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -421,7 +441,14 @@ function HomeImageDetail() {
                       )}
                     </span>
 
-                    <span>Matn</span>
+                    <span
+                      style={{
+                        color:
+                          value?.contents?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Matn
+                    </span>
 
                     <span>
                       <BsFillChatTextFill
@@ -430,6 +457,8 @@ function HomeImageDetail() {
                             value?.contents?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.contents?.length > 0 ? "white" : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -451,7 +480,14 @@ function HomeImageDetail() {
                       )}
                     </span>
 
-                    <span>Xarita</span>
+                    <span
+                      style={{
+                        color:
+                          value?.locations?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Xarita
+                    </span>
 
                     <span>
                       <LiaGlobeAmericasSolid
@@ -460,6 +496,10 @@ function HomeImageDetail() {
                             value?.locations?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.locations?.length > 0
+                              ? "white"
+                              : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -481,7 +521,14 @@ function HomeImageDetail() {
                       )}
                     </span>
 
-                    <span>3D</span>
+                    <span
+                      style={{
+                        color:
+                          value?.locations?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      3D
+                    </span>
 
                     <span>
                       <LuRotate3D
@@ -490,6 +537,10 @@ function HomeImageDetail() {
                             value?.locations?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.locations?.length > 0
+                              ? "white"
+                              : "#ffffff89",
                           marginTop: "3px",
                         }}
                         onClick={
@@ -511,7 +562,14 @@ function HomeImageDetail() {
                       )}
                     </span>
 
-                    <span>Ko'ruv</span>
+                    <span
+                      style={{
+                        color:
+                          value?.videos?.length > 0 ? "white" : "#ffffff89",
+                      }}
+                    >
+                      Ko'ruv
+                    </span>
 
                     <span>
                       <AiOutlineEye
@@ -520,6 +578,8 @@ function HomeImageDetail() {
                             value?.videos?.length === Number(0)
                               ? "not-allowed"
                               : "pointer",
+                          color:
+                            value?.videos?.length > 0 ? "white" : "#ffffff89",
                           fontSize: "22px",
                           marginTop: "3px",
                         }}
