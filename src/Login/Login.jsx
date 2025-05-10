@@ -28,7 +28,7 @@ function Login() {
     <div className={style["login-container"]}>
       <ToastContainer
         position="top-right"
-        autoClose={1500}
+        autoClose={1200}
         hideProgressBar={false}
         closeOnClick
         pauseOnHover

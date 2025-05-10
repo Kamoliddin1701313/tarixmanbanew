@@ -43,9 +43,15 @@ function Search() {
     setSearchParams({ page: selectedPage });
   };
 
+  // useEffect(() => {
+  //   getData(currentPage);
+  // }, [searchValue, currentPage]);
+
   useEffect(() => {
-    getData(currentPage);
-  }, [searchValue, currentPage]);
+    if (searchValue) {
+      getData(currentPage);
+    }
+  }, [currentPage, searchValue]);
 
   const [views, setViews] = useState(false);
 
