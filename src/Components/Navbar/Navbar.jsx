@@ -59,7 +59,6 @@ function Navbar({ openProps }) {
   useEffect(() => {
     if (openLink) {
       Object.keys(sessionStorage).forEach((key) => {
-        console.log(key, "key");
         if (key.includes("filterState_")) {
           sessionStorage.clear();
           setCheckedItems([]);
@@ -70,6 +69,8 @@ function Navbar({ openProps }) {
       checkedItems == [];
     }
   }, [openLink]);
+
+  console.log(openLink, "openLink");
 
   return (
     <div>

@@ -68,8 +68,8 @@ import WeatherApp from "../WeatherApp/WeatherApp";
 
 const Header = ({ openIcon, setOpenIcon, setOpenLink }) => {
   const navigate = useNavigate();
-  const { searchValue, setSearchValue } = useContext(ValueContext);
-  const [tempSearchValue, setTempSearchValue] = useState("");
+  const { setSearchValue, tempSearchValue, setTempSearchValue } =
+    useContext(ValueContext);
 
   const openBtn = () => {
     setOpenIcon(!openIcon);
@@ -77,13 +77,16 @@ const Header = ({ openIcon, setOpenIcon, setOpenLink }) => {
   };
 
   const handleSearch = () => {
-    setSearchValue(tempSearchValue); // Faqat shu yerda contextga yoziladi
+    setSearchValue(tempSearchValue);
     navigate("/search");
   };
 
   const inputClearInValue = () => {
-    setSearchValue("");
+    // setSearchValue(""); o'chirilmasin
+    setTempSearchValue("");
   };
+
+  // console.log(tempSearchValue, "tempSearchValue");
 
   return (
     <div className={style.container}>

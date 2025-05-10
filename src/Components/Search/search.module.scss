@@ -5,9 +5,6 @@
 .container {
   max-width: 1400px;
   margin: 35px auto;
-  h1 {
-    margin-left: auto;
-  }
 
   .wrapper {
     display: grid;
@@ -44,10 +41,9 @@
         color: white;
 
         h1 {
-          font-family: var(--famiyilCursive);
+          font-family: "Poppins", sans-serif;
           font-weight: 500;
-          text-align: left;
-          margin-right: auto;
+          width: 100%;
         }
 
         .title {
@@ -116,22 +112,22 @@
     }
   }
 
-  h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  // h1 {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   gap: 10px;
 
-    button {
-      background-color: transparent;
-      border: none;
+  //   button {
+  //     background-color: transparent;
+  //     border: none;
 
-      svg {
-        color: white;
-        font-size: 24px;
-      }
-    }
-  }
+  //     svg {
+  //       color: white;
+  //       font-size: 24px;
+  //     }
+  //   }
+  // }
 
   .searchBtn {
     display: flex;

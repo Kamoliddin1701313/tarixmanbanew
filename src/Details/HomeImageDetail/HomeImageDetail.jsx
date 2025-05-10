@@ -90,6 +90,8 @@ function HomeImageDetail() {
   } = useContext(ValueContext);
 
   const initialState = getStoredState();
+  console.log(initialState, "jjjjj");
+
   useEffect(() => {
     if (initialState?.checkedItems) {
       setCheckedItems(initialState.checkedItems);

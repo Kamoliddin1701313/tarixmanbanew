@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./home.scss";
 import HomeImage from "./HomeImage/HomeImage";
 import ArchaeologicalItem from "../Components/ArchaeologicalItem/ArchaeologicalItem";
@@ -7,8 +7,11 @@ import Search from "../Components/Search/Search";
 import Loading from "../Loading/Loading";
 
 function Home() {
-  const { searchValue } = useContext(ValueContext);
-  console.log(searchValue, "searchValue");
+  const { searchValue, setSearchValue } = useContext(ValueContext);
+
+  useEffect(() => {
+    setSearchValue("");
+  }, []);
 
   return (
     <div>
@@ -23,6 +26,9 @@ function Home() {
         <Loading />
       )}
 
+      {/* <HomeImage />
+      <ArchaeologicalItem /> */}
+
       {/* {searchValue.trim().length > 0 ? (
         <Search />
       ) : (
@@ -31,9 +37,6 @@ function Home() {
           <ArchaeologicalItem />
         </div>
       )} */}
-
-      {/* <HomeImage />
-      <ArchaeologicalItem /> */}
     </div>
   );
 }

@@ -39,18 +39,25 @@ function App() {
   }, []);
   const [checkedItemsChog, setCheckedItemsChog] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
+  const [tempSearchValue, setTempSearchValue] = useState("");
 
   return (
     <ValueContext.Provider
       value={{
         searchValue,
         setSearchValue,
+
         openIcon,
         setOpenIcon,
+
         checkedItemsChog,
-        checkedItems,
         setCheckedItemsChog,
+
+        checkedItems,
         setCheckedItems,
+
+        tempSearchValue,
+        setTempSearchValue,
       }}
     >
       <div>
