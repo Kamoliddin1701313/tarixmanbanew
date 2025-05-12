@@ -39,8 +39,8 @@ function App() {
   }, []);
   const [checkedItemsChog, setCheckedItemsChog] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [tempSearchValue, setTempSearchValue] = useState("");
-
   return (
     <ValueContext.Provider
       value={{
@@ -58,11 +58,13 @@ function App() {
 
         tempSearchValue,
         setTempSearchValue,
+
+        searchText,
+        setSearchText,
       }}
     >
       <div>
         <ScrollToTop />
-
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route element={<Layouts />}>

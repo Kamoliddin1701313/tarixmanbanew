@@ -1,5 +1,4 @@
 :root {
-  --famiyilCursive: cursive;
   --blackColor: rgba(0, 0, 0, 0.929);
 }
 .container {
@@ -19,7 +18,7 @@
     text-decoration: none;
     color: white;
     letter-spacing: 1.6px;
-    font-family: var(--famiyilCursive);
+    font-family: "Poppins", sans-serif;
   }
 
   h4 {

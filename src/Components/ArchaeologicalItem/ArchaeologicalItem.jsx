@@ -8,12 +8,11 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { TbArrowBigRightLinesFilled } from "react-icons/tb";
-// import { ValueContext } from "../../App";
+import bg_pattern from "./bg_pattern.png";
 
 function ArchaeologicalItem() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
-  // const dd = useContext(ValueContext);
 
   const getData = async () => {
     const respons = await axios.get("category_api-list/");
@@ -125,6 +124,9 @@ function ArchaeologicalItem() {
 
   return (
     <div className={style.container}>
+      <div className={style.bg_pattern}>
+        <img src={bg_pattern} alt="bg_pattern" />
+      </div>
       <div className={style["carusel-container"]}>
         {/* {data?.map((value, idx) => (
           <div key={idx} className={style.card__container}>

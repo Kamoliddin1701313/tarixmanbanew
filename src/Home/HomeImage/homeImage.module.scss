@@ -12,13 +12,31 @@
   flex-direction: column;
   padding-top: 100px;
   gap: 45px;
+  // position: relative;
+
+  .bg_pattern {
+    position: absolute;
+    top: -5.8%;
+    left: -6%;
+    animation: pattern_img 20s infinite linear;
+  }
+
+  @keyframes pattern_img {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
   .images-container,
   .images-container1 {
     display: flex;
-    width: 75%;
+    width: 60%;
     margin: 0 auto;
-    grid-gap: 1px;
+    grid-gap: 10px;
+    height: 280px;
     perspective: calc(var(--index) * 100);
 
     .img {
@@ -29,7 +47,8 @@
       margin: 0 auto;
       align-items: center;
       width: calc(var(--index) * 6.3);
-      height: calc(var(--index) * 14);
+      // height: calc(var(--index) * 14);
+      height: 100%;
       position: relative;
       background-size: cover;
       background-position: center;
@@ -108,13 +127,13 @@
         text-decoration: none;
         background-color: rgba(38, 38, 38, 0.695);
         width: 100%;
-        padding: 10px 5px;
+        padding: 12px 6px;
         span {
           text-align: center;
           display: block;
           color: white;
           font-family: "Poppins", sans-serif;
-          font-size: 22px;
+          font-size: 16px;
         }
       }
     }
@@ -133,7 +152,7 @@
   }
 
   .images-container1 {
-    width: 64%;
+    width: 50%;
   }
 }
 
@@ -167,10 +186,9 @@
     margin: 0 auto;
     .images-container {
       width: 95%;
+      height: 260px;
 
       .img {
-        height: 260px;
-
         .detailLink {
           span {
             font-size: 14px;
@@ -181,8 +199,8 @@
 
     .images-container1 {
       width: 90%;
+      height: 260px;
       .img {
-        height: 260px;
         .detailLink {
           span {
             font-size: 14px;
@@ -197,6 +215,7 @@
   .container {
     width: 98%;
     .images-container {
+      height: 230px;
       display: flex;
       width: 100% !important;
       gap: 6px !important;
@@ -204,6 +223,7 @@
 
     .images-container1 {
       width: 95%;
+      height: 230px;
       gap: 6px;
     }
   }
@@ -213,8 +233,8 @@
   .container {
     .images-container,
     .images-container1 {
+      height: 180px;
       .img {
-        height: 180px;
         .detailLink {
           padding: 5px 0;
         }

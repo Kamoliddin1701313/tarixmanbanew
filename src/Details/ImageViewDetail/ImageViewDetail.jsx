@@ -198,8 +198,6 @@ function ImageViewDetail() {
     );
   }
 
-  console.log(data, "Salom Kamoliddin");
-
   return (
     <div>
       <div className={style.wrapper}>

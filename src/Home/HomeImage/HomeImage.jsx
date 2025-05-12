@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import style from "./homeImage.module.scss";
 import axios from "axios";
+import bg_pattern from "./bg_pattern.png";
 import { Link } from "react-router-dom";
 
 function HomeImage() {
@@ -40,6 +41,9 @@ function HomeImage() {
 
   return (
     <div className={style.container} ref={containerRef}>
+      <div className={style.bg_pattern}>
+        <img src={bg_pattern} alt="bg_pattern" />
+      </div>
       <div className={style["images-container"]}>
         {data?.slice(0, 7).map((value, idx) => (
           <div

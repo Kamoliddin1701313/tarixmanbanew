@@ -5,7 +5,26 @@
 }
 
 .container {
-  padding: 20px;
+  // padding: 20px;
+  position: relative;
+  margin-top: 100px;
+
+  .bg_pattern {
+    position: absolute;
+    z-index: -1;
+    top: -5%;
+    left: -12%;
+    animation: pattern_img 20s infinite linear;
+  }
+
+  @keyframes pattern_img {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
   .carusel-container {
     max-width: 1400px;
@@ -18,7 +37,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 0 15px 25px;
+        margin: 55px 15px 55px;
         h1 {
           color: white;
           font-family: "Poppins", sans-serif;
@@ -113,24 +132,6 @@
           }
         }
       }
-
-      // ul {
-      //   li {
-      //     margin: 0 5px;
-
-      //     button {
-      //       width: 20px;
-      //       height: 20px;
-      //       border-radius: 50%;
-      //       background-color: transparent; // nuqtaning rangi
-      //       border: 3px solid white;
-
-      //       &::before {
-      //         display: none; // default oq doirani yo‘qotish
-      //       }
-      //     }
-      //   }
-      // }
 
       ul {
         li {

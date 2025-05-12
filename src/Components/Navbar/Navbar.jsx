@@ -1,6 +1,6 @@
 import NavbarLogoSlider from "../NavbarLogoSlider/NavbarLogoSlider";
 import Header from "../Header/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa6";
 import { useContext, useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
@@ -14,17 +14,17 @@ function Navbar({ openProps }) {
   const [data, setData] = useState([]);
   const { openLink, setOpenLink } = openProps;
   const [openIcon, setOpenIcon] = useState(false);
+  const navigate = useNavigate();
 
-  // eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
   const {
     checkedItemsChog,
     checkedItems,
+    searchText,
     searchValue,
     setCheckedItemsChog,
     setCheckedItems,
+    setSearchText,
   } = useContext(ValueContext);
-
-  // eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 
   const getData = async () => {
     try {
@@ -52,25 +52,47 @@ function Navbar({ openProps }) {
     };
   }, []);
 
-  // if (openLink === true) {
-  //   sessionStorage.clear();
-  // }
+  // useEffect(() => {
+  //   if (openLink) {
+  //     Object.keys(sessionStorage).forEach((key) => {
+  //       if (key.includes("filterState_")) {
+  //         sessionStorage.clear();
+  //         // setCheckedItems([]);
+  //         // setCheckedItemsChog([]);
+  //         // setSearchText("");
+  //       }
+  //     });
+  //     // checkedItemsChog == [];
+  //     // checkedItems == [];
+  //     // searchText == "";
+  //     setCheckedItems([]);
+  //     setCheckedItemsChog([]);
+  //     setSearchText("");
+  //   }
+  // }, [openLink]);
+
+  console.log(checkedItemsChog, "checkedItemsChog");
+  console.log(checkedItems, "checkedItems");
+  console.log(searchText, "searchText");
 
   useEffect(() => {
     if (openLink) {
       Object.keys(sessionStorage).forEach((key) => {
-        if (key.includes("filterState_")) {
-          sessionStorage.clear();
-          setCheckedItems([]);
-          setCheckedItemsChog([]);
+        if (key.startsWith("filterState_")) {
+          sessionStorage.removeItem(key);
         }
       });
-      checkedItemsChog == [];
-      checkedItems == [];
+
+      setCheckedItems([]);
+      setCheckedItemsChog([]);
+      setSearchText("");
+      navigate(window.location.pathname, { replace: true });
+
+      // if (window.location.search.includes("search=")) {
+      //   navigate(window.location.pathname, { replace: true });
+      // }
     }
   }, [openLink]);
-
-  console.log(openLink, "openLink");
 
   return (
     <div>
@@ -79,7 +101,6 @@ function Navbar({ openProps }) {
         setOpenIcon={setOpenIcon}
         setOpenLink={setOpenLink}
       />
-      {/* <Header openIcon={openLink} setOpenIcon={setOpenLink} /> */}
       <div
         className={style.navbar}
         style={{
@@ -100,12 +121,8 @@ function Navbar({ openProps }) {
                     className={openLink ? style.openicon : style.closeicon}
                   />
                 </button>
-                {/*         style={{ display: openIcon && "none" }} */}
                 <div>
-                  <div
-                    className={openLink ? style.openBox : style.closeBox}
-                    // style={{ display: openIcon === false ? "block" : "block" }}
-                  >
+                  <div className={openLink ? style.openBox : style.closeBox}>
                     <div className={style.links}>
                       {data
                         .sort((a, b) => a.order - b.order)
@@ -117,7 +134,6 @@ function Navbar({ openProps }) {
                               setOpenLink(false);
                             }}
                           >
-                            {/* salom */}
                             <div className={style.link}>
                               <img src={links.icon} alt={links.title} />
                               <span style={{ marginLeft: "10px" }}>

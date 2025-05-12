@@ -1,12 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import style from "./homeImageDetail.module.scss";
 import axios from "axios";
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { FcSearch } from "react-icons/fc";
 import { BsMic, BsFillChatTextFill } from "react-icons/bs";
 import { BiImages } from "react-icons/bi";
@@ -30,10 +25,6 @@ function HomeImageDetail() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [openBox, setOpenBox] = useState(null);
   const [openBoxChog, setOpenBoxChog] = useState(false);
-
-  const { pathname } = useLocation();
-
-  const { searchValue, setSearchValue } = useContext(ValueContext);
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
@@ -65,6 +56,7 @@ function HomeImageDetail() {
   const getStoredState = () => {
     try {
       const storedState = sessionStorage.getItem(`filterState_${id}`);
+
       return storedState ? JSON.parse(storedState) : null;
     } catch (error) {
       console.error("sessionStorage'dan o'qishda xatolik:", error);
@@ -72,27 +64,18 @@ function HomeImageDetail() {
     }
   };
 
-  // const initialState = getStoredState();
-
-  // const [checkedItemsChog, setCheckedItemsChog] = useState(
-  //   initialState?.checkedItemsChog || []
-  // );
-
-  // const [checkedItems, setCheckedItems] = useState(
-  //   initialState?.checkedItems || []
-  // );
-
   const {
     checkedItemsChog,
     setCheckedItemsChog,
     checkedItems,
     setCheckedItems,
+    searchText,
+    setSearchText,
   } = useContext(ValueContext);
 
-  const initialState = getStoredState();
-  console.log(initialState, "jjjjj");
-
   useEffect(() => {
+    const initialState = getStoredState();
+
     if (initialState?.checkedItems) {
       setCheckedItems(initialState.checkedItems);
     }
@@ -100,7 +83,39 @@ function HomeImageDetail() {
     if (initialState?.checkedItemsChog) {
       setCheckedItemsChog(initialState.checkedItemsChog);
     }
+
+    if (initialState?.searchText) {
+      setSearchText(initialState.searchText);
+    }
   }, []);
+
+  // useEffect(() => {
+  //   const storedState = getStoredState();
+  //   const searchParam = searchParams.get("search");
+
+  //   if (!storedState && !searchParam) {
+  //     setCheckedItems([]);
+  //     setCheckedItemsChog([]);
+  //     setSearchText("");
+  //   } else if (storedState?.searchText) {
+  //     setSearchText(storedState.searchText);
+  //   }
+  // }, [id]);
+
+  const saveStateToSessionStorage = () => {
+    try {
+      const stateToSave = {
+        searchText,
+        checkedItems,
+        checkedItemsChog,
+        currentPage,
+      };
+
+      sessionStorage.setItem(`filterState_${id}`, JSON.stringify(stateToSave));
+    } catch (error) {
+      console.error("SessionStorage'ga yozishda xatolik:", error);
+    }
+  };
 
   const getData = async (Page = 1) => {
     try {
@@ -128,23 +143,6 @@ function HomeImageDetail() {
       console.error("Xatolik yuz berdi:", error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const [searchText, setSearchText] = useState(initialState?.searchText || "");
-
-  const saveStateToSessionStorage = () => {
-    try {
-      const stateToSave = {
-        searchText,
-        checkedItems,
-        checkedItemsChog,
-        currentPage,
-      };
-
-      sessionStorage.setItem(`filterState_${id}`, JSON.stringify(stateToSave));
-    } catch (error) {
-      console.error("SessionStorage'ga yozishda xatolik:", error);
     }
   };
 
@@ -203,6 +201,8 @@ function HomeImageDetail() {
 
     getData(currentPage);
 
+    // setSearchText("");
+
     // setCheckedItemsChog([]); //malumot qo'shdim
     // setCheckedItems([]); //malumot qo'shdim
   }, [id]);
@@ -225,6 +225,13 @@ function HomeImageDetail() {
       console.error("SessionStorage'ni o'chirishda xatolik:", error);
     }
   };
+
+  useEffect(() => {
+    const searchParam = searchParams.get("search");
+    if (searchParam === null || searchParam === "") {
+      setSearchText("");
+    }
+  }, [searchParams]);
 
   return (
     <div className={style.container}>
@@ -617,8 +624,7 @@ function HomeImageDetail() {
           <button onClick={clearSessionAndNavigateHome}>
             <FaArrowLeftLong />
           </button>
-          {data?.data?.category} {searchValue} bo'limida bunday ma'lumotlar yo'q
-          ekan 😔😔
+          {data?.data?.category} bo'limida bunday ma'lumotlar yo'q ekan 😔😔
         </div>
       )}
 

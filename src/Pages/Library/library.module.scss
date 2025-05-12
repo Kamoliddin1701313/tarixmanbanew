@@ -1,5 +1,4 @@
 :root {
-  --famiyilCursive: cursive;
   --blueColor: rgba(0, 255, 21, 0.87);
   --blackColor: rgba(0, 0, 0, 0.929);
 }
@@ -83,14 +82,15 @@
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 1;
           overflow: hidden;
-          color: white;
+          color: rgba(255, 255, 255, 0.633);
           font-weight: 500;
         }
         button {
           border: none;
           background-color: transparent;
           font-size: 18px;
-          color: var(--blueColor);
+          color: white;
+          letter-spacing: 2px;
           cursor: pointer;
         }
       }

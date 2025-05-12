@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../Components/Footer/Footer";
@@ -9,13 +9,10 @@ import bgImg3 from "../assets/globalImg/bg-img3.jpg";
 import bgImg4 from "../assets/globalImg/bg-img4.jpg";
 import bgImg5 from "../assets/globalImg/bg-img5.jpg";
 import bgImg6 from "../assets/globalImg/bg-img6.jpg";
+import bgImg7 from "../assets/globalImg/bg-img7.jpg";
 import style from "./layouts.module.scss";
 
 function Layouts() {
-  // const [search, setSearch] = useState("");
-  // const dataValue = useMemo(() => {
-  //   return { search, setSearch };
-  // }, [search, setSearch]);
   const [openLink, setOpenLink] = useState(false);
 
   const images = [
@@ -25,17 +22,20 @@ function Layouts() {
     { id: 4, img: bgImg4 },
     { id: 5, img: bgImg5 },
     { id: 6, img: bgImg6 },
+    { id: 7, img: bgImg7 },
   ];
 
-  const storedBgImg = localStorage.getItem("img");
+  const [bgImg, setBgImg] = useState(images[0].img);
 
-  const [bgImg, setBgImg] = useState(
-    storedBgImg ? JSON.parse(storedBgImg) : images[0].img
-  );
+  // const storedBgImg = localStorage.getItem("img");
 
-  useEffect(() => {
-    localStorage.setItem("img", JSON.stringify(bgImg));
-  }, [bgImg]);
+  // const [bgImg, setBgImg] = useState(
+  //   storedBgImg ? JSON.parse(storedBgImg) : images[0].img
+  // );
+
+  // useEffect(() => {
+  //   localStorage.setItem("img", JSON.stringify(bgImg));
+  // }, [bgImg]);
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -88,7 +88,7 @@ function Layouts() {
           <div className={style.images}>
             <h3>Rasim tanlash</h3>
             <div className={style.activeImg}>
-              {images.map((img) => (
+              {images.splice(1).map((img) => (
                 <img
                   onClick={() => setBgImgFunction(img.img)}
                   key={img.id}
