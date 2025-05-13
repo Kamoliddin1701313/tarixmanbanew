@@ -1,15 +1,18 @@
 import React from "react";
 import style from "./modal.module.scss";
 import { RiCloseLargeLine } from "react-icons/ri";
+import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import Marquee from "react-fast-marquee";
 
 function Modal(props) {
   const { value, views, setViews, valueId } = props.data;
   const { type } = views;
 
-  console.log(value, "Salom Modal Component");
+  console.log(value.locations, "Salom Modal Component");
 
   const renderContent = () => {
+    const latitude = value.locations?.[0]?.latitude;
+    const longitude = value.locations?.[0]?.longitude?.replace(".", "");
     switch (type) {
       case "audios":
         return (
@@ -46,18 +49,30 @@ function Modal(props) {
 
       case "locations":
         return (
-          <div>
-            <iframe
-              src={`https://backend.tarixmanba.uz/${value.locations?.[0]?.location}`}
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Location Map"
-            ></iframe>
-          </div>
+          // <div>
+          //   <iframe
+          //     src={`${value.locations?.[0]?.location}`}
+          //     width="100%"
+          //     height="400"
+          //     style={{ border: 0 }}
+          //     allowFullScreen=""
+          //     loading="lazy"
+          //     referrerPolicy="no-referrer-when-downgrade"
+          //     title="Location Map"
+          //   ></iframe>
+          // </div>
+
+          <YMaps>
+            <Map
+              className={style.map}
+              defaultState={{
+                center: [latitude, longitude],
+                zoom: 12,
+              }}
+            >
+              <Placemark geometry={[latitude, longitude]} />
+            </Map>
+          </YMaps>
         );
 
       case "3d":
