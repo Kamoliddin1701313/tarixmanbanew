@@ -202,10 +202,12 @@ function ImageViewDetail() {
     <div>
       <div className={style.wrapper}>
         <div className={style.prevButtons}>
-          <button onClick={() => navigate("/")}>
-            <SiHomeadvisor />
-            <GrFormNext />
-            <span>{data?.category_name}</span>
+          <button>
+            <prev onClick={() => navigate("/")}>
+              <SiHomeadvisor style={{ marginTop: "2px" }} />
+              <GrFormNext />
+            </prev>
+            <span onClick={() => navigate(-1)}>{data?.category_name}</span>
           </button>
 
           <button>
@@ -222,6 +224,7 @@ function ImageViewDetail() {
           </button>
           <h1>{data?.title}</h1>
         </div>
+        
         <img src={data?.image} alt={data?.title} />
         {data?.contents?.map((value, index) => (
           <p

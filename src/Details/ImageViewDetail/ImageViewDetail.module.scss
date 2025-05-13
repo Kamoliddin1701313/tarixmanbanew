@@ -23,16 +23,22 @@
       border: none;
       transition: all 0.3s ease-in-out;
 
-      svg {
-        background-color: transparent;
-        border: none;
-        outline: none;
-        font-size: 24px;
-        min-width: 25px;
+      prev {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        svg {
+          background-color: transparent;
+          border: none;
+          outline: none;
+          font-size: 24px;
+          min-width: 25px;
+        }
       }
     }
 
-    button:first-child {
+    button:first-child prev,
+    span {
       cursor: pointer;
       &:hover {
         color: green;
@@ -113,6 +119,10 @@
   .container {
     padding: 0 25px;
   }
+
+  img {
+    width: 90%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -134,8 +144,8 @@
     }
 
     img {
-      width: 90%;
-      margin: 0 auto;
+      object-fit: cover;
+      height: 400px;
     }
   }
 }
