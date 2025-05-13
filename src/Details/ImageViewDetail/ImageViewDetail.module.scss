@@ -38,7 +38,7 @@
     }
 
     button:first-child prev,
-    span {
+    button:first-child span {
       cursor: pointer;
       &:hover {
         color: green;
