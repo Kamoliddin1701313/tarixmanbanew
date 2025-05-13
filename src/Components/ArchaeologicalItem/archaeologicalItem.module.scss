@@ -176,3 +176,50 @@
     }
   }
 }
+
+@media only screen and (max-width: 992px) {
+  .container {
+    .bg_pattern {
+      width: 300px;
+      top: -3%;
+      left: 30%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    .bg_pattern {
+      left: 20%;
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .container {
+    .bg_pattern {
+      left: 10%;
+    }
+
+    .carusel-container {
+      .card__container {
+        padding: 0 20px;
+
+        ul {
+          li {
+            width: 8px;
+            height: 8px;
+            margin: 7px;
+            button::before {
+              width: 8px;
+              height: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

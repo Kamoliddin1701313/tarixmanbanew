@@ -90,7 +90,7 @@ function Navbar({ openProps }) {
 
       // if (window.location.search.includes("search=")) {
       //   navigate(window.location.pathname, { replace: true });
-      // }
+      // } 
     }
   }, [openLink]);
 

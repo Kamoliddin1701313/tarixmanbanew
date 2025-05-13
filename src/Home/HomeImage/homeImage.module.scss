@@ -184,6 +184,14 @@
   .container {
     width: 90%;
     margin: 0 auto;
+    .bg_pattern {
+      width: 300px;
+      top: -3%;
+      img {
+        width: 100%;
+      }
+    }
+
     .images-container {
       width: 95%;
       height: 260px;
@@ -214,6 +222,11 @@
 @media only screen and (max-width: 768px) {
   .container {
     width: 98%;
+
+    .bg_pattern {
+      left: 25%;
+    }
+
     .images-container {
       height: 230px;
       display: flex;
@@ -231,6 +244,10 @@
 
 @media only screen and (max-width: 520px) {
   .container {
+    .bg_pattern {
+      left: 10%;
+    }
+
     .images-container,
     .images-container1 {
       height: 180px;

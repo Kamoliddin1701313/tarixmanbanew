@@ -128,39 +128,6 @@ function ArchaeologicalItem() {
         <img src={bg_pattern} alt="bg_pattern" />
       </div>
       <div className={style["carusel-container"]}>
-        {/* {data?.map((value, idx) => (
-          <div key={idx} className={style.card__container}>
-            <div className={style.btns}>
-              <h1>{value.title}</h1>
-              <button onClick={() => navigate(`homeImageDetail/${value.id}`)}>
-                <span>Barchasi</span>
-                <TbArrowBigRightLinesFilled />
-              </button>
-            </div>
-
-            <Slider {...settings}>
-              <div className={style.card__article}>
-                <img src={value.image} alt={value?.title} />
-                <div className={style.card__data}>
-                  <p>{value?.title}</p>
-                  <button
-                    onClick={() =>
-                      navigate(`/archaeological/${value.id}`, {
-                        state: value,
-                      })
-                    }
-                  >
-                    Batafsil
-                  </button>
-                </div>
-              </div>
-            </Slider>
-          </div>
-        ))} */}
-
-        {/*  */}
-        {/*  */}
-
         {data?.map(
           (value, idx) =>
             value?.resources?.results?.length > 0 && (
