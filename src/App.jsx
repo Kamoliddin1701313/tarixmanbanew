@@ -28,15 +28,19 @@ export const ValueContext = createContext();
 function App() {
   const [searchValue, setSearchValue] = useState("");
   const [openIcon, setOpenIcon] = useState(false);
-  const navigate = useNavigate();
-  const token = localStorage.getItem("parol");
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    } else if (token) {
-      navigate("/");
-    }
-  }, []);
+
+  // Login qismining codi
+  // const navigate = useNavigate();
+  // const token = localStorage.getItem("parol");
+  // useEffect(() => {
+  //   if (!token) {
+  //     navigate("/login");
+  //   } else if (token) {
+  //     navigate("/");
+  //   }
+  // }, []);
+  // Login qismining codi
+
   const [checkedItemsChog, setCheckedItemsChog] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -66,7 +70,7 @@ function App() {
       <div>
         <ScrollToTop />
         <Routes>
-          <Route path="/login" element={<Login />} />
+          {/* <Route path="/login" element={<Login />} /> Login componentni kametga olib qo'ydim */}
           <Route element={<Layouts />}>
             <Route path="/" index element={<Home />} />
             <Route path="/library" element={<Library />} />
