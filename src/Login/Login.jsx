@@ -13,7 +13,7 @@ function Login() {
   const HandeSubmit = (event) => {
     event.preventDefault();
 
-    if (phone == "1" && parol == "1") {
+    if (phone == "911111111" && parol == "12345678") {
       localStorage.setItem("parol", "parol");
       toast.success("Muvaffaqiyatli kirdingiz!");
       setTimeout(() => {
