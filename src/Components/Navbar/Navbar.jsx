@@ -2,14 +2,14 @@ import NavbarLogoSlider from "../NavbarLogoSlider/NavbarLogoSlider";
 import Header from "../Header/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa6";
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 
 import axios from "axios";
 import style from "./navbar.module.scss";
 import { ValueContext } from "../../App";
 
-function Navbar({ openProps }) {
+const Navbar = React.memo(function Navbar({ openProps }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [data, setData] = useState([]);
   const { openLink, setOpenLink } = openProps;
@@ -52,6 +52,8 @@ function Navbar({ openProps }) {
     };
   }, []);
 
+  console.log(openProps, "xxxxxxxxxxxxxx");
+
   // useEffect(() => {
   //   if (openLink) {
   //     Object.keys(sessionStorage).forEach((key) => {
@@ -90,7 +92,7 @@ function Navbar({ openProps }) {
 
       // if (window.location.search.includes("search=")) {
       //   navigate(window.location.pathname, { replace: true });
-      // } 
+      // }
     }
   }, [openLink]);
 
@@ -174,6 +176,6 @@ function Navbar({ openProps }) {
       </div>
     </div>
   );
-}
+});
 
 export default Navbar;

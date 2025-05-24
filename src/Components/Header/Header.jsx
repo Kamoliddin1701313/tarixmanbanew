@@ -66,7 +66,7 @@ import WeatherApp from "../WeatherApp/WeatherApp";
 
 // yyyyyyyyyy
 
-const Header = ({ openIcon, setOpenIcon, setOpenLink }) => {
+const Header = React.memo(({ openIcon, setOpenIcon, setOpenLink }) => {
   const navigate = useNavigate();
   const { setSearchValue, tempSearchValue, setTempSearchValue } =
     useContext(ValueContext);
@@ -128,6 +128,6 @@ const Header = ({ openIcon, setOpenIcon, setOpenLink }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Header;

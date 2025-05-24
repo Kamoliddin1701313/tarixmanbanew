@@ -30,16 +30,15 @@ function App() {
   const [openIcon, setOpenIcon] = useState(false);
 
   // Login qismining codi
-  // const navigate = useNavigate();
-  // const token = localStorage.getItem("parol");
-  // useEffect(() => {
-  //   if (!token) {
-  //     navigate("/login");
-  //   } else if (token) {
-  //     navigate("/");
-  //   }
-  // }, []);
-  // Login qismining codi
+  const navigate = useNavigate();
+  const token = localStorage.getItem("parol");
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    } else if (token) {
+      navigate("/");
+    }
+  }, []);
 
   const [checkedItemsChog, setCheckedItemsChog] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
@@ -70,7 +69,7 @@ function App() {
       <div>
         <ScrollToTop />
         <Routes>
-          {/* <Route path="/login" element={<Login />} /> Login componentni kametga olib qo'ydim */}
+          <Route path="/login" element={<Login />} />
           <Route element={<Layouts />}>
             <Route path="/" index element={<Home />} />
             <Route path="/library" element={<Library />} />
