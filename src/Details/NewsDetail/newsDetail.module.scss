@@ -1,5 +1,4 @@
 :root {
-  --famiyilCursive: cursive;
   --blueColor: rgba(0, 0, 255, 0.87);
   --blackColor: rgba(0, 0, 0, 0.929);
 }
@@ -16,7 +15,7 @@
     padding: 8px 16px;
     cursor: pointer;
     border: none;
-    font-family: var(--famiyilCursive);
+    font-family: "Poppins", sans-serif;
     font-size: 20px;
     color: var(--blueColor);
     border-radius: 10px;
@@ -31,7 +30,7 @@
     }
     h3,
     h2 {
-      font-family: var(--famiyilCursive);
+      font-family: "Poppins", sans-serif;
       margin: 15px 20px;
       color: var(--blackColor);
     }
