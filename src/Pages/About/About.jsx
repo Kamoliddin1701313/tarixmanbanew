@@ -67,6 +67,7 @@ function About() {
               .map((value, idx) => (
                 <div key={idx} className={style.card}>
                   <img
+                    loading="lazy"
                     src={"https://backend.tarixmanba.uz" + value.image}
                     alt={value.full_name}
                   />

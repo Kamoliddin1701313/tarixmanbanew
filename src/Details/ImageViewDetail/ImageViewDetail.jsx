@@ -224,8 +224,8 @@ function ImageViewDetail() {
           </button>
           <h1>{data?.title}</h1>
         </div>
-        
-        <img src={data?.image} alt={data?.title} />
+
+        <img loading="lazy" src={data?.image} alt={data?.title} />
         {data?.contents?.map((value, index) => (
           <p
             key={index}

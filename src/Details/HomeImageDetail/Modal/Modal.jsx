@@ -22,7 +22,11 @@ function Modal(props) {
             </Marquee>
 
             <audio controls style={{ width: "100%" }}>
-              <source src={`${value?.audios?.[0]?.audio}`} type="audio/mp4" />
+              <source
+                loading="lazy"
+                src={`${value?.audios?.[0]?.audio}`}
+                type="audio/mp4"
+              />
             </audio>
           </div>
         );
@@ -30,7 +34,11 @@ function Modal(props) {
       case "galleries":
         return (
           <div className={style.galleries}>
-            <img src={`${value?.galleries?.[0]?.image}`} alt="Gallery" />
+            <img
+              loading="lazy"
+              src={`${value?.galleries?.[0]?.image}`}
+              alt="Gallery"
+            />
           </div>
         );
 
@@ -83,9 +91,9 @@ function Modal(props) {
               src={`${value.locations?.[0]?.location}`}
               width="100%"
               height="400"
+              loading="lazy"
               style={{ border: 0 }}
               allowFullScreen=""
-              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Location Map"
             ></iframe>
@@ -95,7 +103,11 @@ function Modal(props) {
       case "videos":
         return (
           <video controls style={{ width: "100%", maxHeight: "400px" }}>
-            <source src={value.videos?.[0]?.video} type="video/mp4" />
+            <source
+              loading="lazy"
+              src={value.videos?.[0]?.video}
+              type="video/mp4"
+            />
           </video>
         );
 

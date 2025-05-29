@@ -356,6 +356,7 @@ function HomeImageDetail() {
               <div key={idx} className={style.card}>
                 <div className={style.img}>
                   <img
+                    loading="lazy"
                     onClick={() => navigateToDetail(value.id)}
                     src={value.image}
                     alt={value.title}

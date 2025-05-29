@@ -62,6 +62,7 @@ function Login() {
           <input
             value={parol}
             type="text"
+            autoComplete="on"
             placeholder="Parolni kiriting"
             onChange={({ target: { value } }) => setParol(value)}
             required

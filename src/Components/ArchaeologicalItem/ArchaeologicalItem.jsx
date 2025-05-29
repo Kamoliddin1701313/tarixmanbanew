@@ -17,9 +17,6 @@ function ArchaeologicalItem() {
   const getData = async () => {
     const respons = await axios.get("category_api-list/");
     setData(respons.data.results);
-
-    // const respons = await axios.get("category-resource/");
-    // setData(respons.data);
   };
 
   useEffect(() => {

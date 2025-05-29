@@ -48,7 +48,8 @@
       height: 600px !important;
       border-radius: 20px !important;
       &:hover {
-        filter: brightness(100%);
+        filter: brightness(100%) !important;
+        // filter: none !important;
       }
     }
 
