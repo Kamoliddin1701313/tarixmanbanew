@@ -172,4 +172,4 @@ function Navbar({ openProps }) {
   );
 }
 
-export default React.memo(Navbar);
+export default Navbar;

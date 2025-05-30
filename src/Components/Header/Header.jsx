@@ -130,4 +130,4 @@ const Header = React.memo(({ openIcon, setOpenIcon, setOpenLink }) => {
   );
 });
 
-export default React.memo(Header);
+export default Header;
