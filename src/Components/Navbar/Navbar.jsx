@@ -9,7 +9,7 @@ import axios from "axios";
 import style from "./navbar.module.scss";
 import { ValueContext } from "../../App";
 
-const Navbar = React.memo(function Navbar({ openProps }) {
+function Navbar({ openProps }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [data, setData] = useState([]);
   const { openLink, setOpenLink } = openProps;
@@ -52,8 +52,6 @@ const Navbar = React.memo(function Navbar({ openProps }) {
     };
   }, []);
 
-  console.log(openProps, "xxxxxxxxxxxxxx");
-
   // useEffect(() => {
   //   if (openLink) {
   //     Object.keys(sessionStorage).forEach((key) => {
@@ -72,10 +70,6 @@ const Navbar = React.memo(function Navbar({ openProps }) {
   //     setSearchText("");
   //   }
   // }, [openLink]);
-
-  console.log(checkedItemsChog, "checkedItemsChog");
-  console.log(checkedItems, "checkedItems");
-  console.log(searchText, "searchText");
 
   useEffect(() => {
     if (openLink) {
@@ -176,6 +170,6 @@ const Navbar = React.memo(function Navbar({ openProps }) {
       </div>
     </div>
   );
-});
+}
 
-export default Navbar;
+export default React.memo(Navbar);
