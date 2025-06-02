@@ -43,7 +43,7 @@ function News() {
                     Batafsil
                   </button>
                 </div>
-                <img src={value.file} alt={value.name} />
+                <img decoding="async" src={value.file} alt={value.name} />
               </div>
             ))}
           </div>

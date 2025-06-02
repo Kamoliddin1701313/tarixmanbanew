@@ -70,7 +70,12 @@ function Layouts() {
         style={{ marginTop: isScrolled && "120px" }}
       >
         <div>
-          <img src={bgImg} alt="img" className={style["main-img"]} />
+          <img
+            decoding="async"
+            src={bgImg}
+            alt="img"
+            className={style["main-img"]}
+          />
           <div className={style["outlet-container"]}>
             <Outlet />
           </div>
@@ -90,6 +95,7 @@ function Layouts() {
             <div className={style.activeImg}>
               {images.splice(1).map((img) => (
                 <img
+                  decoding="async"
                   onClick={() => setBgImgFunction(img.img)}
                   key={img.id}
                   src={img.img}

@@ -1,5 +1,4 @@
 :root {
-  --famiyilCursive: cursive;
   --blackColor: rgba(0, 0, 0, 0.929);
 }
 .container {
@@ -48,8 +47,9 @@
     place-items: center;
 
     h2 {
-      font-family: var(--famiyilCursive);
+      font-family: "Poppins", sans-serif;
       font-size: 32px;
+      font-weight: 400;
       margin-bottom: 20px;
       color: white;
     }
@@ -105,13 +105,3 @@
     }
   }
 }
-
-// @media only screen and (max-width: 1200px) {
-//   .container {
-//     .wrapper {
-//       position: fixed;
-//       width: 100%;
-//       top: 70px;
-//     }
-//   }
-// }

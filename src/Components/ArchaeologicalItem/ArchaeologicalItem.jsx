@@ -122,7 +122,7 @@ function ArchaeologicalItem() {
   return (
     <div className={style.container}>
       <div className={style.bg_pattern}>
-        <img src={bg_pattern} alt="bg_pattern" />
+        <img decoding="async" src={bg_pattern} alt="bg_pattern" />
       </div>
       <div className={style["carusel-container"]}>
         {data?.map(
@@ -142,7 +142,7 @@ function ArchaeologicalItem() {
                 <Slider {...settings}>
                   {value?.resources?.results?.map((v, i) => (
                     <div key={i} className={style.card__article}>
-                      <img src={v.image} alt={v?.title} />
+                      <img decoding="async" src={v.image} alt={v?.title} />
                       <div className={style.card__data}>
                         <p>{v?.title}</p>
                         <button

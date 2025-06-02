@@ -74,6 +74,7 @@ function Search() {
               <div key={id} className={style.card}>
                 <div className={style.img}>
                   <img
+                    decoding="async"
                     onClick={() =>
                       navigate(`/homeImageDetail/${value.category}`)
                     }

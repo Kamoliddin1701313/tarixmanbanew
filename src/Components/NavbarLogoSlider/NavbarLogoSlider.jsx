@@ -38,7 +38,12 @@ function NavbarLogoSlider() {
       {[...Array(8)]
         .flatMap(() => img)
         .map((item, index) => (
-          <img key={index} src={item.img} alt={`img-${index}`} />
+          <img
+            decoding="async"
+            key={index}
+            src={item.img}
+            alt={`img-${index}`}
+          />
         ))}
     </div>
   );

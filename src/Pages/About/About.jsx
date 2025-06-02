@@ -32,7 +32,7 @@ function About() {
       ) : data.length ? (
         <div>
           <div className={style.location}>
-            <img src={logo} alt="logo" />
+            <img decoding="async" src={logo} alt="logo" />
             <h1>Biz haqimizda</h1>
             <h1>O‘zbekiston Respublikasi Fanlar akademiyasi Tarix instituti</h1>
             <p>
@@ -67,6 +67,7 @@ function About() {
               .map((value, idx) => (
                 <div key={idx} className={style.card}>
                   <img
+                    decoding="async"
                     loading="lazy"
                     src={"https://backend.tarixmanba.uz" + value.image}
                     alt={value.full_name}

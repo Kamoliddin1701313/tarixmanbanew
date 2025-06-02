@@ -42,7 +42,7 @@ function HomeImage() {
   return (
     <div className={style.container} ref={containerRef}>
       <div className={style.bg_pattern}>
-        <img src={bg_pattern} alt="bg_pattern" />
+        <img decoding="async" src={bg_pattern} alt="bg_pattern" />
       </div>
       <div className={style["images-container"]}>
         {data?.slice(0, 7).map((value, idx) => (
@@ -53,7 +53,7 @@ function HomeImage() {
             }`}
             onClick={() => animationBtn(value.id)}
           >
-            <img src={value?.image} alt={value.title} />
+            <img decoding="async" src={value?.image} alt={value.title} />
             <Link
               to={`homeImageDetail/${value.id}`}
               className={style.detailLink}
@@ -74,7 +74,7 @@ function HomeImage() {
             }`}
             onClick={() => animationBtn(value.id)}
           >
-            <img src={value?.image} alt={value.title} />
+            <img decoding="async" src={value?.image} alt={value.title} />
             <Link
               to={`homeImageDetail/${value.id}`}
               className={style.detailLink}
