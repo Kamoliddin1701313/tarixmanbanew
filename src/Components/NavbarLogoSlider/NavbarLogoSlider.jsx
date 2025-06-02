@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
 import style from "./navbarLogoSlider.module.scss";
-import lent1 from "./img/lenta1.png";
-import lent2 from "./img/lenta2.png";
-import lent3 from "./img/lenta3.png";
-import lent4 from "./img/lenta4.png";
-import lent5 from "./img/lenta5.png";
-import lent6 from "./img/lenta6.png";
-import lent7 from "./img/lenta7.png";
+import lent1 from "./img/lenta1.webp";
+import lent2 from "./img/lenta2.webp";
+import lent3 from "./img/lenta3.webp";
+import lent4 from "./img/lenta4.webp";
+import lent5 from "./img/lenta5.webp";
+import lent6 from "./img/lenta6.webp";
+import lent7 from "./img/lenta7.webp";
 
 function NavbarLogoSlider() {
   const img = [

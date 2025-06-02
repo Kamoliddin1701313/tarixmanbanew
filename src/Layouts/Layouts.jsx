@@ -3,13 +3,13 @@ import Navbar from "../Components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../Components/Footer/Footer";
 import { IoMdSettings } from "react-icons/io";
-import bgImg1 from "../assets/globalImg/bg-img1.jpg";
-import bgImg2 from "../assets/globalImg/bg-img2.jpg";
-import bgImg3 from "../assets/globalImg/bg-img3.jpg";
-import bgImg4 from "../assets/globalImg/bg-img4.jpg";
-import bgImg5 from "../assets/globalImg/bg-img5.jpg";
-import bgImg6 from "../assets/globalImg/bg-img6.jpg";
-import bgImg7 from "../assets/globalImg/bg-img7.jpg";
+import bgImg1 from "../assets/globalImg/bg-img1.webp";
+import bgImg2 from "../assets/globalImg/bg-img2.webp";
+import bgImg3 from "../assets/globalImg/bg-img3.webp";
+import bgImg4 from "../assets/globalImg/bg-img4.webp";
+import bgImg5 from "../assets/globalImg/bg-img5.webp";
+import bgImg6 from "../assets/globalImg/bg-img6.webp";
+import bgImg7 from "../assets/globalImg/bg-img7.webp";
 import style from "./layouts.module.scss";
 
 function Layouts() {
