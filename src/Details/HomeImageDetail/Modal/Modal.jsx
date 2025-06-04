@@ -5,7 +5,7 @@ import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import Marquee from "react-fast-marquee";
 
 function Modal(props) {
-  const { value, views, setViews, valueId } = props.data;
+  const { value, views, setViews } = props.data;
   const { type } = views;
 
   console.log(value.locations, "Salom Modal Component");
@@ -124,4 +124,4 @@ function Modal(props) {
   );
 }
 
-export default Modal;
+export default React.memo(Modal);

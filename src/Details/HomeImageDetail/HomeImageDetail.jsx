@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "./homeImageDetail.module.scss";
 import axios from "axios";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
@@ -9,8 +9,10 @@ import { LiaGlobeAmericasSolid } from "react-icons/lia";
 import { LuRotate3D } from "react-icons/lu";
 import { AiOutlineEye } from "react-icons/ai";
 import ReactPaginate from "react-paginate";
-import { TbPlayerTrackNextFilled } from "react-icons/tb";
-import { TbPlayerTrackPrevFilled } from "react-icons/tb";
+import {
+  TbPlayerTrackNextFilled,
+  TbPlayerTrackPrevFilled,
+} from "react-icons/tb";
 import Loading from "../../Loading/Loading";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { ValueContext } from "../../App";
@@ -648,4 +650,4 @@ function HomeImageDetail() {
   );
 }
 
-export default HomeImageDetail;
+export default React.memo(HomeImageDetail);

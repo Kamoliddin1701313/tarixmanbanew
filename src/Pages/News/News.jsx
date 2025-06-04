@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./news.module.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,12 @@ function News() {
                     Batafsil
                   </button>
                 </div>
-                <img decoding="async" src={value.file} alt={value.name} />
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src={value.file}
+                  alt={value.name}
+                />
               </div>
             ))}
           </div>

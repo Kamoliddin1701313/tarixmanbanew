@@ -2,7 +2,7 @@ import NavbarLogoSlider from "../NavbarLogoSlider/NavbarLogoSlider";
 import Header from "../Header/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa6";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 
 import axios from "axios";

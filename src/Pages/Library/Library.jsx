@@ -50,6 +50,7 @@ function Library() {
             <div key={idx} className={style.card}>
               <div className={style.img}>
                 <img
+                  loading="lazy"
                   decoding="async"
                   src={value.image ? value.image : library}
                   alt={value.title}
