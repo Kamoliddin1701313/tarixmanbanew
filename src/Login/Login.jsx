@@ -26,7 +26,6 @@
 
 //   return (
 //     <div className={style["login-container"]}>
-
 //       <ToastContainer
 //         position="top-right"
 //         autoClose={600}
@@ -36,7 +35,6 @@
 //         draggable
 //         theme="light"
 //       />
-
 //       <form onSubmit={HandeSubmit} className={style.login}>
 //         <h1>Hisobingizga kiring!</h1>
 //         <div className={style.inputCard}>
