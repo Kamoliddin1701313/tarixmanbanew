@@ -18,6 +18,15 @@ function HijriYear() {
     "Zulhijja",
   ];
 
+  moment.updateLocale("uz", {
+    months:
+      "yanvar_fevral_mart_aprel_may_iyun_iyul_avgust_sentyabr_oktabr_noyabr_dekabr".split(
+        "_"
+      ),
+  });
+
+  moment.locale("uz");
+
   const monthIndex = moment().iMonth(); // Hijriy oy indeksi olish
   const hijriMonth = hijriMonths[monthIndex]; // O'zgaruvchiga Lotin oy nomini olish
 
@@ -31,13 +40,7 @@ function HijriYear() {
         </div>
 
         <div className={style.year}>
-          <span>
-            {moment().format("DD").startsWith("0")
-              ? moment().format("DD").slice(1)
-              : moment().format("DD")}
-          </span>
-
-          <span>- {moment().format("MMMM")}</span>
+          {moment().format("D-MMMM", { locale: "uz" })}
         </div>
 
         <div className={style.lineY}></div>
