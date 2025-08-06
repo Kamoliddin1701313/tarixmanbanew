@@ -25,8 +25,6 @@ function About() {
     getData();
   }, []);
 
-  console.log(data, "data");
-
   return (
     <div className={style.container}>
       {loading ? (

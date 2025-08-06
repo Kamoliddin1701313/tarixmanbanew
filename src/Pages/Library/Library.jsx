@@ -27,8 +27,6 @@ function Library() {
     getData();
   }, []);
 
-  console.log(data);
-
   return (
     <div className={style.container}>
       <div className={style.prevBtn}>

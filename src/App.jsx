@@ -119,6 +119,7 @@ import { createContext, useEffect, useState } from "react";
 import Search from "./Components/Search/Search";
 import Modal from "./Details/HomeImageDetail/Modal/Modal";
 import Login from "./Login/Login";
+// import ChatPage from "./Pages/ChatPage/ChatPage";
 
 // Toastify
 import { ToastContainer } from "react-toastify";
@@ -176,6 +177,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/search" element={<Search />} />
             <Route path="*" element={<NotFound />} />
+            {/* <Route path="/chat" element={<ChatPage />} /> */}
             <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/library/:id" element={<LibraryDetail />} />
             <Route path="/homeImageDetail/:id" element={<HomeImageDetail />} />

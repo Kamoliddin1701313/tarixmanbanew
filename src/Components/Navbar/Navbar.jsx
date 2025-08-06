@@ -156,6 +156,10 @@ function Navbar({ openProps }) {
               </Link>
             </li>
 
+            {/* <li>
+              <Link to="/chat">Chat</Link>
+            </li> */}
+
             <li>
               <Link onClick={() => setOpenLink(false)} to="/about">
                 Biz haqimizda

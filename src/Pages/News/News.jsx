@@ -15,7 +15,6 @@ function News() {
       if (respons.status) {
         setData(respons.data.results);
         setLoading(false);
-        console.log(respons);
       }
     } catch (error) {
       console.log(error, "API da ma'luotlar kelmayabdi");
@@ -25,7 +24,6 @@ function News() {
   useEffect(() => {
     getData();
   }, []);
-  console.log(data, "News");
 
   return (
     <div>
