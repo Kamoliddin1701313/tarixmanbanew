@@ -14,18 +14,16 @@
     justify-content: space-between;
 
     .location {
-      width: 100%;
       background-color: #232a31d3;
       display: flex;
       flex-direction: column;
-      border-radius: 25px;
       font-family: "Poppins", sans-serif;
       text-align: center;
       color: white;
-      padding: 35px;
       img {
         width: 160px;
-        margin-bottom: 20px;
+        margin: 20px 0;
+        margin-left: 30px;
       }
 
       h1 {
@@ -33,6 +31,7 @@
         font-weight: 400;
         text-align: left;
         font-size: 24px;
+        margin-left: 30px;
       }
 
       h1:nth-of-type(1) {
@@ -42,6 +41,7 @@
       p {
         line-height: 36px;
         text-align: left;
+        margin-left: 30px;
         a {
           color: rgb(13, 57, 218);
         }
@@ -49,11 +49,17 @@
     }
 
     .iframe {
-      border-radius: 25px;
       border: none;
-      width: 100%;
+      // width: 50%;
       overflow: hidden;
       border: none;
+      height: 400px;
+    }
+
+    .location,
+    .iframe {
+      width: 50%;
+      border-radius: 25px;
     }
   }
 
@@ -136,6 +142,22 @@
 
     .location_about {
       flex-direction: column;
+
+      .location {
+        width: 100%;
+        img {
+          margin-left: 0;
+          margin-top: 0;
+        }
+
+        h1 {
+          margin-left: 0;
+        }
+
+        p {
+          margin-left: 0;
+        }
+      }
 
       .iframe {
         height: 400px;
