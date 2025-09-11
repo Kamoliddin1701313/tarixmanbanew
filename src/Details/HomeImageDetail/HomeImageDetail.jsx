@@ -91,18 +91,6 @@ function HomeImageDetail() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const storedState = getStoredState();
-  //   const searchParam = searchParams.get("search");
-
-  //   if (!storedState && !searchParam) {
-  //     setCheckedItems([]);
-  //     setCheckedItemsChog([]);
-  //     setSearchText("");
-  //   } else if (storedState?.searchText) {
-  //     setSearchText(storedState.searchText);
-  //   }
-  // }, [id]);
 
   const saveStateToSessionStorage = () => {
     try {
@@ -202,11 +190,6 @@ function HomeImageDetail() {
     }
 
     getData(currentPage);
-
-    // setSearchText("");
-
-    // setCheckedItemsChog([]); //malumot qo'shdim
-    // setCheckedItems([]); //malumot qo'shdim
   }, [id]);
 
   const [views, setViews] = useState(false);

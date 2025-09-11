@@ -2,16 +2,24 @@ import { useEffect, useState } from "react";
 import style from "./about.module.scss";
 import axios from "axios";
 import Loading from "../../Loading/Loading";
+import ReactPaginate from "react-paginate";
 import logo from "./logo.png";
+import {
+  TbPlayerTrackNextFilled,
+  TbPlayerTrackPrevFilled,
+} from "react-icons/tb";
 
 function About() {
   const [data, setData] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const getData = async () => {
+  const getData = async (Page = 1) => {
     try {
-      const respons = await axios.get("/employee/");
+      const respons = await axios.get(`/employee/?page=${Page}`);
       if (respons.status) {
         setData(respons.data.results);
+        setPageCount(Math.ceil(respons.data.count / 10));
         setLoading(false);
       }
     } catch (error) {
@@ -22,9 +30,12 @@ function About() {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
-  console.log(data, "ABOUT");
+    getData(currentPage);
+  }, [currentPage]);
+
+  const handlePageClick = (event) => {
+    setCurrentPage(event.selected + 1);
+  };
 
   return (
     <div className={style.container}>
@@ -34,6 +45,26 @@ function About() {
         <div>
           {/* <div className={style.lineX}></div> */}
 
+          <div className={style.about_text}>
+            <h2>
+              “O‘zbek xalqi va davlatchiligi tarixi manbalari (eng qadimgi
+              davrdan 1991 yilgacha)” elektron platformasi” yaratuvchilari
+            </h2>
+            <p>
+              Turon-Turkiston tarixiga oid barcha turdagi manbalar – arxeologiya
+              va me’morchilik yodgorliklari, tangalar, bitiklar, qo‘lyozma va
+              toshbosma asarlar, tarixiy va arxiv hujjatlari, san’at asarlari,
+              xaritalar, gazeta, jurnallar, xalq og‘zaki ijodi namunalari
+              bo‘yicha birlamchi to‘liq ma’lumotlarni taqdim etib boradigan
+              “O‘zbek xalqi va davlatchiligi tarixi manbalari (eng qadimgi
+              davrdan 1991 yilgacha)” elektron platformasi 2021 – 2024 yillari
+              Tarix institutida Oliy ta’lim, fan va innovatsiyalar vazirligi
+              buyurtmasiga ko‘ra “O‘zbek xalqi va davlatchiligi tarixi manbalari
+              (eng qadimgi davrlardan 1991 yilgacha) elektron “Aqlli kutubxona”
+              amaliy loyihasi doirasida yaratildi.
+            </p>
+          </div>
+
           <h1 className={style.users}>Loyiha qatnashchilari</h1>
 
           <div className={style.cards}>
@@ -42,7 +73,6 @@ function About() {
               .map((value, idx) => (
                 <div key={idx} className={style.card}>
                   <img
-                    loading="lazy"
                     decoding="async"
                     src={"https://backend.tarixmanba.uz" + value.image}
                     alt={value.full_name}
@@ -54,6 +84,19 @@ function About() {
                 </div>
               ))}
           </div>
+
+          <ReactPaginate
+            previousLabel={<TbPlayerTrackPrevFilled />}
+            nextLabel={<TbPlayerTrackNextFilled />}
+            breakLabel={"..."}
+            pageCount={pageCount} // Jami sahifalar soni
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={2}
+            onPageChange={handlePageClick} // Sahifa almashganda
+            containerClassName={style.pagination}
+            activeClassName={style.active}
+            forcePage={currentPage - 1}
+          />
 
           <div className={style.location_about}>
             <div className={style.location}>
