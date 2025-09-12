@@ -48,7 +48,7 @@ function About() {
           <div className={style.about_text}>
             <h2>
               “O‘zbek xalqi va davlatchiligi tarixi manbalari (eng qadimgi
-              davrdan 1991 yilgacha)” elektron platformasi” yaratuvchilari
+              davrdan 1991 yilgacha)” <br /> elektron platformasi yaratuvchilari
             </h2>
             <p>
               Turon-Turkiston tarixiga oid barcha turdagi manbalar – arxeologiya

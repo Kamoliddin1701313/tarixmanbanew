@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./hijriYear.module.scss";
 import moment from "moment-hijri";
 
