@@ -12,7 +12,7 @@
   align-items: center;
   text-align: center;
   transition: transform 0.3s;
-  img {
+  .weather-icon {
     height: 38px;
     width: 38px;
   }
@@ -34,15 +34,30 @@
   .weather-container {
     height: 38px;
     width: 100%;
+
+    .weather-card {
+      margin-top: 5px;
+      .weather-icon {
+        height: 28px;
+        width: 32px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .weather-container {
+    height: 38px;
+    width: 100%;
   }
 }
 
 @media only screen and (max-width: 520px) {
   .weather-card {
     height: 40px;
-    img {
+    .weather-icon {
       width: 35px;
-      height: 30px;
+      height: 24px !important;
     }
     p {
       font-size: 13px;

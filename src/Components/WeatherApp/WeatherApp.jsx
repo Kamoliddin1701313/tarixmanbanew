@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import blut from "./blut.png";
 import blutliquyosh from "./blutli-quyosh.png";
 import yomgir from "./yomgir.png";

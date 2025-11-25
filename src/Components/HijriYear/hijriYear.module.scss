@@ -2,7 +2,7 @@
   .gregorian-year {
     display: flex;
     align-items: center;
-    border: 2px solid rgba(255, 255, 255, 0.382);
+    border: 1px solid rgba(255, 255, 255, 0.382);
     padding: 6px 18px;
     border-radius: 8px;
     gap: 5px;
@@ -47,34 +47,33 @@
   .container {
     width: 100%;
     display: block;
+  }
 
-    .gregorian-year {
-      display: grid;
-      width: 100%;
-      grid-template-columns: 1fr 1fr;
+  .gregorian-year {
+    display: flex;
+    flex-wrap: wrap;
+    grid-column-gap: 20px !important;
+    justify-content: flex-start !important;
+    margin-top: 2px;
+  }
 
-      .lineY {
-        display: none;
-      }
+  .gregorian-year .lineY {
+    display: none;
+  }
 
-      .year {
-        span {
-          font-size: 14px;
-        }
-      }
-    }
+  .gregorian-year .year span {
+    font-size: 14px;
   }
 }
 
 @media only screen and (max-width: 520px) {
   .container {
-    // width: 120%;
+    margin-top: 20px;
     .gregorian-year {
-      border: none;
       padding: 0;
+      border: none;
 
       .year {
-        margin-bottom: 10px;
         span {
           font-size: 13px;
         }

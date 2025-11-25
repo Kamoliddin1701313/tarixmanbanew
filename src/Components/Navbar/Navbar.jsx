@@ -16,15 +16,8 @@ function Navbar({ openProps }) {
   const [openIcon, setOpenIcon] = useState(false);
   const navigate = useNavigate();
 
-  const {
-    checkedItemsChog,
-    checkedItems,
-    searchText,
-    searchValue,
-    setCheckedItemsChog,
-    setCheckedItems,
-    setSearchText,
-  } = useContext(ValueContext);
+  const { setCheckedItemsChog, setCheckedItems, setSearchText } =
+    useContext(ValueContext);
 
   const getData = async () => {
     try {
@@ -117,6 +110,7 @@ function Navbar({ openProps }) {
                     className={openLink ? style.openicon : style.closeicon}
                   />
                 </button>
+                
                 <div>
                   <div className={openLink ? style.openBox : style.closeBox}>
                     <div className={style.links}>
