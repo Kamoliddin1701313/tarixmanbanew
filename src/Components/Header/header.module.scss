@@ -31,7 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 25px;
+    gap: 20px;
     // margin-top: 0px;
     width: 80%;
     transition: all 0.4s ease-in-out;
@@ -50,14 +50,15 @@
     .search {
       position: relative;
       width: 30%;
+      height: 38px;
 
       input {
         background-color: transparent;
-        border: 2px solid gray;
+        border: 1px solid gray;
         width: 100%;
         border-radius: 8px;
         outline: none;
-        height: 38px;
+        height: 100%;
         color: white;
         font-size: 14px;
         letter-spacing: 1.6px;
@@ -141,7 +142,6 @@
 
       .openPanel {
         margin-top: 270px;
-        // display: block;
         transition: all 0.4s ease-in-out;
       }
 
@@ -153,15 +153,21 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .search {
-    height: 38px;
-    input {
-      height: 38px !important;
-      font-size: 14px !important;
-    }
+  .container {
+    .header {
+      .info-panel {
+        width: 60%;
+        .search {
+          height: 36px;
+          input {
+            font-size: 14px !important;
+          }
 
-    svg {
-      font-size: 20px !important;
+          svg {
+            font-size: 20px !important;
+          }
+        }
+      }
     }
   }
 }
@@ -176,7 +182,6 @@
           input::placeholder,
           input {
             font-size: 13px !important;
-            border-width: 1px;
           }
         }
       }

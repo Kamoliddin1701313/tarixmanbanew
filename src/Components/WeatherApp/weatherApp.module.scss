@@ -1,5 +1,5 @@
 .weather-container {
-  height: 38px;
+  height: 36px;
   width: 30%;
 }
 
@@ -13,13 +13,11 @@
   text-align: center;
   transition: transform 0.3s;
   .weather-icon {
-    height: 38px;
-    width: 38px;
+    height: 100%;
+    width: 32px;
   }
   p {
     font-size: 14px;
-    // font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    //   "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-family: "Poppins", sans-serif;
   }
 }
@@ -32,23 +30,16 @@
 
 @media only screen and (max-width: 992px) {
   .weather-container {
-    height: 38px;
+    height: 32px;
     width: 100%;
+    margin-top: 11px;
 
     .weather-card {
-      margin-top: 5px;
+      height: 32px;
       .weather-icon {
-        height: 28px;
         width: 32px;
       }
     }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .weather-container {
-    height: 38px;
-    width: 100%;
   }
 }
 

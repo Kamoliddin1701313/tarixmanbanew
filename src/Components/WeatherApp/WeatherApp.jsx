@@ -43,7 +43,7 @@ function WeatherApp() {
             />
             <p>{value.city}</p>
             <p>
-              {Math.ceil(value?.temp)}°...{" "}
+              {Math.ceil(value?.temp)}°...
               {Math.ceil(Math.ceil(value?.temp) + Math.random() * 10)}°
             </p>
           </div>

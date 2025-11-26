@@ -165,7 +165,7 @@
         position: fixed;
         display: flex;
         z-index: 990;
-        width: 50%;
+        width: 100%;
         top: -200px;
         height: 200px;
         flex-direction: column;
@@ -186,10 +186,10 @@
                   img {
                     width: 25px !important;
                     margin-left: 1%;
-                    height: 25px !important;
+                    height: 18px !important;
                   }
                   span {
-                    font-size: 18px;
+                    font-size: 16px;
                     letter-spacing: 1px;
                   }
                 }
