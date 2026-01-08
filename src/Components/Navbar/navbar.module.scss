@@ -2,6 +2,53 @@
   --fontSegoe: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.text {
+  max-width: 1400px;
+  margin: 0 auto;
+  .animateBox {
+    position: relative;
+    width: 240px;
+    z-index: 999;
+    p {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 100%;
+      text-align: right;
+      height: 20px;
+      font-size: 14px;
+      color: white;
+      font-weight: 400;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .animateText {
+      background-color: #0a1821;
+      margin-left: auto;
+      position: absolute;
+      top: 50px;
+      border-left: 2px solid white;
+      right: 0;
+      height: 20px;
+      width: 100%;
+      animation-name: typing;
+      animation-duration: 6s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+  }
+}
+
+@keyframes typing {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
 .navbar {
   width: 100%;
   z-index: 990;
@@ -128,6 +175,10 @@
 }
 
 @media only screen and (max-width: 1200px) {
+  .text {
+    padding: 0 20px;
+  }
+
   .boxcontainer {
     button {
       font-size: 18px !important;
@@ -158,6 +209,20 @@
 }
 
 @media only screen and (max-width: 992px) {
+  .text {
+    .animateBox {
+      width: 225px;
+      p,
+      .animateText {
+        top: 3px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+
   .navbar {
     position: relative;
     nav {

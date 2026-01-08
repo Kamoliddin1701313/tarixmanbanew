@@ -35,6 +35,7 @@ const Header = ({ openIcon, setOpenIcon, setOpenLink }) => {
     <div className={style.container}>
       <div className={style.header}>
         <div>
+
           <Link onClick={inputClearInValue} to="/">
             AQLLI KUTUBXONA
           </Link>

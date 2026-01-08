@@ -85,11 +85,19 @@ function Navbar({ openProps }) {
 
   return (
     <div>
+      <div className={style.text}>
+        <div className={style.animateBox}>
+          <p>Sayt sinov yo'sinida ishlamaoqda!</p>
+          <div className={style.animateText}></div>
+        </div>
+      </div>
+
       <Header
         openIcon={openIcon}
         setOpenIcon={setOpenIcon}
         setOpenLink={setOpenLink}
       />
+
       <div
         className={style.navbar}
         style={{
@@ -110,7 +118,7 @@ function Navbar({ openProps }) {
                     className={openLink ? style.openicon : style.closeicon}
                   />
                 </button>
-                
+
                 <div>
                   <div className={openLink ? style.openBox : style.closeBox}>
                     <div className={style.links}>
@@ -161,7 +169,6 @@ function Navbar({ openProps }) {
             </li>
           </ul>
         </nav>
-
         <Marquee>
           <NavbarLogoSlider />
         </Marquee>
